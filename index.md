@@ -1,5 +1,5 @@
 ---
-layout: layout.html
+layout: layout.njk
 title: about
 date: 2018-04-19 17:03:02
 ---
