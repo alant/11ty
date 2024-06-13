@@ -48,10 +48,27 @@ body {
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
     .sidebar {
-        display: none;
+        display: none; /* Hide the sidebar on small screens */
     }
 
     .content {
         width: 100%;
     }
+}
+
+/* Additional adjustments for smaller screens */
+@media screen and (max-width: 480px) {
+    .content {
+        padding: 10px;
+    }
+
+    .toc a {
+        font-size: 14px;
+    }
+}
+
+/* Prism.js specific styles */
+pre[class*="language-"] {
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace !important;
+    font-size: 0.8em; /* Adjust this value as needed */
 }
