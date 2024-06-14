@@ -15,6 +15,6 @@ title: 汤浩主页
 
 再之前有用 Jekyll 和 Octopress，其中 octopress 的主题 greyshade 最令我满意。当年应该是用了一段时间的。截图如下：
 
-<img src="/assets/images/jekyll-octopress.jpg" alt="用Jekyll时候的截屏" width="400">
+<img src="/assets/images/jekyll-octopress.jpg" alt="用Jekyll时候的截屏" class="responsive-image">
 
 然而，Jekyll 是 Ruby On Rails 写的，我不熟悉 Ruby，配置实在是搞不定。Octopress 后来维护好像也不是很积极了。

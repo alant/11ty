@@ -153,3 +153,10 @@ body {
   margin: 0 auto;
   padding: 0 20px;
 }
+
+.responsive-image {
+  max-width: 100%; /* Ensure the image does not exceed its original size */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensures the image behaves like a block element */
+  margin: 0 auto; /* Center aligns the image */
+}
