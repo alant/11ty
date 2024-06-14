@@ -20,7 +20,7 @@
   <body>
    <div class="container">
       <!-- Sidebar -->
-      <aside class="sidebar">
+      <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
           <img src="/assets/images/avatar.jpg" alt="Profile Photo" class="profile-picture">
           <h3 class="sidebar-title"></h3> 
@@ -37,9 +37,13 @@
           <a href="https://linkedin.com/in/alantang" class="icon linkedin"><i class="fab fa-linkedin"></i></a>
         </div>
       </aside>
-
-    <!-- Content Area -->
+      <div class="overlay" id="overlay"></div>
+      <!-- Content Area -->
       <main class="content">
+        <header>
+          <button class="hamburger" id="hamburger">&#9776;</button>
+          <h1>{{ title }}</h1>
+        </header>
         <section>
           <!-- Your main content goes here -->
           {{ content | safe }}
@@ -51,5 +55,20 @@
         </footer>
       </main>
     </div>
+    <script>
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      const hamburger = document.getElementById('hamburger');
+
+      hamburger.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('show');
+      });
+
+      overlay.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('show');
+      });
+    </script>
   </body>
 </html>

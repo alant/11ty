@@ -14,6 +14,7 @@ title: 汤浩主页
 之前用的 hexo 做的主页由于刷题页在移动端打不开，被迫升级了，然后样式就调不回去了。github 上 greyshade 的例子，基本上都是用的 hexo 和 next。
 
 再之前有用 Jekyll 和 Octopress，其中 octopress 的主题 greyshade 最令我满意。当年应该是用了一段时间的。截图如下：
+
 <img src="/assets/images/jekyll-octopress.jpg" alt="用Jekyll时候的截屏" width="400">
 
 然而，Jekyll 是 Ruby On Rails 写的，我不熟悉 Ruby，配置实在是搞不定。Octopress 后来维护好像也不是很积极了。
