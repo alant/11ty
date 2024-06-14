@@ -82,7 +82,7 @@ body {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    margin: 40px 40px 0 40px;
+    margin: 20px 20px 0 20px;
     background-color: white; /* Set background to white for content area */
 }
 
