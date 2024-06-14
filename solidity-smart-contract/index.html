@@ -67,8 +67,8 @@
 <p>合约创造以后，二号玩家可以调用 registerAnOpponent() 来注册。 require(playerB == address(0)); 的意思是要求二号玩家还没有被注册过（地址为 0）。合约的主体是 wrestle()，payable 的意思是这个方法可以接受付款。 后面的代码就是实现上面说的游戏的逻辑。 语法和现代语言 （java，javascript，python）基本没有什么区别。</p>
 <p>至此， 智能合约的开发第一步就完成了， 神奇吧。 你可以把以上的代码复制粘贴到 solidity 的 IDE 中：<a href="http://remix.ethereum.org/">http://remix.ethereum.org/</a>。然后点击 start to compile，一切顺利的话，你能看到 Wrestling 是绿色的， 表示编译没问题。如下图所示：</p>
 <p><img src="remix.jpg" alt=""></p>
-<p>到这里其实合约还有一个问题。 就是如果赢了的话，奖金如何取出来？我们需要加一个取钱的方法：
-&lt;!--more--&gt;</p>
+<p>到这里其实合约还有一个问题。 就是如果赢了的话，奖金如何取出来？我们需要加一个取钱的方法：</p>
+<!--more-->
 <pre class="language-solidity"><code class="language-solidity">  <span class="token keyword">function</span> <span class="token function">withDraw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">public</span> <span class="token punctuation">{</span>
     <span class="token keyword">require</span><span class="token punctuation">(</span>gameOver <span class="token operator">&amp;&amp;</span> msg<span class="token punctuation">.</span>sender <span class="token operator">==</span> theWinner<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token builtin">uint</span> amount <span class="token operator">=</span> prize<span class="token punctuation">;</span>
