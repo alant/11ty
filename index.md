@@ -17,3 +17,5 @@ title: 汤浩主页
 <img src="/assets/images/jekyll-octopress.jpg" alt="用Jekyll时候的截屏" class="responsive-image">
 
 Jekyll 是 Ruby On Rails 写的，我不熟悉 Ruby，配置实在是搞不定。Octopress 项目的维护后面好像也不是很积极了。在网上寻找替代方案的时候发现 Github 上 greyshade 的例子，基本上都是用的 Hexo 和 Next。就用了几年 Hexo 和 Next。
+
+> 最后一次编辑于 2024-06-14
