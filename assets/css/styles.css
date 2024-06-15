@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    overflow: hidden;
+    overflow: hidden; /* Prevents vertical and horizontal overflow */
 }
 
 .sidebar {
@@ -19,6 +19,8 @@ body {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
+    overflow-x: hidden; /* Prevents horizontal overflow */
+    box-sizing: border-box; /* Ensures padding is included in the element's width */
 }
 
 /* Style for headings and links in TOC */
@@ -53,6 +55,7 @@ body {
 
     .content {
         width: 100%;
+        padding: 20px; /* Ensure padding is present */
     }
 }
 
