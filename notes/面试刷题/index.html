@@ -300,8 +300,7 @@ return its minimum depth = 2.
         <span class="token keyword">return</span> <span class="token builtin">min</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> r<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span></code></pre>
 <p>8刷：高频</p>
 <h3 id="144.-binary-tree-preorder-traversal-(easy)" tabindex="-1"><a href="https://leetcode.com/problems/binary-tree-preorder-traversal/description/">144. Binary Tree Preorder Traversal (Easy)</a></h3>
-<p>again!
-Given a binary tree, return the preorder traversal of its nodes' values.</p>
+<p>Given a binary tree, return the preorder traversal of its nodes' values.</p>
 <pre><code>Example:
 Input: [1,null,2,3]
    1
@@ -530,8 +529,7 @@ What if the BST is modified (insert/delete operations) often and you need to fin
 <p>10刷：面经，Triplebyte, 维萨
 Follow up: 二叉树经常被修改 如何优化 kthSmallest 这个操作? <a href="https://leetcode.com/problems/kth-smallest-element-in-a-bst/solution">leetcode官方答案</a>提出做一个类似LRU双链表的数据结构实现O(h + k)插删和查询</p>
 <h3 id="129.-sum-root-to-leaf-numbers-(medium)" tabindex="-1"><a href="https://leetcode.com/problems/sum-root-to-leaf-numbers/">129. Sum Root to Leaf Numbers (Medium)</a></h3>
-<p>again!
-Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
+<p>Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
 An example is the root-to-leaf path 1-&gt;2-&gt;3 which represents the number 123.
 Find the total sum of all root-to-leaf numbers.
 Note: A leaf is a node with no children.</p>
@@ -562,10 +560,7 @@ Therefore, sum = 495 + 491 + 40 = 1026.
 </code></pre>
 <p>递归:</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">sumNumbers</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> TreeNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token number">0</span>
-        ans <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">def</span> <span class="token function">sumNumbers</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
         <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> cur<span class="token punctuation">)</span><span class="token punctuation">:</span>
             <span class="token keyword">nonlocal</span> ans
             <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
@@ -573,29 +568,26 @@ Therefore, sum = 495 + 491 + 40 = 1026.
             cur <span class="token operator">+=</span> root<span class="token punctuation">.</span>val
             <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">.</span>left <span class="token keyword">and</span> <span class="token keyword">not</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
                 ans <span class="token operator">+=</span> cur
-                <span class="token keyword">return</span>
             helper<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> cur <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">)</span>
             helper<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> cur <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">)</span>
+        ans <span class="token operator">=</span> <span class="token number">0</span>
         helper<span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> ans</code></pre>
 <p>遍历：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">sumNumbers</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> TreeNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token number">0</span>
-        ans <span class="token operator">=</span> <span class="token number">0</span>
-        s <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
-        <span class="token keyword">while</span> s<span class="token punctuation">:</span>
-            root<span class="token punctuation">,</span> cur <span class="token operator">=</span> s<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
-            <span class="token keyword">if</span> root<span class="token punctuation">:</span>
-                cur <span class="token operator">+=</span> root<span class="token punctuation">.</span>val
-                <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">.</span>left <span class="token keyword">and</span> <span class="token keyword">not</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
-                    ans <span class="token operator">+=</span> cur
-                    <span class="token keyword">continue</span>
-                s<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> cur <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                s<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> cur <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">sumNumbers</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        ans<span class="token punctuation">,</span> stack <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        <span class="token keyword">while</span> stack<span class="token punctuation">:</span>
+            root<span class="token punctuation">,</span> cur <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            cur <span class="token operator">=</span> cur <span class="token operator">*</span> <span class="token number">10</span> <span class="token operator">+</span> root<span class="token punctuation">.</span>val
+            <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">.</span>left <span class="token keyword">and</span> <span class="token keyword">not</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
+                ans <span class="token operator">+=</span> cur
+            <span class="token keyword">if</span> root<span class="token punctuation">.</span>left<span class="token punctuation">:</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> cur<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> cur<span class="token punctuation">)</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> ans</code></pre>
-<p>七刷：高频</p>
+<p>8刷：高频</p>
 <h3 id="116.-populating-next-right-pointers-in-each-node-(medium)" tabindex="-1"><a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node">116. Populating Next Right Pointers in Each Node (Medium)</a></h3>
 <p>You are given a perfect binary tree where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:</p>
 <pre><code>struct Node {
