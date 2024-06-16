@@ -1,4 +1,5 @@
 ---
+layout: base.njk
 title: 一个简单的以太坊智能合约开发练习
 date: 2018-04-22 14:40:19
 tags:
@@ -82,7 +83,7 @@ contract Wrestling {
 
 至此， 智能合约的开发第一步就完成了， 神奇吧。 你可以把以上的代码复制粘贴到 solidity 的 IDE 中：[http://remix.ethereum.org/](http://remix.ethereum.org/)。然后点击 start to compile，一切顺利的话，你能看到 Wrestling 是绿色的， 表示编译没问题。如下图所示：
 
-![](remix.jpg)
+<img src="/assets/images/solidity-smart-contract/remix.jpg" alt="remix.jpg" class="responsive-image">
 
 到这里其实合约还有一个问题。 就是如果赢了的话，奖金如何取出来？我们需要加一个取钱的方法：
 <!--more-->
@@ -222,7 +223,7 @@ ganache-cli -p 7545
 
 会产生 10 个以太坊账号，每个里面有 100 个 Ether。 效果如下：
 
-![](terminal-ganache.jpg)
+<img src="/assets/images/solidity-smart-contract/terminal-ganache.jpg" alt="terminal-ganache.jpg" class="responsive-image">
 
 然后编译和部署合约到上面这个假以太坊网络中去，保留上面的终端， 开一个命令在项目的根目录处执行：
 
@@ -235,11 +236,11 @@ truffle migrate --network development
 
 部署后执行 truffle 的终端显示如下：
 
-![](terminal-truffle-migrate.jpg)
+<img src="/assets/images/solidity-smart-contract/terminal-truffle-migrate.jpg" alt="terminal-truffle-migrate.jpg" class="responsive-image">
 
 ganache 的终端显示如下：
 
-![](terminal-ganache2.jpg)
+<img src="/assets/images/solidity-smart-contract/terminal-ganache2.jpg" alt="terminal-ganache2.jpg" class="responsive-image">
 
 值得注意的是上面两个终端里 Wresling: 0x… 和 contract created: 0x… 的地址是一致的。
 
@@ -257,7 +258,7 @@ truffle console --network development
 web3.fromWei(web3.eth.getBalance(web3.eth.accounts[1]))
 ```
 
-![](terminal-truffle-console.jpg)
+<img src="/assets/images/solidity-smart-contract/terminal-truffle-console.jpg" alt="terminal-truffle-console.jpg" class="responsive-image">
 
 合约是默认 accounts[0] 部署的，ganache 默认的 gas price 是 100,000,000,000 或者 100 gwei，部署这个合约花掉了 1,068,066 的 gas。加上余额，就能对上每个账号默认 100 个 ether 的量了。
 
@@ -277,3 +278,5 @@ WrestlingInstance.wrestle({from: playerB, value: web3.toWei(20, "ether")})
 默认合约的调用者是 accounts[0]，根据合约的代码就是 playerA 了。 这里玩了两轮。 第二轮符合游戏结束的条件。 
 
 到这里这个合约基本就开发完成了。 下一步是加上几个事件的代码。 并配上一个前端网页显示相关的信息。 
+
+> 最后一次编辑于 2018-04-22

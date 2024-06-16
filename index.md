@@ -12,10 +12,10 @@ title: 汤浩主页
 
 这个站目前用静态页面的解决方案 11ty 来渲染。不过有些细节还没调好。比如刷题笔记因为题目比较多，需要一个目录在左边。导致那页现在没法把左边的菜单栏加进去。之前用 Hexo 渲染的主页由于刷题笔记页在移动端浏览器渲染会崩溃，被迫升级了一下 Hexo 和 Next，然后样式就调不回去了。因为想要较深度的订制，我一直都想用静态页面解决方案而不是内容管理（CMS）类的工具如 WordPress 来建个人站。最近机遇巧合发现 11ty，再加上 Hexo 和 Next 已经调不好渲染的样式了，就迁移到 11ty了。
 
-再之前用过 Octopress，Octopress 的主题 greyshade 最令我满意。截图如下：
+再之前用过 Octopress，主题 greyshade 最令我满意。截图如下：
 
 <img src="/assets/images/jekyll-octopress.jpg" alt="用Jekyll时候的截屏" class="responsive-image">
 
-Octopress 基于 Jekyll 开发的，Jekyll 是用 Ruby On Rails 写的，由于我不熟悉 Ruby，配置实在是搞不定。几年前 Octopress 项目页停止维护了。在网上寻找替代方案的时候发现 Github 上 greyshade 的例子，基本上都是用的 Hexo 和 Next。就用了几年 Hexo 和 Next。
+Octopress 是基于 Jekyll 开发的，Jekyll 是用 Ruby On Rails 写的，由于我不熟悉 Ruby，配置实在是搞不定。几年前 Octopress 项目页停止维护了。在网上寻找替代方案的时候发现 Github 上 greyshade 的例子，基本上都是用的 Hexo 和 Next。就用了几年 Hexo 和 Next。
 
 > 最后一次编辑于 2024-06-15

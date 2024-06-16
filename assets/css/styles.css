@@ -73,7 +73,7 @@ body {
 /* Prism.js specific styles */
 pre[class*="language-"] {
     font-family: 'Menlo', 'Monaco', 'Courier New', monospace !important;
-    font-size: 0.8em; /* Adjust this value as needed */
+    font-size: 0.9em; /* Adjust this value as needed */
 }
 
 .responsive-image {
