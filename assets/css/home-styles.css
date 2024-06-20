@@ -168,9 +168,12 @@ pre[class*="language-"] {
 }
 
 table {
-  width: max-content;
+  /* width: max-content; */
+  width: auto;
+  min-width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
+  overflow-x: auto;
 }
 
 th, td {
