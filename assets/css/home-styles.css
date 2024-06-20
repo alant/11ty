@@ -186,6 +186,8 @@ th, td {
     text-orientation: upright; /* Ensures characters are upright */
     -webkit-writing-mode: vertical-rl; /* For iOS Safari */
     -webkit-text-orientation: upright; /* For iOS Safari */
+    text-combine-upright: upright; /* Ensures correct orientation for Japanese */
+    -webkit-text-combine: upright; /* For iOS Safari */
   }
 }
 
