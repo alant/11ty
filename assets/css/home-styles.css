@@ -177,6 +177,7 @@ th, td {
   padding: 8px; /* Adjust padding for cell content */
   text-align: center; /* Center align text */
   vertical-align: middle; /* Center align vertically */
+  writing-mode: horizontal-tb;
   white-space: nowrap;
   transform: none; /* Reset any transformations */
   -webkit-transform: none; /* Reset for Safari specifically */
