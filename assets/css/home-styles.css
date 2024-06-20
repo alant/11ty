@@ -182,9 +182,9 @@ th, td {
 /* Vertical text for narrow screens */
 @media screen and (max-width: 600px) {
   td {
-    writing-mode: vertical-lr; /* Vertical text from right to left */
+    writing-mode: vertical-rl; /* Vertical text from right to left */
     text-orientation: upright; /* Ensures characters are upright */
-    -webkit-writing-mode: vertical-lr; /* For iOS Safari */
+    -webkit-writing-mode: vertical-rl; /* For iOS Safari */
     -webkit-text-orientation: upright; /* For iOS Safari */
     text-combine-upright: upright; /* Ensures correct orientation for Japanese */
     -webkit-text-combine: upright; /* For iOS Safari */
