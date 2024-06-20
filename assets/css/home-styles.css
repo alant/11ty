@@ -169,10 +169,8 @@ pre[class*="language-"] {
 
 table {
   width: 100%;
+  table-layout: fixed; /* Ensures consistent cell widths */
   border-collapse: collapse;
-  margin: 25px 0;
-  font-size: 18px;
-  text-align: left;
 }
 
 th, td {
@@ -186,6 +184,8 @@ th, td {
   td {
     writing-mode: vertical-rl; /* Vertical text from right to left */
     text-orientation: upright; /* Ensures characters are upright */
+    -webkit-writing-mode: vertical-rl; /* For iOS Safari */
+    -webkit-text-orientation: upright; /* For iOS Safari */
   }
 }
 
@@ -193,6 +193,7 @@ th, td {
 @media screen and (min-width: 601px) {
   td {
     writing-mode: horizontal-tb; /* Horizontal text */
+    -webkit-writing-mode: horizontal-tb; /* For iOS Safari */
   }
 }
 
