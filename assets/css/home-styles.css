@@ -188,6 +188,8 @@ th, td {
     -webkit-text-orientation: upright; /* For iOS Safari */
     text-combine-upright: upright; /* Ensures correct orientation for Japanese */
     -webkit-text-combine: upright; /* For iOS Safari */
+    transform: rotate(0); /* Reset any unintended rotation */
+    -webkit-transform: rotate(0); /* For iOS Safari */
   }
 }
 
