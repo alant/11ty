@@ -169,7 +169,8 @@ pre[class*="language-"] {
 
 table {
   width: 100%;
-  table-layout: fixed; /* Ensures consistent cell widths */
+  /* width: max-content; */
+  /* table-layout: fixed; */
   border-collapse: collapse;
 }
 
@@ -177,36 +178,33 @@ th, td {
   padding: 8px; /* Adjust padding for cell content */
   text-align: center; /* Center align text */
   vertical-align: middle; /* Center align vertically */
-}
-
-/* Vertical text for narrow screens */
-@media screen and (max-width: 600px) {
-  td {
-    writing-mode: vertical-rl;
-    -webkit-writing-mode: vertical-rl; 
-    /* text-orientation: upright;
-    -webkit-text-orientation: upright; 
-    text-combine-upright: upright; 
-    -webkit-text-combine: upright;  */
-    /* transform: rotate(0);
-    -webkit-transform: rotate(0); */
-  }
-}
-
-/* Horizontal text for wider screens */
-@media screen and (min-width: 601px) {
-  td {
-    writing-mode: horizontal-tb; /* Horizontal text */
-    -webkit-writing-mode: horizontal-tb; /* For iOS Safari */
-  }
+  /* white-space: nowrap; */
 }
 
 th {
+  font-weight: normal;
   background-color: #f2f2f2;
 }
 
 tr:nth-child(even) {
   background-color: #f9f9f9;
+}
+
+/* Media query for vertical Japanese and Chinese text on narrow screens */
+@media (max-width: 600px) {
+  table {
+    overflow-x: auto;
+  }
+
+  /* Target specific cells containing Japanese and Chinese text */
+  table td.vertical-text {
+    writing-mode: vertical-rl; /* Vertical writing mode, top to bottom */
+    text-orientation: mixed; /* Ensure vertical text is displayed correctly */
+    white-space: nowrap; /* Prevent wrapping */
+    width: 1em; /* Set width to one character width */
+    padding: 4px; /* Adjust padding for better appearance */
+    line-height: 1em; /* Ensure line height matches character width */
+  }
 }
 
 h1 {
