@@ -176,8 +176,24 @@ table {
 }
 
 th, td {
-  padding: 12px 15px;
-  border: 1px solid #ddd;
+  padding: 8px; /* Adjust padding for cell content */
+  text-align: center; /* Center align text */
+  vertical-align: middle; /* Center align vertically */
+}
+
+/* Vertical text for narrow screens */
+@media screen and (max-width: 600px) {
+  td {
+    writing-mode: vertical-rl; /* Vertical text from right to left */
+    text-orientation: upright; /* Ensures characters are upright */
+  }
+}
+
+/* Horizontal text for wider screens */
+@media screen and (min-width: 601px) {
+  td {
+    writing-mode: horizontal-tb; /* Horizontal text */
+  }
 }
 
 th {
