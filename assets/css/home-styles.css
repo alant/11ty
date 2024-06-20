@@ -168,9 +168,8 @@ pre[class*="language-"] {
 }
 
 table {
-  width: 100%;
-  /* width: max-content; */
-  /* table-layout: fixed; */
+  width: max-content;
+  table-layout: fixed;
   border-collapse: collapse;
 }
 
@@ -178,7 +177,7 @@ th, td {
   padding: 8px; /* Adjust padding for cell content */
   text-align: center; /* Center align text */
   vertical-align: middle; /* Center align vertically */
-  /* white-space: nowrap; */
+  white-space: nowrap;
 }
 
 th {
@@ -188,23 +187,6 @@ th {
 
 tr:nth-child(even) {
   background-color: #f9f9f9;
-}
-
-/* Media query for vertical Japanese and Chinese text on narrow screens */
-@media (max-width: 600px) {
-  table {
-    overflow-x: auto;
-  }
-
-  /* Target specific cells containing Japanese and Chinese text */
-  table td.vertical-text {
-    writing-mode: vertical-rl; /* Vertical writing mode, top to bottom */
-    text-orientation: mixed; /* Ensure vertical text is displayed correctly */
-    white-space: nowrap; /* Prevent wrapping */
-    width: 1em; /* Set width to one character width */
-    padding: 4px; /* Adjust padding for better appearance */
-    line-height: 1em; /* Ensure line height matches character width */
-  }
 }
 
 h1 {
