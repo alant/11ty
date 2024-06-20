@@ -182,12 +182,12 @@ th, td {
 /* Vertical text for narrow screens */
 @media screen and (max-width: 600px) {
   td {
-    writing-mode: vertical-rl; /* Vertical text from right to left */
-    text-orientation: upright; /* Ensures characters are upright */
-    -webkit-writing-mode: vertical-rl; /* For iOS Safari */
-    -webkit-text-orientation: upright; /* For iOS Safari */
-    text-combine-upright: upright; /* Ensures correct orientation for Japanese */
-    -webkit-text-combine: upright; /* For iOS Safari */
+    writing-mode: vertical-rl;
+    -webkit-writing-mode: vertical-rl; 
+    /* text-orientation: upright;
+    -webkit-text-orientation: upright; 
+    text-combine-upright: upright; 
+    -webkit-text-combine: upright;  */
     transform: rotate(0); /* Reset any unintended rotation */
     -webkit-transform: rotate(0); /* For iOS Safari */
   }
