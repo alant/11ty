@@ -188,8 +188,8 @@ th, td {
     -webkit-text-orientation: upright; 
     text-combine-upright: upright; 
     -webkit-text-combine: upright;  */
-    transform: rotate(0); /* Reset any unintended rotation */
-    -webkit-transform: rotate(0); /* For iOS Safari */
+    /* transform: rotate(0);
+    -webkit-transform: rotate(0); */
   }
 }
 
