@@ -178,6 +178,8 @@ th, td {
   text-align: center; /* Center align text */
   vertical-align: middle; /* Center align vertically */
   white-space: nowrap;
+  transform: none; /* Reset any transformations */
+  -webkit-transform: none; /* Reset for Safari specifically */
 }
 
 th {
