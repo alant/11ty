@@ -843,17 +843,17 @@ Return false.
         stack<span class="token punctuation">,</span> depth <span class="token operator">=</span> <span class="token punctuation">[</span>root<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token boolean">None</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">}</span>
         <span class="token keyword">while</span> stack<span class="token punctuation">:</span>
             root <span class="token operator">=</span> stack<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
-            <span class="token keyword">if</span> root<span class="token punctuation">.</span>left <span class="token operator">!=</span> <span class="token boolean">None</span> <span class="token keyword">and</span> root<span class="token punctuation">.</span>left <span class="token keyword">not</span> <span class="token keyword">in</span> depth<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> root<span class="token punctuation">.</span>left <span class="token keyword">and</span> root<span class="token punctuation">.</span>left <span class="token keyword">not</span> <span class="token keyword">in</span> depth<span class="token punctuation">:</span>
                 stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
-            <span class="token keyword">elif</span> root<span class="token punctuation">.</span>right <span class="token operator">!=</span> <span class="token boolean">None</span> <span class="token keyword">and</span> root<span class="token punctuation">.</span>right <span class="token keyword">not</span> <span class="token keyword">in</span> depth<span class="token punctuation">:</span>
+            <span class="token keyword">elif</span> root<span class="token punctuation">.</span>right <span class="token keyword">and</span> root<span class="token punctuation">.</span>right <span class="token keyword">not</span> <span class="token keyword">in</span> depth<span class="token punctuation">:</span>
                 stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
             <span class="token keyword">else</span><span class="token punctuation">:</span>
-                stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
                 l <span class="token operator">=</span> depth<span class="token punctuation">[</span>root<span class="token punctuation">.</span>left<span class="token punctuation">]</span>
                 r <span class="token operator">=</span> depth<span class="token punctuation">[</span>root<span class="token punctuation">.</span>right<span class="token punctuation">]</span>
                 <span class="token keyword">if</span> <span class="token builtin">abs</span><span class="token punctuation">(</span>l <span class="token operator">-</span> r<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">:</span>
                     <span class="token keyword">return</span> <span class="token boolean">False</span>
                 depth<span class="token punctuation">[</span>root<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> r<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span>
+                stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> <span class="token boolean">True</span></code></pre>
 <p>递归2:</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
@@ -910,7 +910,7 @@ Return false.
                 stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
                 stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> <span class="token boolean">True</span></code></pre>
-<p>高频, 14刷</p>
+<p>高频, 15刷</p>
 <h3 id="108.-convert-sorted-array-to-binary-search-tree-(easy)" tabindex="-1"><a href="https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree">108. Convert Sorted Array to Binary Search Tree (Easy)</a></h3>
 <p>Given an array where elements are sorted in ascending order, convert it to a height balanced BST.
 For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.</p>
