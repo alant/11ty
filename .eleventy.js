@@ -3,12 +3,17 @@ const markdownIt = require('markdown-it')
 const markdownItAttrs = require('markdown-it-attrs');
 const markdownItAnchor = require('markdown-it-anchor');
 const pluginTOC = require('eleventy-plugin-toc')
+const markdownItMath = require('markdown-it-math');
 
-  let markdownLibrary = markdownIt({ html: true })
+module.exports = function (eleventyConfig) {
+  let markdownLibrary = markdownIt({
+      html: true,
+      breaks: true,
+      linkify: true})
+    .use(markdownItMath)
     .use(markdownItAttrs)
     .use(markdownItAnchor);
 
-module.exports = function (eleventyConfig) {
   eleventyConfig.setLibrary('md', markdownLibrary);
   eleventyConfig.addPlugin(pluginTOC);
   eleventyConfig.addPassthroughCopy("assets"); 

@@ -7,6 +7,7 @@
   "dependencies": {
     "markdown-it": "^14.1.0",
     "markdown-it-anchor": "^9.0.1",
-    "markdown-it-attrs": "^4.1.6"
+    "markdown-it-attrs": "^4.1.6",
+    "markdown-it-math": "^4.1.1"
   }
 }
