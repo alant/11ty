@@ -5237,10 +5237,28 @@ Output:<br>
 [1,2,1],<br>
 [2,1,1]<br>
 ]</p>
-<p>写法1:</p>
+<p>写法1：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">permuteUnique</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
-        <span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>cur<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                ans<span class="token punctuation">.</span>append<span class="token punctuation">(</span>cur<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token keyword">return</span>
+            <span class="token keyword">for</span> n <span class="token keyword">in</span> counter<span class="token punctuation">:</span>
+                <span class="token keyword">if</span> counter<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
+                    cur<span class="token punctuation">.</span>append<span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+                    counter<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">-=</span> <span class="token number">1</span>
+                    helper<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    <span class="token keyword">del</span> cur<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+                    counter<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
+        cur<span class="token punctuation">,</span> ans <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        counter <span class="token operator">=</span> Counter<span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
+        helper<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> ans</code></pre>
+<p>写法2:</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">permuteUnique</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
             <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>cur<span class="token punctuation">)</span> <span class="token operator">==</span> n<span class="token punctuation">:</span>
                 ans<span class="token punctuation">.</span>append<span class="token punctuation">(</span>cur<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
                 <span class="token keyword">return</span>
@@ -5250,34 +5268,16 @@ Output:<br>
                 <span class="token keyword">if</span> <span class="token keyword">not</span> used<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span>
                     cur<span class="token punctuation">.</span>append<span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
                     used<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">True</span>
-                    dfs<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    helper<span class="token punctuation">(</span><span class="token punctuation">)</span>
                     <span class="token keyword">del</span> cur<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
                     used<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">False</span>
         cur<span class="token punctuation">,</span> ans <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
         n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
         used <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token boolean">False</span><span class="token punctuation">]</span> <span class="token operator">*</span> n
         nums<span class="token punctuation">.</span>sort<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        dfs<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        helper<span class="token punctuation">(</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> ans</code></pre>
-<p>写法2：</p>
-<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">permuteUnique</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>cur<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">:</span>
-                ans<span class="token punctuation">.</span>append<span class="token punctuation">(</span>cur<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-                <span class="token keyword">return</span>
-            <span class="token keyword">for</span> n <span class="token keyword">in</span> counter<span class="token punctuation">:</span>
-                <span class="token keyword">if</span> counter<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
-                    cur<span class="token punctuation">.</span>append<span class="token punctuation">(</span>n<span class="token punctuation">)</span>
-                    counter<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">-=</span> <span class="token number">1</span>
-                    dfs<span class="token punctuation">(</span><span class="token punctuation">)</span>
-                    counter<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
-                    <span class="token keyword">del</span> cur<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
-        ans<span class="token punctuation">,</span> cur <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-        counter <span class="token operator">=</span> Counter<span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
-        dfs<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">return</span> ans</code></pre>
-<p>13刷：高频，空间复杂度O(n)。时间复杂度：O(n*n!), 因为需要n步产生一个排列，总共有n！个可能的排列</p>
+<p>14刷：高频，空间复杂度O(n)。时间复杂度：O(n*n!), 因为需要n步产生一个排列，总共有n！个可能的排列</p>
 <h3 id="22.-generate-parentheses-(medium)" tabindex="-1"><a href="https://leetcode.com/problems/generate-parentheses/description/">22. Generate Parentheses (Medium)</a></h3>
 <p>Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.</p>
 <p>For example, given n = 3, a solution set is:<br>
