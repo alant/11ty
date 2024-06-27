@@ -7939,48 +7939,48 @@ Do not use the eval built-in library function.</p>
 <p>O(n) 空间:</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">calculate</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
-        stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-        cur<span class="token punctuation">,</span> pre_op <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">' '</span>
+        cur<span class="token punctuation">,</span> pre_op <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">'+'</span>
+        res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
         <span class="token keyword">for</span> c <span class="token keyword">in</span> s <span class="token operator">+</span> <span class="token string">'+'</span><span class="token punctuation">:</span>
             <span class="token keyword">if</span> c <span class="token keyword">in</span> <span class="token string">'+-*/'</span><span class="token punctuation">:</span>
-                <span class="token keyword">if</span> pre_op <span class="token keyword">in</span> <span class="token string">'*/'</span><span class="token punctuation">:</span>
-                    <span class="token keyword">if</span> pre_op <span class="token operator">==</span> <span class="token string">'*'</span><span class="token punctuation">:</span>
-                        cur <span class="token operator">*=</span> stack<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
-                    <span class="token keyword">if</span> pre_op <span class="token operator">==</span> <span class="token string">'/'</span><span class="token punctuation">:</span>
-                        cur <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>stack<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">/</span> cur<span class="token punctuation">)</span>
-                    stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token keyword">if</span> pre_op <span class="token operator">==</span> <span class="token string">'-'</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> pre_op <span class="token operator">==</span> <span class="token string">'+'</span><span class="token punctuation">:</span>
+                    res<span class="token punctuation">.</span>append<span class="token punctuation">(</span>cur<span class="token punctuation">)</span>
+                <span class="token keyword">elif</span> pre_op <span class="token operator">==</span> <span class="token string">'-'</span><span class="token punctuation">:</span>
+                    res<span class="token punctuation">.</span>append<span class="token punctuation">(</span>cur<span class="token punctuation">)</span>
                     cur <span class="token operator">=</span> <span class="token operator">-</span>cur
-                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>cur<span class="token punctuation">)</span>    
-                cur <span class="token operator">=</span> <span class="token number">0</span>
+                <span class="token keyword">elif</span> pre_op <span class="token operator">==</span> <span class="token string">'*'</span><span class="token punctuation">:</span>
+                    res<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*=</span> cur
+                <span class="token keyword">elif</span> pre_op <span class="token operator">==</span> <span class="token string">'/'</span><span class="token punctuation">:</span>
+                    res<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>res<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">/</span> cur<span class="token punctuation">)</span>
                 pre_op <span class="token operator">=</span> c
+                cur <span class="token operator">=</span> <span class="token number">0</span>
             <span class="token keyword">elif</span> c <span class="token operator">!=</span> <span class="token string">' '</span><span class="token punctuation">:</span>
                 cur <span class="token operator">=</span> cur <span class="token operator">*</span> <span class="token number">10</span> <span class="token operator">+</span> <span class="token builtin">int</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> <span class="token builtin">sum</span><span class="token punctuation">(</span>stack<span class="token punctuation">)</span></code></pre>
+        <span class="token keyword">return</span> <span class="token builtin">sum</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span></code></pre>
 <p>O(1）空间:</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">calculate</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
-        cur<span class="token punctuation">,</span> pre_op<span class="token punctuation">,</span> res<span class="token punctuation">,</span> pre_v <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">'+'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span>
+        cur<span class="token punctuation">,</span> pre<span class="token punctuation">,</span> res<span class="token punctuation">,</span> pre_op <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">'+'</span>
         <span class="token keyword">for</span> c <span class="token keyword">in</span> s <span class="token operator">+</span> <span class="token string">'+'</span><span class="token punctuation">:</span>
             <span class="token keyword">if</span> c <span class="token keyword">in</span> <span class="token string">'+-*/'</span><span class="token punctuation">:</span>
-                <span class="token keyword">if</span> pre_op <span class="token operator">==</span> <span class="token string">'*'</span><span class="token punctuation">:</span>
-                    pre_v <span class="token operator">*=</span> cur
-                <span class="token keyword">if</span> pre_op <span class="token operator">==</span> <span class="token string">'/'</span><span class="token punctuation">:</span>
-                    pre_v <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>pre_v <span class="token operator">/</span> cur<span class="token punctuation">)</span>
-                <span class="token keyword">if</span> pre_op <span class="token operator">==</span> <span class="token string">'-'</span><span class="token punctuation">:</span>
-                    res <span class="token operator">+=</span> pre_v
-                    pre_v <span class="token operator">=</span> <span class="token operator">-</span>cur
                 <span class="token keyword">if</span> pre_op <span class="token operator">==</span> <span class="token string">'+'</span><span class="token punctuation">:</span>
-                    res <span class="token operator">+=</span> pre_v
-                    pre_v <span class="token operator">=</span> cur
-                cur <span class="token operator">=</span> <span class="token number">0</span>
+                    res <span class="token operator">+=</span> pre
+                    pre <span class="token operator">=</span> cur
+                <span class="token keyword">elif</span> pre_op <span class="token operator">==</span> <span class="token string">'-'</span><span class="token punctuation">:</span>
+                    res <span class="token operator">+=</span> pre
+                    pre <span class="token operator">=</span> <span class="token operator">-</span>cur
+                <span class="token keyword">elif</span> pre_op <span class="token operator">==</span> <span class="token string">'*'</span><span class="token punctuation">:</span>
+                    pre <span class="token operator">*=</span> cur
+                <span class="token keyword">elif</span> pre_op <span class="token operator">==</span> <span class="token string">'/'</span><span class="token punctuation">:</span>
+                    pre <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>pre <span class="token operator">/</span> cur<span class="token punctuation">)</span>
                 pre_op <span class="token operator">=</span> c
+                cur <span class="token operator">=</span> <span class="token number">0</span>
             <span class="token keyword">elif</span> c <span class="token operator">!=</span> <span class="token string">' '</span><span class="token punctuation">:</span>
                 cur <span class="token operator">=</span> cur <span class="token operator">*</span> <span class="token number">10</span> <span class="token operator">+</span> <span class="token builtin">int</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> res <span class="token operator">+</span> pre_v</code></pre>
-<p>6刷: 面经：Cruise。难点:<br>
-1：preOp = ...; ...in s + '+'<br>
-2. 给s加一个'+'尾巴处理最后一个运算符<br>
+        <span class="token keyword">return</span> res <span class="token operator">+</span> pre</code></pre>
+<p>7刷: 面经：Cruise。难点:<br>
+1：pre_op = '+';<br>
+2. ...in s + '+': 给s加一个'+'尾巴处理最后一个运算符<br>
 3. -3 // 2 == -2 因为python是floor division返回<strong>less</strong> or equal to the closest integer比-1.5 less的integer是-2，所以要用int(../..)这样来除才能得到整数位的<br>
 4：O(n）空间的写法是要有一个preV的变量记录前一位的结果，如果前一个运算符是加减，则将preV加入res，最后返回res + preV</p>
 <h3 id="739.-daily-temperatures-(medium)" tabindex="-1"><a href="https://leetcode.com/problems/daily-temperatures/">739. Daily Temperatures (Medium)</a></h3>
