@@ -638,6 +638,11 @@ Recursive approach is fine, implicit stack space does not count as extra space f
         self<span class="token punctuation">.</span>right <span class="token operator">=</span> right
         self<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> <span class="token builtin">next</span>
 
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">connect</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> <span class="token string">'Node'</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">'Node'</span><span class="token punctuation">:</span>
+        <span class="token comment"># solution code here</span>
+        <span class="token keyword">return</span>
+
 <span class="token keyword">def</span> <span class="token function">verify</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">:</span>
     current <span class="token operator">=</span> root
     <span class="token keyword">while</span> current<span class="token punctuation">:</span>
@@ -721,30 +726,7 @@ root4 <span class="token operator">=</span> Node<span class="token punctuation">
 solution <span class="token operator">=</span> Solution<span class="token punctuation">(</span><span class="token punctuation">)</span>
 solution<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>root4<span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Example 4: </span><span class="token interpolation"><span class="token punctuation">{</span>verify<span class="token punctuation">(</span>root4<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>  <span class="token comment"># Should print True</span></code></pre>
-<p>递归1：</p>
-<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">connect</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> <span class="token string">'Node'</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">'Node'</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
-            <span class="token keyword">return</span>
-        <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
-                <span class="token keyword">return</span>
-            <span class="token keyword">if</span> root<span class="token punctuation">.</span>left<span class="token punctuation">:</span>
-                <span class="token keyword">return</span> root<span class="token punctuation">.</span>left
-            <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
-                <span class="token keyword">return</span> root<span class="token punctuation">.</span>right
-            <span class="token keyword">return</span> helper<span class="token punctuation">(</span>root<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span> root<span class="token punctuation">.</span>left<span class="token punctuation">:</span>
-            <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
-                root<span class="token punctuation">.</span>left<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> root<span class="token punctuation">.</span>right
-            <span class="token keyword">else</span><span class="token punctuation">:</span>
-                root<span class="token punctuation">.</span>left<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> helper<span class="token punctuation">(</span>root<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
-            root<span class="token punctuation">.</span>right<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> helper<span class="token punctuation">(</span>root<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> root</code></pre>
-<p>递归2如果可用额外空间：</p>
+<p>递归1，如果可用额外空间：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">connect</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> <span class="token string">'Node'</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">'Node'</span><span class="token punctuation">:</span>
         <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> depth<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -758,7 +740,40 @@ solution<span class="token punctuation">.</span>connect<span class="token punctu
         left <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
         helper<span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> root</code></pre>
-<p>遍历1：</p>
+<p>递归2，不用额外空间：</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">connect</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> <span class="token string">'Node'</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">'Node'</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">find_next</span><span class="token punctuation">(</span>root<span class="token punctuation">:</span> Node<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> root<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> root<span class="token punctuation">.</span>left <span class="token keyword">or</span> root<span class="token punctuation">.</span>right <span class="token keyword">or</span> find_next<span class="token punctuation">(</span>root<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> root<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> root<span class="token punctuation">.</span>left<span class="token punctuation">:</span>
+                <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
+                    root<span class="token punctuation">.</span>left<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> root<span class="token punctuation">.</span>right
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    root<span class="token punctuation">.</span>left<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> find_next<span class="token punctuation">(</span>root<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
+
+            <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
+                root<span class="token punctuation">.</span>right<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> find_next<span class="token punctuation">(</span>root<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> root</code></pre>
+<p>遍历1，如果可用额外空间：</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">connect</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> <span class="token string">'Node'</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">'Node'</span><span class="token punctuation">:</span>
+        q <span class="token operator">=</span> <span class="token punctuation">[</span>root<span class="token punctuation">]</span>
+        <span class="token keyword">while</span> q<span class="token punctuation">:</span>
+            nq <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+            <span class="token keyword">for</span> i<span class="token punctuation">,</span> root <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> i<span class="token punctuation">:</span>
+                    q<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> root
+                <span class="token keyword">if</span> root<span class="token punctuation">.</span>left<span class="token punctuation">:</span>
+                    nq<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+                <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
+                    nq<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+            q <span class="token operator">=</span> nq
+        <span class="token keyword">return</span> root</code></pre>
+<p>遍历2，不用额外空间：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">connect</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> <span class="token string">'Node'</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">'Node'</span><span class="token punctuation">:</span>
         <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
@@ -777,24 +792,8 @@ solution<span class="token punctuation">.</span>connect<span class="token punctu
                 cur <span class="token operator">=</span> cur<span class="token punctuation">.</span><span class="token builtin">next</span>
             cur <span class="token operator">=</span> nextLevelHead<span class="token punctuation">.</span><span class="token builtin">next</span>
             nextLevelHead<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> <span class="token boolean">None</span>
-        <span class="token keyword">return</span> root</code></pre>
-<p>遍历2如果可用额外空间：</p>
-<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">from</span> collections <span class="token keyword">import</span> deque
-    <span class="token keyword">def</span> <span class="token function">connect</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> <span class="token string">'Node'</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">'Node'</span><span class="token punctuation">:</span>
-        q <span class="token operator">=</span> <span class="token punctuation">[</span>root<span class="token punctuation">]</span>
-        <span class="token keyword">while</span> q<span class="token punctuation">:</span>
-            nq <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-            <span class="token keyword">for</span> i<span class="token punctuation">,</span> root <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span><span class="token punctuation">:</span>
-                <span class="token keyword">if</span> i<span class="token punctuation">:</span>
-                    q<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> root
-                <span class="token keyword">if</span> root<span class="token punctuation">.</span>left<span class="token punctuation">:</span>
-                    nq<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
-                <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
-                    nq<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
-            q <span class="token operator">=</span> nq
-        <span class="token keyword">return</span> root</code></pre>
-<p>7刷：高频</p>
+        <span class="token keyword">return</span> root        </code></pre>
+<p>8刷：高频</p>
 <h3 id="110.-balanced-binary-tree-(easy)" tabindex="-1"><a href="https://leetcode.com/problems/balanced-binary-tree/description/">110. Balanced Binary Tree (Easy)</a></h3>
 <p>again!<br>
 Given a binary tree, determine if it is height-balanced.<br>
