@@ -66,9 +66,9 @@
 不匹配： &quot; Date(&quot;, &quot; Date;&quot;, &quot;Date;&quot;, &quot; Date&quot;, &quot;someDate&quot;<br>
 解释：</p>
 <ul>
-<li><code>(?&lt;=\w)</code>: 这是一个后顾断言，表示 &quot;Date&quot; 之前必须有一个单词字符 (\w)</li>
+<li><code>(?&lt;=\w)</code>: 这是一个后顾断言 (lookbehind)，表示 &quot;Date&quot; 之前必须有一个单词字符 (\w)</li>
 <li><code>Date</code>: 匹配字面上的 &quot;Date&quot;</li>
-<li><code>(?=;|\()</code>: 这是一个前瞻断言，表示 &quot;Date&quot; 之后必须紧跟一个分号 (;)或左括号 (()</li>
+<li><code>(?=;|\()</code>: 这是一个前瞻断言 (lookahead)，表示 &quot;Date&quot; 之后必须紧跟一个分号 (;)或左括号 (()</li>
 </ul>
 <p>我现在搞不定的是如何既满足以上的匹配和不匹配要求，又能不匹配 &quot;Date&quot; 在这个字符串里：Java.localDate; 希望有高手不腻赐教</p>
 <h1 id="%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F" tabindex="-1">常用正则表达式</h1>
