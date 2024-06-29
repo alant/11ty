@@ -7630,15 +7630,15 @@ cache.get(4);       // returns 4
         self<span class="token punctuation">.</span>__append<span class="token punctuation">(</span>node<span class="token punctuation">)</span>
         self<span class="token punctuation">.</span>d<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> node
 
-    <span class="token keyword">def</span> <span class="token function">__del</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> n<span class="token punctuation">:</span> Node<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span><span class="token punctuation">:</span>
-        n<span class="token punctuation">.</span>prev<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> n<span class="token punctuation">.</span><span class="token builtin">next</span>
-        n<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">.</span>prev <span class="token operator">=</span> n<span class="token punctuation">.</span>prev
-        n<span class="token punctuation">.</span>prev <span class="token operator">=</span> n<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> <span class="token boolean">None</span>
+    <span class="token keyword">def</span> <span class="token function">__del</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> node<span class="token punctuation">:</span> Node<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        node<span class="token punctuation">.</span>prev<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token builtin">next</span>
+        node<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">.</span>prev <span class="token operator">=</span> node<span class="token punctuation">.</span>prev
+        node<span class="token punctuation">.</span>prev <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> <span class="token boolean">None</span>
 
     <span class="token keyword">def</span> <span class="token function">__append</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> n<span class="token punctuation">:</span> Node<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span><span class="token punctuation">:</span>
         self<span class="token punctuation">.</span>r<span class="token punctuation">.</span>prev<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> n
-        n<span class="token punctuation">.</span>prev <span class="token operator">=</span> self<span class="token punctuation">.</span>r<span class="token punctuation">.</span>prev
-        n<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>r
+        node<span class="token punctuation">.</span>prev <span class="token operator">=</span> self<span class="token punctuation">.</span>r<span class="token punctuation">.</span>prev
+        node<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>r
         self<span class="token punctuation">.</span>r<span class="token punctuation">.</span>prev <span class="token operator">=</span> n</code></pre>
 <p>写法2：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">LRUCache</span><span class="token punctuation">:</span>
@@ -7657,10 +7657,10 @@ cache.get(4);       // returns 4
     <span class="token keyword">def</span> <span class="token function">put</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> key<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span><span class="token punctuation">:</span>
         <span class="token keyword">if</span> key <span class="token keyword">in</span> self<span class="token punctuation">.</span>od<span class="token punctuation">:</span>
             self<span class="token punctuation">.</span>od<span class="token punctuation">.</span>pop<span class="token punctuation">(</span>key<span class="token punctuation">)</span>
-        <span class="token keyword">elif</span> self<span class="token punctuation">.</span>cap <span class="token operator">==</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>od<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">elif</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>od<span class="token punctuation">)</span> <span class="token operator">==</span> self<span class="token punctuation">.</span>cap<span class="token punctuation">:</span>
             self<span class="token punctuation">.</span>od<span class="token punctuation">.</span>popitem<span class="token punctuation">(</span>last <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span>
         self<span class="token punctuation">.</span>od<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value</code></pre>
-<p>9刷：高频, 注意put的时候要先把旧的重复key对从双链表中删除。或者使用OrderedDict这个数据结构，支持头部删除(.popitem(last = False))</p>
+<p>10刷：高频, 注意put的时候要先把旧的重复key对从双链表中删除。或者使用OrderedDict这个数据结构，支持头部删除(.popitem(last = False))</p>
 <h3 id="234.-palindrome-linked-list-(easy)" tabindex="-1"><a href="https://leetcode.com/problems/palindrome-linked-list/">234. Palindrome Linked List (Easy)</a></h3>
 <pre class="language-html"><code class="language-html">Given a singly linked list, determine if it is a palindrome.
 
