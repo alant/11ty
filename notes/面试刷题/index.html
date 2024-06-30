@@ -1727,6 +1727,8 @@ Note: Do not use class member/global/static variables to store states. Your seri
 <p>dfs遍历：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Codec</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">serialize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">''</span>
         stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
         res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
         <span class="token keyword">while</span> root <span class="token keyword">or</span> stack<span class="token punctuation">:</span>
@@ -1762,6 +1764,8 @@ Note: Do not use class member/global/static variables to store states. Your seri
 <p>bfs：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Codec</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">serialize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">''</span>
         dq <span class="token operator">=</span> deque<span class="token punctuation">(</span><span class="token punctuation">[</span>root<span class="token punctuation">]</span><span class="token punctuation">)</span>
         res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
         <span class="token keyword">while</span> dq<span class="token punctuation">:</span>
@@ -1775,7 +1779,7 @@ Note: Do not use class member/global/static variables to store states. Your seri
         <span class="token keyword">return</span> <span class="token string">'/'</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>res<span class="token punctuation">)</span>
 
     <span class="token keyword">def</span> <span class="token function">deserialize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> data <span class="token operator">==</span> <span class="token string">'#'</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> data<span class="token punctuation">:</span>
             <span class="token keyword">return</span>
         dq <span class="token operator">=</span> deque<span class="token punctuation">(</span>data<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
         root <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>dq<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
@@ -1791,7 +1795,7 @@ Note: Do not use class member/global/static variables to store states. Your seri
                 p<span class="token punctuation">.</span>right <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>r_v<span class="token punctuation">)</span><span class="token punctuation">)</span>
                 root_q<span class="token punctuation">.</span>append<span class="token punctuation">(</span>p<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
         <span class="token keyword">return</span> root</code></pre>
-<p>21刷</p>
+<p>22刷</p>
 <h3 id="536.-construct-binary-tree-from-string-(medium)-%E5%B8%A6%E9%94%81" tabindex="-1"><a href="https://leetcode.com/problems/construct-binary-tree-from-string">536. Construct Binary Tree from String (Medium) 带锁</a></h3>
 <p><a href="https://www.lintcode.com/problem/construct-binary-tree-from-string/description">LinC 880. Construct Binary Tree from String (Medium)</a><br>
 You need to construct a binary tree from a string consisting of parenthesis and integers.<br>
