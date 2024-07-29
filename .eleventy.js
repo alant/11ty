@@ -15,7 +15,11 @@ module.exports = function (eleventyConfig) {
     .use(markdownItAnchor);
 
   eleventyConfig.setLibrary('md', markdownLibrary);
-  eleventyConfig.addPlugin(pluginTOC);
+  eleventyConfig.addPlugin(pluginTOC, {
+    tags: ['h1', 'h2', 'h3'], // Customize to include h1, h2, and h3
+    wrapper: 'div',           // Optional: specify a wrapper element, e.g., 'div'
+    wrapperClass: 'toc'       // Optional: add a class for styling
+  });
   eleventyConfig.addPassthroughCopy("assets"); 
 	eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addGlobalData('currentYear', new Date().getFullYear());
