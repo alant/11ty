@@ -630,7 +630,7 @@ Example:<br>
 Note:<br>
 You may only use constant extra space.<br>
 Recursive approach is fine, implicit stack space does not count as extra space for this problem.</p>
-<p>由于原题链接已不存在，少量测试数据：</p>
+<p>原题链接不稳定，少量测试数据：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Node</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> val<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> left<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> right<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token builtin">next</span><span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
         self<span class="token punctuation">.</span>val <span class="token operator">=</span> val
@@ -743,18 +743,18 @@ solution<span class="token punctuation">.</span>connect<span class="token punctu
 <p>递归2，不用额外空间：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">connect</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> <span class="token string">'Node'</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">'Node'</span><span class="token punctuation">:</span>
-        <span class="token keyword">def</span> <span class="token function">find_next</span><span class="token punctuation">(</span>root<span class="token punctuation">:</span> Node<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>root<span class="token punctuation">:</span> Node<span class="token punctuation">)</span><span class="token punctuation">:</span>
             <span class="token keyword">if</span> root<span class="token punctuation">:</span>
-                <span class="token keyword">return</span> root<span class="token punctuation">.</span>left <span class="token keyword">or</span> root<span class="token punctuation">.</span>right <span class="token keyword">or</span> find_next<span class="token punctuation">(</span>root<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
+                <span class="token keyword">return</span> root<span class="token punctuation">.</span>left <span class="token keyword">or</span> root<span class="token punctuation">.</span>right <span class="token keyword">or</span> helper<span class="token punctuation">(</span>root<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
         <span class="token keyword">if</span> root<span class="token punctuation">:</span>
             <span class="token keyword">if</span> root<span class="token punctuation">.</span>left<span class="token punctuation">:</span>
                 <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
                     root<span class="token punctuation">.</span>left<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> root<span class="token punctuation">.</span>right
                 <span class="token keyword">else</span><span class="token punctuation">:</span>
-                    root<span class="token punctuation">.</span>left<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> find_next<span class="token punctuation">(</span>root<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
+                    root<span class="token punctuation">.</span>left<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> helper<span class="token punctuation">(</span>root<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
 
             <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
-                root<span class="token punctuation">.</span>right<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> find_next<span class="token punctuation">(</span>root<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
+                root<span class="token punctuation">.</span>right<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> helper<span class="token punctuation">(</span>root<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
             self<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
             self<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
             <span class="token keyword">return</span> root</code></pre>
@@ -793,7 +793,7 @@ solution<span class="token punctuation">.</span>connect<span class="token punctu
             cur <span class="token operator">=</span> nextLevelHead<span class="token punctuation">.</span><span class="token builtin">next</span>
             nextLevelHead<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> <span class="token boolean">None</span>
         <span class="token keyword">return</span> root        </code></pre>
-<p>8刷：高频</p>
+<p>高频</p>
 <h3 id="110.-balanced-binary-tree-(easy)" tabindex="-1"><a href="https://leetcode.com/problems/balanced-binary-tree/description/">110. Balanced Binary Tree (Easy)</a></h3>
 <p>Given a binary tree, determine if it is height-balanced.<br>
 For this problem, a height-balanced binary tree is defined as:<br>
