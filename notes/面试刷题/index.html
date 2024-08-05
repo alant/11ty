@@ -9015,47 +9015,69 @@ Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6
 </code></pre>
 <p>PriorityQueue:</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">mergeKLists</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> lists<span class="token punctuation">:</span> List<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> ListNode<span class="token punctuation">:</span>
-        dummy <span class="token operator">=</span> cur <span class="token operator">=</span> ListNode<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
-        h <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-        <span class="token keyword">import</span> heapq
-        <span class="token keyword">for</span> i<span class="token punctuation">,</span> n <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>lists<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> n<span class="token punctuation">:</span>
-                heapq<span class="token punctuation">.</span>heappush<span class="token punctuation">(</span>h<span class="token punctuation">,</span> <span class="token punctuation">(</span>n<span class="token punctuation">.</span>val<span class="token punctuation">,</span> i<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token keyword">while</span> h<span class="token punctuation">:</span>
-            v<span class="token punctuation">,</span> i<span class="token punctuation">,</span> n <span class="token operator">=</span> heapq<span class="token punctuation">.</span>heappop<span class="token punctuation">(</span>h<span class="token punctuation">)</span>
-            cur<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> n
-            cur <span class="token operator">=</span> cur<span class="token punctuation">.</span><span class="token builtin">next</span>
-            <span class="token keyword">if</span> n<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">:</span>
-                heapq<span class="token punctuation">.</span>heappush<span class="token punctuation">(</span>h<span class="token punctuation">,</span> <span class="token punctuation">(</span>n<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">.</span>val<span class="token punctuation">,</span> i<span class="token punctuation">,</span> n<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">mergeKLists</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> lists<span class="token punctuation">:</span> List<span class="token punctuation">[</span>Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">:</span>
+        hq <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">for</span> i<span class="token punctuation">,</span> l <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>lists<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> l<span class="token punctuation">:</span>
+                heapq<span class="token punctuation">.</span>heappush<span class="token punctuation">(</span>hq<span class="token punctuation">,</span> <span class="token punctuation">(</span>l<span class="token punctuation">.</span>val<span class="token punctuation">,</span> i<span class="token punctuation">,</span> l<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        dummy <span class="token operator">=</span> p <span class="token operator">=</span> ListNode<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">while</span> hq<span class="token punctuation">:</span>
+            _<span class="token punctuation">,</span> i<span class="token punctuation">,</span> l <span class="token operator">=</span> heapq<span class="token punctuation">.</span>heappop<span class="token punctuation">(</span>hq<span class="token punctuation">)</span>
+            p<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> l
+            p <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token builtin">next</span>
+            l <span class="token operator">=</span> l<span class="token punctuation">.</span><span class="token builtin">next</span>
+            <span class="token keyword">if</span> l<span class="token punctuation">:</span>
+                heapq<span class="token punctuation">.</span>heappush<span class="token punctuation">(</span>hq<span class="token punctuation">,</span> <span class="token punctuation">(</span>l<span class="token punctuation">.</span>val<span class="token punctuation">,</span> i<span class="token punctuation">,</span> l<span class="token punctuation">)</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> dummy<span class="token punctuation">.</span><span class="token builtin">next</span></code></pre>
 <p>分治：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">mergeKLists</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> lists<span class="token punctuation">:</span> List<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> ListNode<span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">mergeKLists</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> lists<span class="token punctuation">:</span> List<span class="token punctuation">[</span>Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            dummy <span class="token operator">=</span> p <span class="token operator">=</span> ListNode<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">while</span> a <span class="token keyword">and</span> b<span class="token punctuation">:</span>
+                <span class="token keyword">if</span> a<span class="token punctuation">.</span>val <span class="token operator">&lt;</span> b<span class="token punctuation">.</span>val<span class="token punctuation">:</span>
+                    p<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> a
+                    a <span class="token operator">=</span> a<span class="token punctuation">.</span><span class="token builtin">next</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    p<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> b
+                    b <span class="token operator">=</span> b<span class="token punctuation">.</span><span class="token builtin">next</span>
+                p <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token builtin">next</span>
+            p<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> a <span class="token keyword">or</span> b
+            <span class="token keyword">return</span> dummy<span class="token punctuation">.</span><span class="token builtin">next</span>
         <span class="token keyword">if</span> <span class="token keyword">not</span> lists<span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token boolean">None</span>
+            <span class="token keyword">return</span>
         n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>lists<span class="token punctuation">)</span>
         <span class="token keyword">if</span> n <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
             <span class="token keyword">return</span> lists<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
         mid <span class="token operator">=</span> n <span class="token operator">//</span> <span class="token number">2</span>
         l <span class="token operator">=</span> self<span class="token punctuation">.</span>mergeKLists<span class="token punctuation">(</span>lists<span class="token punctuation">[</span><span class="token punctuation">:</span>mid<span class="token punctuation">]</span><span class="token punctuation">)</span>
         r <span class="token operator">=</span> self<span class="token punctuation">.</span>mergeKLists<span class="token punctuation">(</span>lists<span class="token punctuation">[</span>mid<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-        <span class="token keyword">def</span> <span class="token function">merge</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            dummy <span class="token operator">=</span> cur <span class="token operator">=</span> ListNode<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
-            <span class="token keyword">while</span> l <span class="token keyword">and</span> r<span class="token punctuation">:</span>
-                <span class="token keyword">if</span> l<span class="token punctuation">.</span>val <span class="token operator">&lt;</span> r<span class="token punctuation">.</span>val<span class="token punctuation">:</span>
-                    cur<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> l
-                    l <span class="token operator">=</span> l<span class="token punctuation">.</span><span class="token builtin">next</span>
+        <span class="token keyword">return</span> helper<span class="token punctuation">(</span>l<span class="token punctuation">,</span> r<span class="token punctuation">)</span></code></pre>
+<p>两两归并：</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">mergeKLists</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> lists<span class="token punctuation">:</span> List<span class="token punctuation">[</span>Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            dummy <span class="token operator">=</span> p <span class="token operator">=</span> ListNode<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">while</span> a <span class="token keyword">and</span> b<span class="token punctuation">:</span>
+                <span class="token keyword">if</span> a<span class="token punctuation">.</span>val <span class="token operator">&lt;</span> b<span class="token punctuation">.</span>val<span class="token punctuation">:</span>
+                    p<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> a
+                    a <span class="token operator">=</span> a<span class="token punctuation">.</span><span class="token builtin">next</span>
                 <span class="token keyword">else</span><span class="token punctuation">:</span>
-                    cur<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> r
-                    r <span class="token operator">=</span> r<span class="token punctuation">.</span><span class="token builtin">next</span>
-                cur <span class="token operator">=</span> cur<span class="token punctuation">.</span><span class="token builtin">next</span>
-            cur<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> l <span class="token keyword">if</span> <span class="token keyword">not</span> r <span class="token keyword">else</span> r
+                    p<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> b
+                    b <span class="token operator">=</span> b<span class="token punctuation">.</span><span class="token builtin">next</span>
+                p <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token builtin">next</span>
+            p<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> a <span class="token keyword">or</span> b
             <span class="token keyword">return</span> dummy<span class="token punctuation">.</span><span class="token builtin">next</span>
-        <span class="token keyword">return</span> merge<span class="token punctuation">(</span>l<span class="token punctuation">,</span> r<span class="token punctuation">)</span></code></pre>
-<p>三种方法，都需要练习. 方法一:使用 PriorityQueue 方法二:类似归并排序的分治算法 方法三:自底向上的两两归并算法. 时间复杂度均为 O(NlogK) Strong Hire: 能够用至少2种方法进行实现，代码无大 BUG<br>
-高频：如果不能加__lt__()，就用(n.val, i, n)tuple防v.val重复的。<br>
-todo 把缺的第三种方法补了</p>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> lists<span class="token punctuation">:</span>
+            <span class="token keyword">return</span>
+        n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>lists<span class="token punctuation">)</span>
+        interval <span class="token operator">=</span> <span class="token number">1</span>
+        <span class="token keyword">while</span> interval <span class="token operator">&lt;</span> n<span class="token punctuation">:</span>
+            <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> n <span class="token operator">-</span> interval<span class="token punctuation">,</span> interval <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                lists<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> helper<span class="token punctuation">(</span>lists<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> lists<span class="token punctuation">[</span>i <span class="token operator">+</span> interval<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            interval <span class="token operator">*=</span> <span class="token number">2</span>
+        <span class="token keyword">return</span> lists<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span></code></pre>
+<p>高频: 时间复杂度均为 O(NlogK)</p>
 <h3 id="295.-find-median-from-data-stream-(hard)" tabindex="-1"><a href="https://leetcode.com/problems/find-median-from-data-stream/">295. Find Median from Data Stream (Hard)</a></h3>
 <p>Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value.</p>
 <p>For example,<br>
