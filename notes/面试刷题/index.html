@@ -2271,7 +2271,7 @@ return its level order traversal as:
             helper<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> depth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
         helper<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
         <span class="token keyword">return</span> ans</code></pre>
-<p>遍历：</p>
+<p>遍历 BFS：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">levelOrder</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> TreeNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
         <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
@@ -2288,7 +2288,24 @@ return its level order traversal as:
             ans<span class="token punctuation">.</span>append<span class="token punctuation">(</span>res<span class="token punctuation">)</span>
             cur <span class="token operator">=</span> nCur
         <span class="token keyword">return</span> ans</code></pre>
-<p>5刷：高频</p>
+<p>遍历2 DFS：</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">levelOrder</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
+            <span class="token keyword">return</span>
+        ans <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        <span class="token keyword">while</span> stack<span class="token punctuation">:</span>
+            root<span class="token punctuation">,</span> depth <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> depth <span class="token operator">==</span> <span class="token builtin">len</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                ans<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            ans<span class="token punctuation">[</span>depth<span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> depth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> root<span class="token punctuation">.</span>left<span class="token punctuation">:</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> depth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> ans</code></pre>
+<p>高频, blind 75</p>
 <h3 id="107.-binary-tree-level-order-traversal-ii-(easy)" tabindex="-1"><a href="https://leetcode.com/problems/binary-tree-level-order-traversal-ii/description/">107. Binary Tree Level Order Traversal II (Easy)</a></h3>
 <p>Given a binary tree, return the bottom-up level order traversal of its nodes' values. (ie, from left to right, level by level from leaf to root).</p>
 <pre><code>For example:
