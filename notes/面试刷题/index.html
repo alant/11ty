@@ -7289,7 +7289,7 @@ If there is such window, you are guaranteed that there will always be only one u
                     have <span class="token operator">-=</span> <span class="token number">1</span>
                 l <span class="token operator">+=</span> <span class="token number">1</span>
         <span class="token keyword">return</span> ans</code></pre>
-<p>3刷：面经, Amazon</p>
+<p>面经, Amazon</p>
 <h3 id="209.-minimum-size-subarray-sum-(medium)" tabindex="-1"><a href="https://leetcode.com/problems/minimum-size-subarray-sum/">209. Minimum Size Subarray Sum (Medium)</a></h3>
 <p>Given an array of positive integers nums and a positive integer target, return the minimal length of a contiguous subarray [numsl, numsl+1, ..., numsr-1, numsr] of which the sum is greater than or equal to target. If there is no such subarray, return 0 instead.</p>
 <p>Example 1:<br>
@@ -9363,6 +9363,47 @@ Note:
 You may assume that all inputs are consist of lowercase letters a-z.
 All inputs are guaranteed to be non-empty strings.
 </code></pre>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Trie</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>root <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    <span class="token keyword">def</span> <span class="token function">insert</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> word<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        :type word: str
+        :rtype: None
+        """</span>
+        root <span class="token operator">=</span> self<span class="token punctuation">.</span>root
+        <span class="token keyword">for</span> c <span class="token keyword">in</span> word<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> c <span class="token keyword">not</span> <span class="token keyword">in</span> root<span class="token punctuation">:</span>
+                root<span class="token punctuation">[</span>c<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+            root <span class="token operator">=</span> root<span class="token punctuation">[</span>c<span class="token punctuation">]</span>
+        root<span class="token punctuation">[</span><span class="token string">'/'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">''</span>
+
+    <span class="token keyword">def</span> <span class="token function">search</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> word<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        :type word: str
+        :rtype: bool
+        """</span>
+        root <span class="token operator">=</span> self<span class="token punctuation">.</span>__find<span class="token punctuation">(</span>word<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token string">'/'</span> <span class="token keyword">in</span> root <span class="token keyword">if</span> root <span class="token keyword">else</span> <span class="token boolean">False</span>
+
+    <span class="token keyword">def</span> <span class="token function">startsWith</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> prefix<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        :type prefix: str
+        :rtype: bool
+        """</span>
+        
+        <span class="token keyword">return</span> <span class="token boolean">True</span> <span class="token keyword">if</span> self<span class="token punctuation">.</span>__find<span class="token punctuation">(</span>prefix<span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token boolean">False</span>
+
+    <span class="token keyword">def</span> <span class="token function">__find</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> word<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        root <span class="token operator">=</span> self<span class="token punctuation">.</span>root
+        <span class="token keyword">for</span> c <span class="token keyword">in</span> word<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> c <span class="token keyword">not</span> <span class="token keyword">in</span> root<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token boolean">False</span>
+            root <span class="token operator">=</span> root<span class="token punctuation">[</span>c<span class="token punctuation">]</span>
+        <span class="token keyword">return</span> root</code></pre>
+<p>写法2：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">TrieNode</span><span class="token punctuation">:</span>
     
     <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -9407,7 +9448,7 @@ All inputs are guaranteed to be non-empty strings.
                 <span class="token keyword">return</span>
             root <span class="token operator">=</span> root<span class="token punctuation">.</span>children<span class="token punctuation">[</span>c<span class="token punctuation">]</span>
         <span class="token keyword">return</span> root</code></pre>
-<p>2刷：高频</p>
+<p>高频</p>
 <h3 id="211.-add-and-search-word---data-structure-design-(medium)" tabindex="-1"><a href="https://leetcode.com/problems/add-and-search-word-data-structure-design/">211. Add and Search Word - Data structure design (Medium)</a></h3>
 <p>Design a data structure that supports the following two operations:</p>
 <p>void addWord(word)<br>
