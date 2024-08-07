@@ -7250,18 +7250,18 @@ Explanation: The answer is &quot;wke&quot;, with the length of 3.<br>
 Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">lengthOfLongestSubstring</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
-        i <span class="token operator">=</span> j <span class="token operator">=</span> <span class="token number">0</span>
+        counter <span class="token operator">=</span> Counter<span class="token punctuation">(</span><span class="token punctuation">)</span>
         ans <span class="token operator">=</span> <span class="token number">0</span>
-        c <span class="token operator">=</span> Counter<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">while</span> j <span class="token operator">&lt;</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            c<span class="token punctuation">[</span>s<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
-            <span class="token keyword">while</span> <span class="token builtin">any</span><span class="token punctuation">(</span>v <span class="token operator">></span> <span class="token number">1</span> <span class="token keyword">for</span> v <span class="token keyword">in</span> c<span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                c<span class="token punctuation">[</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">-=</span> <span class="token number">1</span>
-                i <span class="token operator">+=</span> <span class="token number">1</span>
-            ans <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> j <span class="token operator">-</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
-            j <span class="token operator">+=</span> <span class="token number">1</span>
+        start <span class="token operator">=</span> <span class="token number">0</span>
+        n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> end <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            counter<span class="token punctuation">[</span>s<span class="token punctuation">[</span>end<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
+            <span class="token keyword">while</span> counter<span class="token punctuation">[</span>s<span class="token punctuation">[</span>end<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">:</span>
+                counter<span class="token punctuation">[</span>s<span class="token punctuation">[</span>start<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">-=</span> <span class="token number">1</span>
+                start <span class="token operator">+=</span> <span class="token number">1</span>
+            ans <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> end <span class="token operator">-</span> start <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> ans</code></pre>
-<p>6刷：面经，Amazon</p>
+<p>Blind 75; 面经，Amazon</p>
 <h3 id="76.-minimum-window-substring-(hard)" tabindex="-1"><a href="https://leetcode.com/problems/minimum-window-substring/">76. Minimum Window Substring (Hard)</a></h3>
 <p>Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).</p>
 <p>Example:<br>
