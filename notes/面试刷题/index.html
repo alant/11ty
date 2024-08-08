@@ -7780,6 +7780,17 @@ Explanation: There is no cycle in the linked list.<br>
 <img src="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist_test3.png" alt="Linked List Cycle example3" class="responsive-image"></p>
 <p>Follow up:<br>
 Can you solve it without using extra space?</p>
+<p>O(n) space:</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">hasCycle</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> head<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        seen <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">while</span> head<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> head <span class="token keyword">in</span> seen<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token boolean">True</span>
+            seen<span class="token punctuation">.</span>add<span class="token punctuation">(</span>head<span class="token punctuation">)</span>
+            head <span class="token operator">=</span> head<span class="token punctuation">.</span><span class="token builtin">next</span>
+        <span class="token keyword">return</span> <span class="token boolean">False</span></code></pre>
+<p>Constant space:</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">hasCycle</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> head<span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token keyword">if</span> <span class="token keyword">not</span> head<span class="token punctuation">:</span>
@@ -7791,7 +7802,7 @@ Can you solve it without using extra space?</p>
             <span class="token keyword">if</span> s <span class="token operator">==</span> f<span class="token punctuation">:</span>
                 <span class="token keyword">return</span> <span class="token boolean">True</span>
         <span class="token keyword">return</span> <span class="token boolean">False</span></code></pre>
-<p>二刷，面经：维萨。</p>
+<p>Blind 75，面经：维萨</p>
 <h3 id="142.-linked-list-cycle-ii-(medium)" tabindex="-1"><a href="https://leetcode.com/problems/linked-list-cycle-ii/description/">142. Linked List Cycle II (Medium)</a></h3>
 <p>Given a linked list, return the node where the cycle begins. If there is no cycle, return null.<br>
 To represent a cycle in the given linked list, we use an integer pos which represents the position (0-indexed) in the linked list where tail connects to. If pos is -1, then there is no cycle in the linked list.<br>
