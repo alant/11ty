@@ -7525,24 +7525,19 @@ Output: 2-&gt;3</p>
 Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4<br>
 Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">mergeTwoLists</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> l1<span class="token punctuation">:</span> ListNode<span class="token punctuation">,</span> l2<span class="token punctuation">:</span> ListNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> ListNode<span class="token punctuation">:</span>
-        dummy <span class="token operator">=</span> cur <span class="token operator">=</span> ListNode<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
-        <span class="token keyword">while</span> l1 <span class="token keyword">and</span> l2<span class="token punctuation">:</span>
-            <span class="token keyword">if</span> l1<span class="token punctuation">.</span>val <span class="token operator">&lt;</span> l2<span class="token punctuation">.</span>val<span class="token punctuation">:</span>
-                cur<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> l1
-                cur <span class="token operator">=</span> cur<span class="token punctuation">.</span><span class="token builtin">next</span>
-                l1 <span class="token operator">=</span> l1<span class="token punctuation">.</span><span class="token builtin">next</span>
+    <span class="token keyword">def</span> <span class="token function">mergeTwoLists</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> list1<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">,</span> list2<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">:</span>
+        dummy <span class="token operator">=</span> p <span class="token operator">=</span> ListNode<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">while</span> list1 <span class="token keyword">and</span> list2<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> list1<span class="token punctuation">.</span>val <span class="token operator">&lt;</span> list2<span class="token punctuation">.</span>val<span class="token punctuation">:</span>
+                p<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> list1
+                list1 <span class="token operator">=</span> list1<span class="token punctuation">.</span><span class="token builtin">next</span>
             <span class="token keyword">else</span><span class="token punctuation">:</span>
-                cur<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> l2
-                cur <span class="token operator">=</span> cur<span class="token punctuation">.</span><span class="token builtin">next</span>
-                l2 <span class="token operator">=</span> l2<span class="token punctuation">.</span><span class="token builtin">next</span>
-        <span class="token keyword">if</span> l1<span class="token punctuation">:</span>
-            cur<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> l1
-        <span class="token keyword">if</span> l2<span class="token punctuation">:</span>
-            cur<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> l2
+                p<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> list2
+                list2 <span class="token operator">=</span> list2<span class="token punctuation">.</span><span class="token builtin">next</span>
+            p <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token builtin">next</span>
+        p<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> list1 <span class="token keyword">or</span> list2
         <span class="token keyword">return</span> dummy<span class="token punctuation">.</span><span class="token builtin">next</span></code></pre>
-<p>高频：面经：Cruise。<br>
-三刷：手熟尔</p>
+<p>Blind 75; 高频; 面经：Cruise</p>
 <h3 id="19.-remove-nth-node-from-end-of-list-(medium)" tabindex="-1"><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/">19. Remove Nth Node From End of List (Medium)</a></h3>
 <p>Given a linked list, remove the n-th node from the end of list and return its head.</p>
 <p>Example:<br>
