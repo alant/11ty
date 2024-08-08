@@ -3409,46 +3409,20 @@ Input: &quot;race a car&quot;
 Output: false
 </code></pre>
 <p>思路：头尾双指针， 碰头了返回 True，相同继续走，不同返回 False</p>
-<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">isPalindrome</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">"""
-        :type s: str
-        :rtype: bool
-        """</span>
-        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token keyword">or</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token boolean">True</span>
-        head<span class="token punctuation">,</span> tail <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
-        <span class="token keyword">while</span> head <span class="token operator">&lt;</span> tail<span class="token punctuation">:</span>
-            <span class="token keyword">while</span> <span class="token keyword">not</span> s<span class="token punctuation">[</span>head<span class="token punctuation">]</span><span class="token punctuation">.</span>isalnum<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">and</span> head <span class="token operator">&lt;</span> tail<span class="token punctuation">:</span>
-                head <span class="token operator">+=</span> <span class="token number">1</span>
-            <span class="token keyword">while</span> <span class="token keyword">not</span> s<span class="token punctuation">[</span>tail<span class="token punctuation">]</span><span class="token punctuation">.</span>isalnum<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">and</span> head <span class="token operator">&lt;</span> tail<span class="token punctuation">:</span>
-                tail <span class="token operator">-=</span> <span class="token number">1</span>
-            <span class="token keyword">if</span> s<span class="token punctuation">[</span>head<span class="token punctuation">]</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> s<span class="token punctuation">[</span>tail<span class="token punctuation">]</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                <span class="token keyword">return</span> <span class="token boolean">False</span>
-            <span class="token keyword">else</span><span class="token punctuation">:</span>
-                head <span class="token operator">+=</span> <span class="token number">1</span>
-                tail <span class="token operator">-=</span> <span class="token number">1</span>
-        <span class="token keyword">return</span> <span class="token boolean">True</span></code></pre>
-<p>总结：思路简单， 但是要想到的 case 很多。考虑带标点符号，连续两个位置都是标点符号，整个字符串都是标点符合这三个情况才能写对</p>
-<p>二刷：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">isPalindrome</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">bool</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token boolean">True</span>
-        head<span class="token punctuation">,</span> tail <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
-        <span class="token keyword">while</span> head <span class="token operator">&lt;</span> tail<span class="token punctuation">:</span>
-            <span class="token keyword">while</span> <span class="token keyword">not</span> s<span class="token punctuation">[</span>head<span class="token punctuation">]</span><span class="token punctuation">.</span>isalnum<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">and</span> head <span class="token operator">&lt;</span> tail<span class="token punctuation">:</span>
-                head <span class="token operator">+=</span> <span class="token number">1</span>
-            <span class="token keyword">while</span> <span class="token keyword">not</span> s<span class="token punctuation">[</span>tail<span class="token punctuation">]</span><span class="token punctuation">.</span>isalnum<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">and</span> head <span class="token operator">&lt;</span> tail<span class="token punctuation">:</span>
-                tail <span class="token operator">-=</span> <span class="token number">1</span>
-            <span class="token keyword">if</span> s<span class="token punctuation">[</span>head<span class="token punctuation">]</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> s<span class="token punctuation">[</span>tail<span class="token punctuation">]</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                head <span class="token operator">+=</span> <span class="token number">1</span>
-                tail <span class="token operator">-=</span> <span class="token number">1</span>
-            <span class="token keyword">else</span><span class="token punctuation">:</span>
+        l<span class="token punctuation">,</span> r <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
+        <span class="token keyword">while</span> l <span class="token operator">&lt;</span> r<span class="token punctuation">:</span>
+            <span class="token keyword">while</span> l <span class="token operator">&lt;</span> r <span class="token keyword">and</span> <span class="token keyword">not</span> s<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token punctuation">.</span>isalnum<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                l <span class="token operator">+=</span> <span class="token number">1</span>
+            <span class="token keyword">while</span> l <span class="token operator">&lt;</span> r <span class="token keyword">and</span> <span class="token keyword">not</span> s<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">.</span>isalnum<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                r <span class="token operator">-=</span> <span class="token number">1</span>
+            <span class="token keyword">if</span> s<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> s<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
                 <span class="token keyword">return</span> <span class="token boolean">False</span>
+            l <span class="token operator">+=</span> <span class="token number">1</span>
+            r <span class="token operator">-=</span> <span class="token number">1</span>
         <span class="token keyword">return</span> <span class="token boolean">True</span></code></pre>
-<p>总结：关键是知道 .isalnum() 这个 function<br>
-高频</p>
+<p>Blind 75; 高频</p>
 <h3 id="680.-valid-palindrome-ii-(easy)" tabindex="-1"><a href="https://leetcode.com/problems/valid-palindrome-ii/description/">680. Valid Palindrome II (Easy)</a></h3>
 <pre><code>Given a non-empty string s, you may delete at most one character. Judge whether you can make it a palindrome.
 
