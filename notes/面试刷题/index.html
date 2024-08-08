@@ -7860,35 +7860,33 @@ A linked list can be reversed either iteratively or recursively. Could you imple
 <p>遍历：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">reverseList</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> head<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">:</span>
-        p_h <span class="token operator">=</span> <span class="token boolean">None</span>
+        prev <span class="token operator">=</span> <span class="token boolean">None</span>
         <span class="token keyword">while</span> head<span class="token punctuation">:</span>
-            n_h <span class="token operator">=</span> head<span class="token punctuation">.</span><span class="token builtin">next</span>
-            head<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> p_h
-            p_h <span class="token operator">=</span> head
-            head <span class="token operator">=</span> n_h
-        <span class="token keyword">return</span> p_h</code></pre>
+            saved_next <span class="token operator">=</span> head<span class="token punctuation">.</span><span class="token builtin">next</span>
+            head<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> prev
+            prev <span class="token operator">=</span> head
+            head <span class="token operator">=</span> saved_next
+        <span class="token keyword">return</span> prev</code></pre>
 <p>递归1：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">reverseList</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> head<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">:</span>
-        <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> pre<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> <span class="token keyword">not</span> n<span class="token punctuation">:</span>
-                <span class="token keyword">return</span> pre
-            n_h <span class="token operator">=</span> n<span class="token punctuation">.</span><span class="token builtin">next</span>
-            n<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> pre
-            <span class="token keyword">return</span> helper<span class="token punctuation">(</span>n_h<span class="token punctuation">,</span> n<span class="token punctuation">)</span>
+        <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>head<span class="token punctuation">,</span> prev<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> <span class="token keyword">not</span> head<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> prev
+            saved_next <span class="token operator">=</span> head<span class="token punctuation">.</span><span class="token builtin">next</span>
+            head<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> prev
+            <span class="token keyword">return</span> helper<span class="token punctuation">(</span>saved_next<span class="token punctuation">,</span> head<span class="token punctuation">)</span>
         <span class="token keyword">return</span> helper<span class="token punctuation">(</span>head<span class="token punctuation">,</span> <span class="token boolean">None</span><span class="token punctuation">)</span></code></pre>
 <p>递归2：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">reverseList</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> head<span class="token punctuation">:</span> ListNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> ListNode<span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token keyword">not</span> head<span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">reverseList</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> head<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> head <span class="token keyword">or</span> <span class="token keyword">not</span> head<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">:</span>
             <span class="token keyword">return</span> head
-        <span class="token keyword">if</span> head <span class="token keyword">and</span> <span class="token keyword">not</span> head<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> head
-        savedListHead <span class="token operator">=</span> self<span class="token punctuation">.</span>reverseList<span class="token punctuation">(</span>head<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
+        saved_head <span class="token operator">=</span> self<span class="token punctuation">.</span>reverseList<span class="token punctuation">(</span>head<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
         head<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> head
         head<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> <span class="token boolean">None</span>
-        <span class="token keyword">return</span> savedListHead</code></pre>
-<p>5刷：高频, 增加了<a href="https://www.youtube.com/watch?v=O0By4Zq0OFc">这个油管视频的递归方法</a>。savedListHead是base case，然后最后层层传回去</p>
+        <span class="token keyword">return</span> saved_head</code></pre>
+<p>Blind 75; 高频, 增加了<a href="https://www.youtube.com/watch?v=O0By4Zq0OFc">这个油管视频的递归方法</a>。savedListHead是存着的call stack最底下的head， 然后层层传回去</p>
 <h3 id="92.-reverse-linked-list-ii-(medium)" tabindex="-1"><a href="https://leetcode.com/problems/reverse-linked-list-ii/">92. Reverse Linked List II (Medium)</a></h3>
 <p>Reverse a linked list from position m to n. Do it in one-pass.<br>
 Note: 1 ≤ m ≤ n ≤ length of list.</p>
