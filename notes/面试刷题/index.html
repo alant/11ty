@@ -8740,19 +8740,19 @@ The values of the integers in the nested list is in the range [-106, 106].
         self<span class="token punctuation">.</span>s <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>nestedList<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
     
     <span class="token keyword">def</span> <span class="token function">next</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
-        l<span class="token punctuation">,</span> i <span class="token operator">=</span> self<span class="token punctuation">.</span>s<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+        nl<span class="token punctuation">,</span> i <span class="token operator">=</span> self<span class="token punctuation">.</span>s<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
         self<span class="token punctuation">.</span>s<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
-        <span class="token keyword">return</span> l<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>getInteger<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> nl<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>getInteger<span class="token punctuation">(</span><span class="token punctuation">)</span>
     
     <span class="token keyword">def</span> <span class="token function">hasNext</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">bool</span><span class="token punctuation">:</span>
         <span class="token keyword">while</span> self<span class="token punctuation">.</span>s<span class="token punctuation">:</span>
-            l<span class="token punctuation">,</span> i <span class="token operator">=</span> self<span class="token punctuation">.</span>s<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+            nl<span class="token punctuation">,</span> i <span class="token operator">=</span> self<span class="token punctuation">.</span>s<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
             <span class="token keyword">if</span> i <span class="token operator">&lt;</span> <span class="token builtin">len</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token punctuation">:</span>
-                <span class="token keyword">if</span> l<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>isInteger<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> nl<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>isInteger<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
                     <span class="token keyword">return</span> <span class="token boolean">True</span>
                 <span class="token keyword">else</span><span class="token punctuation">:</span>
                     self<span class="token punctuation">.</span>s<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
-                    self<span class="token punctuation">.</span>s<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span>l<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>getList<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                    self<span class="token punctuation">.</span>s<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span>nl<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>getList<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
             <span class="token keyword">else</span><span class="token punctuation">:</span>
                 self<span class="token punctuation">.</span>s<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> <span class="token boolean">False</span>
@@ -8763,8 +8763,8 @@ The values of the integers in the nested list is in the range [-106, 106].
 <p>用Generator</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">NestedIterator</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nestedList<span class="token punctuation">:</span> <span class="token punctuation">[</span>NestedInteger<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">def</span> <span class="token function">gen</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">for</span> it <span class="token keyword">in</span> l<span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">gen</span><span class="token punctuation">(</span>nl<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">for</span> it <span class="token keyword">in</span> nl<span class="token punctuation">:</span>
                 <span class="token keyword">if</span> it<span class="token punctuation">.</span>isInteger<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
                     <span class="token keyword">yield</span> it<span class="token punctuation">.</span>getInteger<span class="token punctuation">(</span><span class="token punctuation">)</span>
                 <span class="token keyword">else</span><span class="token punctuation">:</span>
@@ -8773,15 +8773,15 @@ The values of the integers in the nested list is in the range [-106, 106].
         self<span class="token punctuation">.</span>g <span class="token operator">=</span> gen<span class="token punctuation">(</span>nestedList<span class="token punctuation">)</span>
     
     <span class="token keyword">def</span> <span class="token function">next</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> self<span class="token punctuation">.</span>b
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>next_v
     
     <span class="token keyword">def</span> <span class="token function">hasNext</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">bool</span><span class="token punctuation">:</span>
         <span class="token keyword">try</span><span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>b <span class="token operator">=</span> <span class="token builtin">next</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>g<span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>next_v <span class="token operator">=</span> <span class="token builtin">next</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>g<span class="token punctuation">)</span>
             <span class="token keyword">return</span> <span class="token boolean">True</span>
         <span class="token keyword">except</span> StopIteration<span class="token punctuation">:</span>
             <span class="token keyword">return</span> <span class="token boolean">False</span></code></pre>
-<p>4刷：高频</p>
+<p>高频</p>
 <h3 id="636.-exclusive-time-of-functions-(medium)" tabindex="-1"><a href="https://leetcode.com/problems/exclusive-time-of-functions/">636. Exclusive Time of Functions (Medium)</a></h3>
 <p>描述有点长，题干可以点以上链接阅读</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
