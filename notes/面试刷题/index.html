@@ -3007,25 +3007,30 @@ Example 2:
 Input: [4,5,6,7,0,1,2]
 Output: 0
 </code></pre>
-<p>思路：找 pivot，pivot &gt; 0 时返回 nums[pivot + 1]。找 pivot 时,如果 mid &lt; start, 扔 end， 如果 mid &gt; start 扔 start</p>
+<p>遍历</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">findMin</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">"""
-        :type nums: List[int]
-        :rtype: int
-        """</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span><span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-        start<span class="token punctuation">,</span> end <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>start <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> end<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            mid <span class="token operator">=</span> start <span class="token operator">+</span> <span class="token punctuation">(</span>end <span class="token operator">-</span> start<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span>start<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                end <span class="token operator">=</span> mid
+    <span class="token keyword">def</span> <span class="token function">findMin</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        l<span class="token punctuation">,</span> r <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
+        <span class="token keyword">while</span> l <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> r<span class="token punctuation">:</span>
+            mid <span class="token operator">=</span> l <span class="token operator">+</span> <span class="token punctuation">(</span>r <span class="token operator">-</span> l<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
+            <span class="token keyword">if</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                r <span class="token operator">=</span> mid
             <span class="token keyword">else</span><span class="token punctuation">:</span>
-                start <span class="token operator">=</span> mid
-        <span class="token keyword">return</span> nums<span class="token punctuation">[</span>end<span class="token punctuation">]</span></code></pre>
-<p>总结：应改为 Easy 难度的题。<br>
-Follow up: 如果有重复的数? 无法保证在 Log(N) 的时间复杂度内解决 例子:[1,1,1,1,1....,1] 里藏着一个 0.最坏情况下需要把每个位置上的1都看一遍，才能找到最后一个有0 的位置. 考点:能想到这个最坏情况的例子</p>
+                l <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> <span class="token builtin">min</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token punctuation">,</span> nums<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
+<p>递归</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">findMin</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> l <span class="token operator">==</span> r<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> nums<span class="token punctuation">[</span>l<span class="token punctuation">]</span>
+            mid <span class="token operator">=</span> l <span class="token operator">+</span> <span class="token punctuation">(</span>r <span class="token operator">-</span> l<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
+            <span class="token keyword">if</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> helper<span class="token punctuation">(</span>l<span class="token punctuation">,</span> mid<span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> helper<span class="token punctuation">(</span>mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> helper<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span></code></pre>
+<p>Blind 75; 答案肯定在转折的区间里， 因此，如果右边是连续的，那答案可能在mid及左半边，否则就一定不在左半边（mid已经不是最小了）</p>
 <h3 id="33.-search-in-rotated-sorted-array-(medium)" tabindex="-1"><a href="https://leetcode.com/problems/search-in-rotated-sorted-array/description/">33. Search in Rotated Sorted Array (Medium)</a></h3>
 <pre><code>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
 
