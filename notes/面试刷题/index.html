@@ -8400,21 +8400,15 @@ Output: true
 </code></pre>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">isValid</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">bool</span><span class="token punctuation">:</span>
-        n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
-        d <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">')'</span><span class="token punctuation">:</span> <span class="token string">'('</span><span class="token punctuation">,</span> <span class="token string">'}'</span><span class="token punctuation">:</span> <span class="token string">'{'</span><span class="token punctuation">,</span> <span class="token string">']'</span><span class="token punctuation">:</span> <span class="token string">'['</span><span class="token punctuation">}</span>
-        ll <span class="token operator">=</span> <span class="token string">'({['</span>
         stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        d <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">')'</span><span class="token punctuation">:</span> <span class="token string">'('</span><span class="token punctuation">,</span> <span class="token string">'}'</span><span class="token punctuation">:</span> <span class="token string">'{'</span><span class="token punctuation">,</span> <span class="token string">']'</span><span class="token punctuation">:</span> <span class="token string">'['</span><span class="token punctuation">}</span>
         <span class="token keyword">for</span> c <span class="token keyword">in</span> s<span class="token punctuation">:</span>
-            <span class="token keyword">if</span> c <span class="token keyword">in</span> ll<span class="token punctuation">:</span>
-                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> c <span class="token keyword">in</span> d <span class="token keyword">and</span> stack <span class="token keyword">and</span> stack<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> d<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
             <span class="token keyword">else</span><span class="token punctuation">:</span>
-                <span class="token keyword">if</span> <span class="token keyword">not</span> stack<span class="token punctuation">:</span>
-                    <span class="token keyword">return</span> <span class="token boolean">False</span>
-                l <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
-                <span class="token keyword">if</span> c <span class="token keyword">not</span> <span class="token keyword">in</span> d <span class="token keyword">or</span> l <span class="token operator">!=</span> d<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">:</span>
-                    <span class="token keyword">return</span> <span class="token boolean">False</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>c<span class="token punctuation">)</span>
         <span class="token keyword">return</span> <span class="token builtin">len</span><span class="token punctuation">(</span>stack<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span></code></pre>
-<p>2刷：高频：注意在出栈前检验栈是否为空，走完以后检查栈是否为空</p>
+<p>Blind 75; 高频</p>
 <h3 id="71.-simplify-path-(medium)" tabindex="-1"><a href="https://leetcode.com/problems/simplify-path/">71. Simplify Path (Medium)</a></h3>
 <pre><code>Given an absolute path for a file (Unix-style), simplify it. Or in other words, convert it to the canonical path.
 
