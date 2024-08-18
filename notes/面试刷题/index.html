@@ -9821,35 +9821,32 @@ search(&quot;.ad&quot;) -&gt; true<br>
 search(&quot;b..&quot;) -&gt; true<br>
 Note:<br>
 You may assume that all words are consist of lowercase letters a-z.</p>
-<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">TrieNode</span><span class="token punctuation">:</span>
-    
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>children <span class="token operator">=</span> defaultdict<span class="token punctuation">(</span>TrieNode<span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>eow <span class="token operator">=</span> <span class="token boolean">False</span>
-            
-<span class="token keyword">class</span> <span class="token class-name">WordDictionary</span><span class="token punctuation">:</span>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">WordDictionary</span><span class="token punctuation">:</span>
 
     <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>root <span class="token operator">=</span> TrieNode<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>root <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 
     <span class="token keyword">def</span> <span class="token function">addWord</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> word<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span><span class="token punctuation">:</span>
         root <span class="token operator">=</span> self<span class="token punctuation">.</span>root
         <span class="token keyword">for</span> c <span class="token keyword">in</span> word<span class="token punctuation">:</span>
-            root <span class="token operator">=</span> root<span class="token punctuation">.</span>children<span class="token punctuation">[</span>c<span class="token punctuation">]</span>
-        root<span class="token punctuation">.</span>eow <span class="token operator">=</span> <span class="token boolean">True</span>
+            <span class="token keyword">if</span> c <span class="token keyword">not</span> <span class="token keyword">in</span> root<span class="token punctuation">:</span>
+                root<span class="token punctuation">[</span>c<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+            root <span class="token operator">=</span> root<span class="token punctuation">[</span>c<span class="token punctuation">]</span>
+        root<span class="token punctuation">[</span><span class="token string">'/'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">''</span>
 
     <span class="token keyword">def</span> <span class="token function">search</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> word<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">bool</span><span class="token punctuation">:</span>
-        <span class="token keyword">def</span> <span class="token function">find</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> word<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>word<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-                <span class="token keyword">return</span> root<span class="token punctuation">.</span>eow
+        <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> i <span class="token operator">==</span> <span class="token builtin">len</span><span class="token punctuation">(</span>word<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token string">'/'</span> <span class="token keyword">in</span> root
+            c <span class="token operator">=</span> word<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+            <span class="token keyword">if</span> c <span class="token operator">==</span> <span class="token string">'.'</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token builtin">any</span><span class="token punctuation">(</span>helper<span class="token punctuation">(</span>root<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span><span class="token punctuation">,</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">for</span> neighbor <span class="token keyword">in</span> root <span class="token keyword">if</span> neighbor <span class="token operator">!=</span> <span class="token string">'/'</span><span class="token punctuation">)</span>
+            <span class="token keyword">elif</span> c <span class="token keyword">in</span> root<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> helper<span class="token punctuation">(</span>root<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">,</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
             <span class="token keyword">else</span><span class="token punctuation">:</span>
-                c <span class="token operator">=</span> word<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-                <span class="token keyword">if</span> c <span class="token operator">==</span> <span class="token string">'.'</span><span class="token punctuation">:</span>
-                    <span class="token keyword">return</span> <span class="token builtin">any</span><span class="token punctuation">(</span><span class="token punctuation">[</span>find<span class="token punctuation">(</span>child<span class="token punctuation">,</span> word<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">for</span> child <span class="token keyword">in</span> root<span class="token punctuation">.</span>children<span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-                <span class="token keyword">else</span><span class="token punctuation">:</span>
-                    <span class="token keyword">return</span> find<span class="token punctuation">(</span>root<span class="token punctuation">.</span>children<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">,</span> word<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">if</span> c <span class="token keyword">in</span> root<span class="token punctuation">.</span>children <span class="token keyword">else</span> <span class="token boolean">False</span>
-        <span class="token keyword">return</span> find<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root<span class="token punctuation">,</span> word<span class="token punctuation">)</span></code></pre>
-<p>2刷：面经，Celo</p>
+                <span class="token keyword">return</span> <span class="token boolean">False</span>
+        <span class="token keyword">return</span> helper<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>        </code></pre>
+<p>Blind 75; 面经: Celo</p>
 <h2 id="union-find-%2F-mst" tabindex="-1">Union Find / MST</h2>
 <h3 id="linc-629.-minimum-spanning-tree-(hard)" tabindex="-1"><a href="https://www.lintcode.com/problem/minimum-spanning-tree/description">LinC 629. Minimum Spanning Tree (Hard)</a></h3>
 <p>Given a list of Connections, which is the Connection class (the city name at both ends of the edge and a cost between them), find edges that can connect all the cities and spend the least amount.<br>
