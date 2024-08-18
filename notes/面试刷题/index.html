@@ -5573,6 +5573,21 @@ Constraints:
 1 &lt;= s.length &lt;= 1000
 s consists of lowercase English letters.
 </code></pre>
+<p>写法4：</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">countSubstrings</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">nonlocal</span> ans
+            <span class="token keyword">if</span> <span class="token number">0</span> <span class="token operator">&lt;=</span> l <span class="token keyword">and</span> r <span class="token operator">&lt;</span> n <span class="token keyword">and</span> s<span class="token punctuation">[</span>l<span class="token punctuation">]</span> <span class="token operator">==</span> s<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                ans <span class="token operator">+=</span> <span class="token number">1</span>
+                helper<span class="token punctuation">(</span>l <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> r <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        ans <span class="token operator">=</span> <span class="token number">0</span>
+        n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            helper<span class="token punctuation">(</span>i<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+            helper<span class="token punctuation">(</span>i<span class="token punctuation">,</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> ans</code></pre>
+<p>写法3：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">countSubstrings</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
         <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -5587,6 +5602,7 @@ s consists of lowercase English letters.
             helper<span class="token punctuation">(</span>i<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
             helper<span class="token punctuation">(</span>i<span class="token punctuation">,</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> ans</code></pre>
+<p>写法2：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">countSubstrings</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
         <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>idx<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -5599,6 +5615,7 @@ s consists of lowercase English letters.
         <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
             helper<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
         <span class="token keyword">return</span> ans</code></pre>
+<p>写法1：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">countSubstrings</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
         <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>idx<span class="token punctuation">)</span><span class="token punctuation">:</span>
