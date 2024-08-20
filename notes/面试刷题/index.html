@@ -4218,6 +4218,25 @@ The number of nodes in the graph is in the range [0, 100].<br>
 Node.val is unique for each node.<br>
 There are no repeated edges and no self-loops in the graph.<br>
 The Graph is connected and all nodes can be visited starting from the given node.</p>
+<p>dfs:</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> Optional
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">cloneGraph</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> node<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span><span class="token string">'Node'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Optional<span class="token punctuation">[</span><span class="token string">'Node'</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> <span class="token keyword">not</span> node<span class="token punctuation">:</span>
+                <span class="token keyword">return</span>
+            nn <span class="token operator">=</span> Node<span class="token punctuation">(</span>node<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+            d<span class="token punctuation">[</span>node<span class="token punctuation">]</span> <span class="token operator">=</span> nn
+            <span class="token keyword">for</span> neighbor <span class="token keyword">in</span> node<span class="token punctuation">.</span>neighbors<span class="token punctuation">:</span>
+                <span class="token keyword">if</span> neighbor <span class="token keyword">not</span> <span class="token keyword">in</span> d<span class="token punctuation">:</span>
+                    helper<span class="token punctuation">(</span>neighbor<span class="token punctuation">)</span>
+                nn<span class="token punctuation">.</span>neighbors<span class="token punctuation">.</span>append<span class="token punctuation">(</span>d<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span><span class="token punctuation">)</span>       
+        <span class="token keyword">if</span> <span class="token keyword">not</span> node<span class="token punctuation">:</span>
+            <span class="token keyword">return</span>
+        d <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        helper<span class="token punctuation">(</span>node<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> d<span class="token punctuation">[</span>node<span class="token punctuation">]</span></code></pre>
+<p>bfs</p>
 <pre class="language-python"><code class="language-python"><span class="token triple-quoted-string string">"""
 # Definition for a Node.
 class Node:
@@ -4225,6 +4244,8 @@ class Node:
         self.val = val
         self.neighbors = neighbors if neighbors is not None else []
 """</span>
+
+<span class="token keyword">from</span> typing <span class="token keyword">import</span> Optional
 <span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">cloneGraph</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> node<span class="token punctuation">:</span> <span class="token string">'Node'</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">'Node'</span><span class="token punctuation">:</span>        
         <span class="token keyword">if</span> <span class="token keyword">not</span> node<span class="token punctuation">:</span>
@@ -4242,22 +4263,6 @@ class Node:
                     new_neighbor <span class="token operator">=</span> Node<span class="token punctuation">(</span>neighbor<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
                     d<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span> <span class="token operator">=</span> new_neighbor
                 d<span class="token punctuation">[</span>old<span class="token punctuation">]</span><span class="token punctuation">.</span>neighbors<span class="token punctuation">.</span>append<span class="token punctuation">(</span>d<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span><span class="token punctuation">)</span>
-        <span class="token keyword">return</span> d<span class="token punctuation">[</span>node<span class="token punctuation">]</span></code></pre>
-<p>dfs:</p>
-<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">cloneGraph</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> node<span class="token punctuation">:</span> <span class="token string">'Node'</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">'Node'</span><span class="token punctuation">:</span>
-        <span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> n <span class="token keyword">in</span> d<span class="token punctuation">:</span>
-                <span class="token keyword">return</span>
-            nn <span class="token operator">=</span> Node<span class="token punctuation">(</span>n<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
-            d<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">=</span> nn
-            <span class="token keyword">for</span> neighbor <span class="token keyword">in</span> n<span class="token punctuation">.</span>neighbors<span class="token punctuation">:</span>
-                dfs<span class="token punctuation">(</span>neighbor<span class="token punctuation">)</span>
-                nn<span class="token punctuation">.</span>neighbors<span class="token punctuation">.</span>append<span class="token punctuation">(</span>d<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span> <span class="token keyword">not</span> node<span class="token punctuation">:</span>
-            <span class="token keyword">return</span>
-        d <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-        dfs<span class="token punctuation">(</span>node<span class="token punctuation">)</span>
         <span class="token keyword">return</span> d<span class="token punctuation">[</span>node<span class="token punctuation">]</span></code></pre>
 <p>3刷：高频</p>
 <h3 id="127.-word-ladder-(medium)" tabindex="-1"><a href="https://leetcode.com/problems/word-ladder/description/">127. Word Ladder (Medium)</a></h3>
