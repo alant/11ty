@@ -4083,7 +4083,8 @@ Input: [1,8,6,2,5,4,8,3,7]<br>
 Output: 49</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">maxArea</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> height<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
-        ans<span class="token punctuation">,</span> l<span class="token punctuation">,</span> r <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>height<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
+        l<span class="token punctuation">,</span> r <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>height<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
+        ans <span class="token operator">=</span> <span class="token number">0</span>
         <span class="token keyword">while</span> l <span class="token operator">&lt;</span> r<span class="token punctuation">:</span>
             ans <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> <span class="token punctuation">(</span>r <span class="token operator">-</span> l<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token builtin">min</span><span class="token punctuation">(</span>height<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token punctuation">,</span> height<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
             <span class="token keyword">if</span> height<span class="token punctuation">[</span>l<span class="token punctuation">]</span> <span class="token operator">&lt;</span> height<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">:</span>
@@ -4091,7 +4092,7 @@ Output: 49</p>
             <span class="token keyword">else</span><span class="token punctuation">:</span>
                 r <span class="token operator">-=</span> <span class="token number">1</span>
         <span class="token keyword">return</span> ans</code></pre>
-<p>高频, 二刷：1.短的不能贡献更大的面积，可以移除2.其他的都需要更高的才有可能变成更大面积</p>
+<p>Blind 75; 高频：双指针往中心走，面积是：(r − l) × min(height[l], height[r]), 优先收缩矮的（对总面积贡献小的）一边</p>
 <h3 id="345.-reverse-vowels-of-a-string-(easy)" tabindex="-1"><a href="https://leetcode.com/problems/reverse-vowels-of-a-string/">345. Reverse Vowels of a String (Easy)</a></h3>
 <p>Write a function that takes a string as input and reverse only the vowels of a string.</p>
 <p>Example 1:<br>
