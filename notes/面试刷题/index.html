@@ -7782,14 +7782,18 @@ s consists of only uppercase English letters.
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">characterReplacement</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">,</span> k<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
         counter <span class="token operator">=</span> Counter<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        max_freq<span class="token punctuation">,</span> ans<span class="token punctuation">,</span> l <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span>
+        l <span class="token operator">=</span> <span class="token number">0</span>
+        ans <span class="token operator">=</span> <span class="token number">0</span>
+        max_freq <span class="token operator">=</span> <span class="token number">0</span>
         <span class="token keyword">for</span> r <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
             counter<span class="token punctuation">[</span>s<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
             max_freq <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>max_freq<span class="token punctuation">,</span> counter<span class="token punctuation">[</span>s<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-            <span class="token keyword">if</span> r <span class="token operator">-</span> l <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">-</span> max_freq <span class="token operator">></span> k<span class="token punctuation">:</span>
+            window <span class="token operator">=</span> r <span class="token operator">-</span> l <span class="token operator">+</span> <span class="token number">1</span>
+            <span class="token keyword">if</span> window <span class="token operator">-</span> max_freq <span class="token operator">&lt;=</span> k<span class="token punctuation">:</span>
+                ans <span class="token operator">=</span> window
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
                 counter<span class="token punctuation">[</span>s<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">-=</span> <span class="token number">1</span>
                 l <span class="token operator">+=</span> <span class="token number">1</span>
-            ans <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> r <span class="token operator">-</span> l <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> ans</code></pre>
 <p>Blind 75</p>
 <h2 id="linked-list-%E9%93%BE%E8%A1%A8" tabindex="-1">Linked List 链表</h2>
