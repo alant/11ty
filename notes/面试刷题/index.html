@@ -1017,7 +1017,7 @@ One possible answer is: [0,-3,9,-10,null,5], which represents the following heig
    /   /
  -10  5
 </code></pre>
-<p>解法1：space: O(n):</p>
+<p>解法1：space: O(n); time : O(n)</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">sortedListToBST</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> head<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">:</span>
         <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -1033,13 +1033,30 @@ One possible answer is: [0,-3,9,-10,null,5], which represents the following heig
             nums<span class="token punctuation">.</span>append<span class="token punctuation">(</span>head<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
             head <span class="token operator">=</span> head<span class="token punctuation">.</span><span class="token builtin">next</span>
         <span class="token keyword">return</span> helper<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span></code></pre>
-<p>解法2：space: O(1):</p>
+<p>解法2：space: O(1): time: O(nlogn)</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">sortedListToBST</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> head<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>head<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> <span class="token keyword">not</span> head<span class="token punctuation">:</span>
+                <span class="token keyword">return</span>
+            dummy <span class="token operator">=</span> s <span class="token operator">=</span> f <span class="token operator">=</span> ListNode<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            dummy<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> head
+            <span class="token keyword">while</span> f<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token keyword">and</span> f<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">:</span>
+                s <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token builtin">next</span>
+                f <span class="token operator">=</span> f<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">.</span><span class="token builtin">next</span>
+            r_h <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token builtin">next</span>
+            root <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span>r_h<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+            s<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> <span class="token boolean">None</span>
+            root<span class="token punctuation">.</span>left <span class="token operator">=</span> helper<span class="token punctuation">(</span>dummy<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
+            root<span class="token punctuation">.</span>right <span class="token operator">=</span> helper<span class="token punctuation">(</span>r_h<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> root
+        <span class="token keyword">return</span> helper<span class="token punctuation">(</span>head<span class="token punctuation">)</span></code></pre>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">sortedListToBST</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> head<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>ListNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">:</span>
         <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">:</span>
             <span class="token keyword">if</span> l <span class="token operator">==</span> r<span class="token punctuation">:</span>
                 <span class="token keyword">return</span>
-            s<span class="token punctuation">,</span> f <span class="token operator">=</span> l<span class="token punctuation">,</span> l
+            s <span class="token operator">=</span> f <span class="token operator">=</span> l
             <span class="token keyword">while</span> f <span class="token operator">!=</span> r <span class="token keyword">and</span> f<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">!=</span> r<span class="token punctuation">:</span>
                 s <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token builtin">next</span>
                 f <span class="token operator">=</span> f<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">.</span><span class="token builtin">next</span>
@@ -1048,7 +1065,7 @@ One possible answer is: [0,-3,9,-10,null,5], which represents the following heig
             root<span class="token punctuation">.</span>right <span class="token operator">=</span> helper<span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span>
             <span class="token keyword">return</span> root
         <span class="token keyword">return</span> helper<span class="token punctuation">(</span>head<span class="token punctuation">,</span> <span class="token boolean">None</span><span class="token punctuation">)</span></code></pre>
-<p>6刷：高频，time complexity: O(n), O(nlogn)</p>
+<p>Blind 75; 高频</p>
 <h3 id="112.-path-sum-(easy)" tabindex="-1"><a href="https://leetcode.com/problems/path-sum/">112. Path Sum (Easy)</a></h3>
 <p>Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.<br>
 Note: A leaf is a node with no children.</p>
