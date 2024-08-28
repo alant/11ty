@@ -7823,8 +7823,9 @@ s consists of only uppercase English letters.
         ans <span class="token operator">=</span> <span class="token number">0</span>
         max_freq <span class="token operator">=</span> <span class="token number">0</span>
         <span class="token keyword">for</span> r <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            counter<span class="token punctuation">[</span>s<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
-            max_freq <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>max_freq<span class="token punctuation">,</span> counter<span class="token punctuation">[</span>s<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            c <span class="token operator">=</span> s<span class="token punctuation">[</span>r<span class="token punctuation">]</span>
+            counter<span class="token punctuation">[</span>c<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
+            max_freq <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>max_freq<span class="token punctuation">,</span> counter<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">)</span>
             window <span class="token operator">=</span> r <span class="token operator">-</span> l <span class="token operator">+</span> <span class="token number">1</span>
             <span class="token keyword">if</span> window <span class="token operator">-</span> max_freq <span class="token operator">&lt;=</span> k<span class="token punctuation">:</span>
                 ans <span class="token operator">=</span> window
