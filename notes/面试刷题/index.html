@@ -1560,16 +1560,30 @@ Output: false
 Explanation: The input is: [5,1,4,null,null,3,6]. The root node's value
              is 5 but its right child's value is 4.
 </code></pre>
-<p>高频<br>
-递归：</p>
+<p>递归：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">isValidBST</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">bool</span><span class="token punctuation">:</span>
-        <span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> l<span class="token punctuation">,</span> h<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> l<span class="token punctuation">,</span> h<span class="token punctuation">)</span><span class="token punctuation">:</span>
             <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
                 <span class="token keyword">return</span> <span class="token boolean">True</span>
-            <span class="token keyword">return</span> dfs<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> l<span class="token punctuation">,</span> root<span class="token punctuation">.</span>val<span class="token punctuation">)</span> <span class="token keyword">and</span> dfs<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> root<span class="token punctuation">.</span>val<span class="token punctuation">,</span> h<span class="token punctuation">)</span> <span class="token keyword">and</span> l <span class="token operator">&lt;</span> root<span class="token punctuation">.</span>val <span class="token operator">&lt;</span> h
-        <span class="token keyword">return</span> dfs<span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token operator">-</span>sys<span class="token punctuation">.</span>maxsize<span class="token punctuation">,</span> sys<span class="token punctuation">.</span>maxsize<span class="token punctuation">)</span></code></pre>
-<p>inorder 中序遍历无额外数组：</p>
+            <span class="token keyword">return</span> l <span class="token operator">&lt;</span> root<span class="token punctuation">.</span>val <span class="token operator">&lt;</span> h <span class="token keyword">and</span> helper<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> l<span class="token punctuation">,</span> root<span class="token punctuation">.</span>val<span class="token punctuation">)</span> <span class="token keyword">and</span> helper<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> root<span class="token punctuation">.</span>val<span class="token punctuation">,</span> h<span class="token punctuation">)</span> 
+        <span class="token keyword">return</span> helper<span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token builtin">float</span><span class="token punctuation">(</span><span class="token string">'-inf'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">float</span><span class="token punctuation">(</span><span class="token string">'inf'</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>遍历：</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">isValidBST</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">bool</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">True</span>
+        stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token builtin">float</span><span class="token punctuation">(</span><span class="token string">'-inf'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">float</span><span class="token punctuation">(</span><span class="token string">'inf'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        <span class="token keyword">while</span> stack<span class="token punctuation">:</span>
+            root<span class="token punctuation">,</span> l<span class="token punctuation">,</span> h <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> root<span class="token punctuation">.</span>val <span class="token operator">&lt;=</span> l <span class="token keyword">or</span> root<span class="token punctuation">.</span>val <span class="token operator">>=</span> h<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token boolean">False</span>
+            <span class="token keyword">if</span> root<span class="token punctuation">.</span>left<span class="token punctuation">:</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> l<span class="token punctuation">,</span> root<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> root<span class="token punctuation">.</span>val<span class="token punctuation">,</span> h<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token boolean">True</span></code></pre>
+<p>inorder 中序遍历：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">isValidBST</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>
         stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
@@ -1585,7 +1599,7 @@ Explanation: The input is: [5,1,4,null,null,3,6]. The root node's value
                 pre <span class="token operator">=</span> root
                 root <span class="token operator">=</span> root<span class="token punctuation">.</span>right
         <span class="token keyword">return</span> <span class="token boolean">True</span></code></pre>
-<p>inorder 中序递归无额外数组：</p>
+<p>inorder 中序递归：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">isValidBST</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> TreeNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">bool</span><span class="token punctuation">:</span>
         <span class="token keyword">def</span> <span class="token function">in_order</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -1617,8 +1631,7 @@ Explanation: The input is: [5,1,4,null,null,3,6]. The root node's value
             <span class="token keyword">if</span> res<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> res<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
                 <span class="token keyword">return</span> <span class="token boolean">False</span>
         <span class="token keyword">return</span> <span class="token boolean">True</span></code></pre>
-<p>8刷：高频，五种解法：1.利用BST性质的递归，2，3.中序遍历递归（有/无额外数组），4，5.中序遍历遍历（有/无额外数组）<br>
-中序遍历遍历无额外数组：...if pre and n.val &lt;= pre.val: return False; pre = n...</p>
+<p>高频</p>
 <h3 id="572.-subtree-of-another-tree-(easy)" tabindex="-1"><a href="https://leetcode.com/problems/subtree-of-another-tree/">572. Subtree of Another Tree (Easy)</a></h3>
 <p>Given two non-empty binary trees s and t, check whether tree t has exactly the same structure and node values with a subtree of s. A subtree of s is a tree consists of a node in s and all of this node's descendants. The tree s could also be considered as a subtree of itself.</p>
 <pre><code>Example 1:
