@@ -2307,6 +2307,7 @@ Explanation: The optimal path is 15 -&gt; 20 -&gt; 7 with a path sum of 15 + 20 
 <p>Constraints:</p>
 <p>The number of nodes in the tree is in the range [1, 3 * 104].<br>
 -1000 &lt;= Node.val &lt;= 1000</p>
+<p>递归：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">maxPathSum</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
         <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -2319,6 +2320,26 @@ Explanation: The optimal path is 15 -&gt; 20 -&gt; 7 with a path sum of 15 + 20 
             <span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> r<span class="token punctuation">)</span> <span class="token operator">+</span> root<span class="token punctuation">.</span>val
         ans <span class="token operator">=</span> <span class="token builtin">float</span><span class="token punctuation">(</span><span class="token string">'-inf'</span><span class="token punctuation">)</span>
         helper<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> ans</code></pre>
+<p>遍历：</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">maxPathSum</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        ans <span class="token operator">=</span> <span class="token builtin">float</span><span class="token punctuation">(</span><span class="token string">'-inf'</span><span class="token punctuation">)</span>
+        stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        d <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token boolean">None</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">}</span>
+        <span class="token keyword">while</span> stack<span class="token punctuation">:</span>
+            root<span class="token punctuation">,</span> visited <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> visited<span class="token punctuation">:</span>
+                l <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>d<span class="token punctuation">[</span>root<span class="token punctuation">.</span>left<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                r <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>d<span class="token punctuation">[</span>root<span class="token punctuation">.</span>right<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                ans <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> l <span class="token operator">+</span> r <span class="token operator">+</span> root<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+                d<span class="token punctuation">[</span>root<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> r<span class="token punctuation">)</span> <span class="token operator">+</span> root<span class="token punctuation">.</span>val
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token keyword">if</span> root<span class="token punctuation">.</span>left<span class="token punctuation">:</span>
+                    stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
+                    stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> ans</code></pre>
 <p>Blind 75</p>
 <h2 id="tree-based-bfs-%E5%9F%BA%E4%BA%8E%E6%A0%91%E7%9A%84-bfs" tabindex="-1">Tree based BFS 基于树的 BFS</h2>
@@ -7087,7 +7108,7 @@ Output:
             r <span class="token operator">+=</span> mode<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
             c <span class="token operator">+=</span> mode<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
         <span class="token keyword">return</span> ans</code></pre>
-<p>todo 高频：...if c == n - 1 - circle:...if r == n - 1 - circle:...if c == circle:...if r = circle + 1:...</p>
+<p>高频</p>
 <h3 id="68.-text-justification-(hard)" tabindex="-1"><a href="https://leetcode.com/problems/text-justification/">68. Text Justification (Hard)</a></h3>
 <pre><code>Given an array of words and a width maxWidth, format the text such that each line has exactly maxWidth characters and is fully (left and right) justified.
 
