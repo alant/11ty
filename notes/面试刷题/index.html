@@ -339,6 +339,20 @@ Output: [1,2,3]
                 root <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
                 root <span class="token operator">=</span> root<span class="token punctuation">.</span>right
         <span class="token keyword">return</span> ans</code></pre>
+<p>非递归2:</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">preorderTraversal</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        ans<span class="token punctuation">,</span> stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>root<span class="token punctuation">]</span>
+        <span class="token keyword">while</span> stack<span class="token punctuation">:</span>
+            root <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            ans<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> root<span class="token punctuation">.</span>left<span class="token punctuation">:</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> ans</code></pre>
 <p>递归2:</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">preorderTraversal</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -347,7 +361,7 @@ Output: [1,2,3]
         l <span class="token operator">=</span> self<span class="token punctuation">.</span>preorderTraversal<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
         r <span class="token operator">=</span> self<span class="token punctuation">.</span>preorderTraversal<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
         <span class="token keyword">return</span> <span class="token punctuation">[</span>root<span class="token punctuation">.</span>val<span class="token punctuation">]</span> <span class="token operator">+</span> l <span class="token operator">+</span> r</code></pre>
-<p>非递归2：</p>
+<p>非递归3：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">preorderTraversal</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
@@ -363,21 +377,6 @@ Output: [1,2,3]
                 root <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> ans
 </code></pre>
-<p>非递归3:</p>
-<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">preorderTraversal</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-        ans<span class="token punctuation">,</span> stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>root<span class="token punctuation">]</span>
-        <span class="token keyword">while</span> stack<span class="token punctuation">:</span>
-            root <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            ans<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
-            <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
-                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
-            <span class="token keyword">if</span> root<span class="token punctuation">.</span>left<span class="token punctuation">:</span>
-                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> ans</code></pre>
-<p>9刷</p>
 <h3 id="94.-binary-tree-inorder-traversal-(medium)" tabindex="-1"><a href="https://leetcode.com/problems/binary-tree-inorder-traversal/description/">94. Binary Tree Inorder Traversal (Medium)</a></h3>
 <p>Given a binary tree, return the inorder traversal of its nodes' values.<br>
 Example:</p>
