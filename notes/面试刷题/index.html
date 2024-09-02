@@ -69,16 +69,7 @@ Google: 90% of our engineers use the software you wrote (Homebrew), but you can�
             <span class="token keyword">if</span> p<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
                 stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> root</code></pre>
-<p>递归2：</p>
-<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">invertTree</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
-            <span class="token keyword">return</span>
-        l <span class="token operator">=</span> self<span class="token punctuation">.</span>invertTree<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
-        r <span class="token operator">=</span> self<span class="token punctuation">.</span>invertTree<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
-        root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> root<span class="token punctuation">.</span>right <span class="token operator">=</span> r<span class="token punctuation">,</span> l
-        <span class="token keyword">return</span> root</code></pre>
-<p>递归3：</p>
+<p>递归2</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">invertTree</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">:</span>
         <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
