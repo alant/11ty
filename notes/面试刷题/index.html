@@ -9926,36 +9926,36 @@ All inputs are guaranteed to be non-empty strings.
         :type word: str
         :rtype: None
         """</span>
-        root <span class="token operator">=</span> self<span class="token punctuation">.</span>root
+        p <span class="token operator">=</span> self<span class="token punctuation">.</span>root
         <span class="token keyword">for</span> c <span class="token keyword">in</span> word<span class="token punctuation">:</span>
-            <span class="token keyword">if</span> c <span class="token keyword">not</span> <span class="token keyword">in</span> root<span class="token punctuation">:</span>
-                root<span class="token punctuation">[</span>c<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-            root <span class="token operator">=</span> root<span class="token punctuation">[</span>c<span class="token punctuation">]</span>
-        root<span class="token punctuation">[</span><span class="token string">'/'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">''</span>
+            <span class="token keyword">if</span> c <span class="token keyword">not</span> <span class="token keyword">in</span> p<span class="token punctuation">:</span>
+                p<span class="token punctuation">[</span>c<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+            p <span class="token operator">=</span> p<span class="token punctuation">[</span>c<span class="token punctuation">]</span>
+        p<span class="token punctuation">[</span><span class="token string">'/'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">''</span>
 
     <span class="token keyword">def</span> <span class="token function">search</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> word<span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token triple-quoted-string string">"""
         :type word: str
         :rtype: bool
         """</span>
-        root <span class="token operator">=</span> self<span class="token punctuation">.</span>__find<span class="token punctuation">(</span>word<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> <span class="token string">'/'</span> <span class="token keyword">in</span> root <span class="token keyword">if</span> root <span class="token keyword">else</span> <span class="token boolean">False</span>
+        p <span class="token operator">=</span> self<span class="token punctuation">.</span>root
+        <span class="token keyword">for</span> c <span class="token keyword">in</span> word<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> c <span class="token keyword">not</span> <span class="token keyword">in</span> p<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token boolean">False</span>
+            p <span class="token operator">=</span> p<span class="token punctuation">[</span>c<span class="token punctuation">]</span>
+        <span class="token keyword">return</span> <span class="token string">'/'</span> <span class="token keyword">in</span> p
 
     <span class="token keyword">def</span> <span class="token function">startsWith</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> prefix<span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token triple-quoted-string string">"""
         :type prefix: str
         :rtype: bool
         """</span>
-        
-        <span class="token keyword">return</span> <span class="token boolean">True</span> <span class="token keyword">if</span> self<span class="token punctuation">.</span>__find<span class="token punctuation">(</span>prefix<span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token boolean">False</span>
-
-    <span class="token keyword">def</span> <span class="token function">__find</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> word<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        root <span class="token operator">=</span> self<span class="token punctuation">.</span>root
-        <span class="token keyword">for</span> c <span class="token keyword">in</span> word<span class="token punctuation">:</span>
-            <span class="token keyword">if</span> c <span class="token keyword">not</span> <span class="token keyword">in</span> root<span class="token punctuation">:</span>
+        p <span class="token operator">=</span> self<span class="token punctuation">.</span>root
+        <span class="token keyword">for</span> c <span class="token keyword">in</span> prefix<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> c <span class="token keyword">not</span> <span class="token keyword">in</span> p<span class="token punctuation">:</span>
                 <span class="token keyword">return</span> <span class="token boolean">False</span>
-            root <span class="token operator">=</span> root<span class="token punctuation">[</span>c<span class="token punctuation">]</span>
-        <span class="token keyword">return</span> root</code></pre>
+            p <span class="token operator">=</span> p<span class="token punctuation">[</span>c<span class="token punctuation">]</span>
+        <span class="token keyword">return</span> <span class="token boolean">True</span></code></pre>
 <p>写法2：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">TrieNode</span><span class="token punctuation">:</span>
     
