@@ -10325,6 +10325,15 @@ Not 7-1 = 6, as selling price needs to be larger than buying price.</p>
 Input: [7,6,4,3,1]<br>
 Output: 0<br>
 Explanation: In this case, no transaction is done, i.e. max profit = 0.</p>
+<p>greedy:</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">maxProfit</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> prices<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        lowest <span class="token operator">=</span> prices<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        ans <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">for</span> p <span class="token keyword">in</span> prices<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            ans <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> p <span class="token operator">-</span> lowest<span class="token punctuation">)</span>
+            lowest <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>lowest<span class="token punctuation">,</span> p<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> ans</code></pre>
 <p>DP：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">maxProfit</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> prices<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -10337,16 +10346,7 @@ Explanation: In this case, no transaction is done, i.e. max profit = 0.</p>
             <span class="token keyword">else</span><span class="token punctuation">:</span>
                 dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> prices<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> low<span class="token punctuation">)</span>
         <span class="token keyword">return</span> dp<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span></code></pre>
-<p>greedy:</p>
-<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">maxProfit</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> prices<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
-        low <span class="token operator">=</span> prices<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-        ans <span class="token operator">=</span> <span class="token number">0</span>
-        <span class="token keyword">for</span> p <span class="token keyword">in</span> prices<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
-            ans <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> p <span class="token operator">-</span> low<span class="token punctuation">)</span>
-            low <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>low<span class="token punctuation">,</span> p<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> ans</code></pre>
-<p>高频，4刷</p>
+<p>高频</p>
 <h3 id="122.-best-time-to-buy-and-sell-stock-ii-(easy)" tabindex="-1"><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/">122. Best Time to Buy and Sell Stock II (Easy)</a></h3>
 <p>Say you have an array for which the ith element is the price of a given stock on day i.<br>
 Design an algorithm to find the maximum profit. You may complete as many transactions as you like (i.e., buy one and sell one share of the stock multiple times).<br>
