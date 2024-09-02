@@ -7979,7 +7979,7 @@ Could you do this in one pass?</p>
         dummy<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> head
         <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>cnt <span class="token operator">-</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
             p <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token builtin">next</span>
-        p<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token keyword">if</span> p<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token keyword">else</span> <span class="token boolean">None</span>
+        p<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">.</span><span class="token builtin">next</span>
         <span class="token keyword">return</span> dummy<span class="token punctuation">.</span><span class="token builtin">next</span></code></pre>
 <p>Blind 75; 高频</p>
 <h3 id="2.-add-two-numbers-(medium)" tabindex="-1"><a href="https://leetcode.com/problems/add-two-numbers/">2. Add Two Numbers (Medium)</a></h3>
