@@ -4353,19 +4353,17 @@ The Graph is connected and all nodes can be visited starting from the given node
 <span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">cloneGraph</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> node<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span><span class="token string">'Node'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Optional<span class="token punctuation">[</span><span class="token string">'Node'</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
         <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> <span class="token keyword">not</span> node<span class="token punctuation">:</span>
-                <span class="token keyword">return</span>
-            nn <span class="token operator">=</span> Node<span class="token punctuation">(</span>node<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
-            d<span class="token punctuation">[</span>node<span class="token punctuation">]</span> <span class="token operator">=</span> nn
+            <span class="token keyword">if</span> node <span class="token keyword">not</span> <span class="token keyword">in</span> d<span class="token punctuation">:</span>
+                d<span class="token punctuation">[</span>node<span class="token punctuation">]</span> <span class="token operator">=</span> Node<span class="token punctuation">(</span>node<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
             <span class="token keyword">for</span> neighbor <span class="token keyword">in</span> node<span class="token punctuation">.</span>neighbors<span class="token punctuation">:</span>
                 <span class="token keyword">if</span> neighbor <span class="token keyword">not</span> <span class="token keyword">in</span> d<span class="token punctuation">:</span>
                     helper<span class="token punctuation">(</span>neighbor<span class="token punctuation">)</span>
-                nn<span class="token punctuation">.</span>neighbors<span class="token punctuation">.</span>append<span class="token punctuation">(</span>d<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span><span class="token punctuation">)</span>       
+                d<span class="token punctuation">[</span>node<span class="token punctuation">]</span><span class="token punctuation">.</span>neighbors<span class="token punctuation">.</span>append<span class="token punctuation">(</span>d<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> d<span class="token punctuation">[</span>node<span class="token punctuation">]</span>
         <span class="token keyword">if</span> <span class="token keyword">not</span> node<span class="token punctuation">:</span>
             <span class="token keyword">return</span>
         d <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-        helper<span class="token punctuation">(</span>node<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> d<span class="token punctuation">[</span>node<span class="token punctuation">]</span></code></pre>
+        <span class="token keyword">return</span> helper<span class="token punctuation">(</span>node<span class="token punctuation">)</span></code></pre>
 <p>bfs</p>
 <pre class="language-python"><code class="language-python"><span class="token triple-quoted-string string">"""
 # Definition for a Node.
@@ -4380,19 +4378,16 @@ class Node:
     <span class="token keyword">def</span> <span class="token function">cloneGraph</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> node<span class="token punctuation">:</span> <span class="token string">'Node'</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">'Node'</span><span class="token punctuation">:</span>        
         <span class="token keyword">if</span> <span class="token keyword">not</span> node<span class="token punctuation">:</span>
             <span class="token keyword">return</span>
-        d <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        d <span class="token operator">=</span> <span class="token punctuation">{</span>node<span class="token punctuation">:</span> Node<span class="token punctuation">(</span>node<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">}</span>
         q <span class="token operator">=</span> deque<span class="token punctuation">(</span><span class="token punctuation">[</span>node<span class="token punctuation">]</span><span class="token punctuation">)</span>
         <span class="token keyword">while</span> q<span class="token punctuation">:</span>
-            old <span class="token operator">=</span> q<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token keyword">if</span> old <span class="token keyword">not</span> <span class="token keyword">in</span> d<span class="token punctuation">:</span>
-                new_node <span class="token operator">=</span> Node<span class="token punctuation">(</span>old<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
-                d<span class="token punctuation">[</span>old<span class="token punctuation">]</span> <span class="token operator">=</span> new_node
-            <span class="token keyword">for</span> neighbor <span class="token keyword">in</span> old<span class="token punctuation">.</span>neighbors<span class="token punctuation">:</span>
+            p <span class="token operator">=</span> q<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">for</span> neighbor <span class="token keyword">in</span> p<span class="token punctuation">.</span>neighbors<span class="token punctuation">:</span>
                 <span class="token keyword">if</span> neighbor <span class="token keyword">not</span> <span class="token keyword">in</span> d<span class="token punctuation">:</span>
-                    q<span class="token punctuation">.</span>append<span class="token punctuation">(</span>neighbor<span class="token punctuation">)</span>
                     new_neighbor <span class="token operator">=</span> Node<span class="token punctuation">(</span>neighbor<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
                     d<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span> <span class="token operator">=</span> new_neighbor
-                d<span class="token punctuation">[</span>old<span class="token punctuation">]</span><span class="token punctuation">.</span>neighbors<span class="token punctuation">.</span>append<span class="token punctuation">(</span>d<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                    q<span class="token punctuation">.</span>append<span class="token punctuation">(</span>neighbor<span class="token punctuation">)</span>
+                d<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>neighbors<span class="token punctuation">.</span>append<span class="token punctuation">(</span>d<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> d<span class="token punctuation">[</span>node<span class="token punctuation">]</span></code></pre>
 <p>3刷：高频</p>
 <h3 id="127.-word-ladder-(medium)" tabindex="-1"><a href="https://leetcode.com/problems/word-ladder/description/">127. Word Ladder (Medium)</a></h3>
