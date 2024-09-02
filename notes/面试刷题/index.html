@@ -55,6 +55,20 @@ Google: 90% of our engineers use the software you wrote (Homebrew), but you can�
         self<span class="token punctuation">.</span>invertTree<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
         self<span class="token punctuation">.</span>invertTree<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
         <span class="token keyword">return</span> root</code></pre>
+<p>遍历：</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">invertTree</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
+            <span class="token keyword">return</span>
+        stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">]</span>
+        <span class="token keyword">while</span> stack<span class="token punctuation">:</span>
+            p <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            p<span class="token punctuation">.</span>left<span class="token punctuation">,</span> p<span class="token punctuation">.</span>right <span class="token operator">=</span> p<span class="token punctuation">.</span>right<span class="token punctuation">,</span> p<span class="token punctuation">.</span>left
+            <span class="token keyword">if</span> p<span class="token punctuation">.</span>left<span class="token punctuation">:</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> p<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> root</code></pre>
 <p>递归2：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">invertTree</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -71,20 +85,7 @@ Google: 90% of our engineers use the software you wrote (Homebrew), but you can�
             <span class="token keyword">return</span>
         root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> root<span class="token punctuation">.</span>right <span class="token operator">=</span> self<span class="token punctuation">.</span>invertTree<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>invertTree<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
         <span class="token keyword">return</span> root</code></pre>
-<p>遍历：</p>
-<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">invertTree</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
-            <span class="token keyword">return</span>
-        stack <span class="token operator">=</span> <span class="token punctuation">[</span>root<span class="token punctuation">]</span>
-        <span class="token keyword">while</span> stack<span class="token punctuation">:</span>
-            cur <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
-            cur<span class="token punctuation">.</span>left<span class="token punctuation">,</span> cur<span class="token punctuation">.</span>right <span class="token operator">=</span> cur<span class="token punctuation">.</span>right<span class="token punctuation">,</span> cur<span class="token punctuation">.</span>left
-            <span class="token keyword">if</span> cur<span class="token punctuation">.</span>left<span class="token punctuation">:</span>
-                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>cur<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
-            <span class="token keyword">if</span> cur<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
-                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>cur<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> root</code></pre>
+<p>Blind 75</p>
 <h3 id="100.-same-tree-(easy)" tabindex="-1"><a href="https://leetcode.com/problems/same-tree/">100. Same Tree (Easy)</a></h3>
 <p>Given two binary trees, write a function to check if they are the same or not.<br>
 Two binary trees are considered the same if they are structurally identical and the nodes have the same value.</p>
