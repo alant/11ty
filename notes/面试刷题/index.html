@@ -3137,7 +3137,7 @@ Output: 0
             <span class="token keyword">if</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">:</span>
                 r <span class="token operator">=</span> mid
             <span class="token keyword">else</span><span class="token punctuation">:</span>
-                l <span class="token operator">=</span> mid
+                l <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
         <span class="token keyword">return</span> <span class="token builtin">min</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token punctuation">,</span> nums<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
 <p>递归</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
@@ -3173,26 +3173,27 @@ Input: nums = [4,5,6,7,0,1,2], target = 3
 Output: -1
 </code></pre>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">search</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">:</span> <span class="token string">'List[int]'</span><span class="token punctuation">,</span> target<span class="token punctuation">:</span> <span class="token string">'int'</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">'int'</span><span class="token punctuation">:</span>
-        s<span class="token punctuation">,</span> e <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
-        <span class="token keyword">while</span> s <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> e<span class="token punctuation">:</span>
-            mid <span class="token operator">=</span> <span class="token punctuation">(</span>s <span class="token operator">+</span> e<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
-            <span class="token keyword">if</span> nums<span class="token punctuation">[</span>s<span class="token punctuation">]</span> <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token punctuation">:</span>
-                <span class="token keyword">if</span> nums<span class="token punctuation">[</span>s<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> target <span class="token operator">&lt;=</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token punctuation">:</span>
-                    e <span class="token operator">=</span> mid
+    <span class="token keyword">def</span> <span class="token function">search</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">,</span> target<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
+        l<span class="token punctuation">,</span> r <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> n <span class="token operator">-</span> <span class="token number">1</span>
+        <span class="token keyword">while</span> l <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> r<span class="token punctuation">:</span>
+            mid <span class="token operator">=</span> <span class="token punctuation">(</span>l <span class="token operator">+</span> r<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
+            <span class="token keyword">if</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> target <span class="token operator">&lt;=</span> nums<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                    l <span class="token operator">=</span> mid
                 <span class="token keyword">else</span><span class="token punctuation">:</span>
-                    s <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
+                    r <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span>
             <span class="token keyword">else</span><span class="token punctuation">:</span>
-                <span class="token keyword">if</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> target <span class="token operator">&lt;=</span> nums<span class="token punctuation">[</span>e<span class="token punctuation">]</span><span class="token punctuation">:</span>
-                    s <span class="token operator">=</span> mid
+                <span class="token keyword">if</span> nums<span class="token punctuation">[</span>l<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> target <span class="token operator">&lt;=</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                    r <span class="token operator">=</span> mid
                 <span class="token keyword">else</span><span class="token punctuation">:</span>
-                    e <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span>
-        <span class="token keyword">if</span> nums<span class="token punctuation">[</span>s<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">:</span>
-            <span class="token keyword">return</span> s
-        <span class="token keyword">if</span> nums<span class="token punctuation">[</span>e<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">:</span>
-            <span class="token keyword">return</span> e
+                    l <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> nums<span class="token punctuation">[</span>l<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> l
+        <span class="token keyword">if</span> nums<span class="token punctuation">[</span>r<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> r
         <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span></code></pre>
-<p>3刷： 高频：...while <strong>l + 1</strong> &lt; r...</p>
+<p>高频</p>
 <h3 id="81.-search-in-rotated-sorted-array-ii-(medium)" tabindex="-1"><a href="https://leetcode.com/problems/search-in-rotated-sorted-array-ii/">81. Search in Rotated Sorted Array II (Medium)</a></h3>
 <pre><code>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
 
