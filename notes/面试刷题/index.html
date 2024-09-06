@@ -11255,10 +11255,9 @@ You may assume that you have an infinite number of each kind of coin.</p>
     <span class="token keyword">def</span> <span class="token function">coinChange</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> coins<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">,</span> amount<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
         <span class="token keyword">if</span> amount <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
             <span class="token keyword">return</span> <span class="token number">0</span>
-        visited <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token boolean">False</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token punctuation">(</span>amount <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
-        visited<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">True</span>
         ans <span class="token operator">=</span> <span class="token number">0</span>
         q <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        seen <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token boolean">False</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token punctuation">(</span>amount <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
         <span class="token keyword">while</span> q<span class="token punctuation">:</span>
             ans <span class="token operator">+=</span> <span class="token number">1</span>
             nq <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
@@ -11268,8 +11267,8 @@ You may assume that you have an infinite number of each kind of coin.</p>
                     reach <span class="token operator">=</span> cur <span class="token operator">+</span> coin
                     <span class="token keyword">if</span> reach <span class="token operator">==</span> amount<span class="token punctuation">:</span>
                         <span class="token keyword">return</span> ans
-                    <span class="token keyword">if</span> reach <span class="token operator">&lt;</span> amount <span class="token keyword">and</span> <span class="token keyword">not</span> visited<span class="token punctuation">[</span>reach<span class="token punctuation">]</span><span class="token punctuation">:</span>
-                        visited<span class="token punctuation">[</span>reach<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">True</span>
+                    <span class="token keyword">elif</span> reach <span class="token operator">&lt;</span> amount <span class="token keyword">and</span> <span class="token keyword">not</span> seen<span class="token punctuation">[</span>reach<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                        seen<span class="token punctuation">[</span>reach<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">True</span>
                         nq<span class="token punctuation">.</span>append<span class="token punctuation">(</span>reach<span class="token punctuation">)</span>
             q <span class="token operator">=</span> nq
         <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span></code></pre>
