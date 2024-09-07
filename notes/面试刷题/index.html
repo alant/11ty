@@ -1766,22 +1766,41 @@ as &quot;[1,2,3,null,null,4,5]&quot;
 </code></pre>
 <p>Clarification: The above format is the same as how LeetCode serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.<br>
 Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.</p>
+<p>dfs递归：</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Codec</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">serialize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">'#'</span>
+        <span class="token keyword">return</span> <span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>root<span class="token punctuation">.</span>val<span class="token punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>serialize<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>serialize<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span>
+
+    <span class="token keyword">def</span> <span class="token function">deserialize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> data <span class="token operator">==</span> <span class="token string">'#'</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span>
+        dq <span class="token operator">=</span> deque<span class="token punctuation">(</span>data<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> dq<span class="token punctuation">:</span>
+                root_v <span class="token operator">=</span> dq<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token keyword">if</span> root_v <span class="token operator">!=</span> <span class="token string">'#'</span><span class="token punctuation">:</span>
+                    root <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span>root_v<span class="token punctuation">)</span>
+                    root<span class="token punctuation">.</span>left <span class="token operator">=</span> helper<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    root<span class="token punctuation">.</span>right <span class="token operator">=</span> helper<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    <span class="token keyword">return</span> root
+        <span class="token keyword">return</span> helper<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 <p>bfs：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Codec</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">serialize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
             <span class="token keyword">return</span> <span class="token string">'#'</span>
-        stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        q <span class="token operator">=</span> deque<span class="token punctuation">(</span><span class="token punctuation">[</span>root<span class="token punctuation">]</span><span class="token punctuation">)</span>
         res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-        <span class="token keyword">while</span> root <span class="token keyword">or</span> stack<span class="token punctuation">:</span>
+        <span class="token keyword">while</span> q<span class="token punctuation">:</span>
+            root <span class="token operator">=</span> q<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
             <span class="token keyword">if</span> root<span class="token punctuation">:</span>
                 res<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">)</span>
-                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
-                root <span class="token operator">=</span> root<span class="token punctuation">.</span>left
+                q<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+                q<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
             <span class="token keyword">else</span><span class="token punctuation">:</span>
                 res<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">'#'</span><span class="token punctuation">)</span>
-                root <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
-                root <span class="token operator">=</span> root<span class="token punctuation">.</span>right
         <span class="token keyword">return</span> <span class="token string">'/'</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>res<span class="token punctuation">)</span>
         
 
@@ -1789,20 +1808,18 @@ Note: Do not use class member/global/static variables to store states. Your seri
         <span class="token keyword">if</span> data <span class="token operator">==</span> <span class="token string">'#'</span><span class="token punctuation">:</span>
             <span class="token keyword">return</span>
         data <span class="token operator">=</span> deque<span class="token punctuation">(</span>data<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        root <span class="token operator">=</span> p <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span>data<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        root <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span>data<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        root_q <span class="token operator">=</span> deque<span class="token punctuation">(</span><span class="token punctuation">[</span>root<span class="token punctuation">]</span><span class="token punctuation">)</span>
         <span class="token keyword">while</span> data<span class="token punctuation">:</span>
+            p <span class="token operator">=</span> root_q<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
             root_v <span class="token operator">=</span> data<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token keyword">if</span> p<span class="token punctuation">:</span>
-                <span class="token keyword">if</span> root_v <span class="token operator">!=</span> <span class="token string">'#'</span><span class="token punctuation">:</span>
-                    p<span class="token punctuation">.</span>left <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span>root_v<span class="token punctuation">)</span>
-                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>p<span class="token punctuation">)</span>
-                p <span class="token operator">=</span> p<span class="token punctuation">.</span>left
-            <span class="token keyword">else</span><span class="token punctuation">:</span>
-                p <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token keyword">if</span> root_v <span class="token operator">!=</span> <span class="token string">'#'</span><span class="token punctuation">:</span>
-                    p<span class="token punctuation">.</span>right <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span>root_v<span class="token punctuation">)</span>
-                p <span class="token operator">=</span> p<span class="token punctuation">.</span>right
+            <span class="token keyword">if</span> root_v <span class="token operator">!=</span> <span class="token string">'#'</span><span class="token punctuation">:</span>
+                p<span class="token punctuation">.</span>left <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span>root_v<span class="token punctuation">)</span>
+                root_q<span class="token punctuation">.</span>append<span class="token punctuation">(</span>p<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+            root_v <span class="token operator">=</span> data<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> root_v <span class="token operator">!=</span> <span class="token string">'#'</span><span class="token punctuation">:</span>
+                p<span class="token punctuation">.</span>right <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span>root_v<span class="token punctuation">)</span>
+                root_q<span class="token punctuation">.</span>append<span class="token punctuation">(</span>p<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
         <span class="token keyword">return</span> root</code></pre>
 <p>dfs遍历：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Codec</span><span class="token punctuation">:</span>
@@ -1832,9 +1849,9 @@ Note: Do not use class member/global/static variables to store states. Your seri
         <span class="token keyword">while</span> data<span class="token punctuation">:</span>
             root_v <span class="token operator">=</span> data<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
             <span class="token keyword">if</span> p<span class="token punctuation">:</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>p<span class="token punctuation">)</span>
                 <span class="token keyword">if</span> root_v <span class="token operator">!=</span> <span class="token string">'#'</span><span class="token punctuation">:</span>
                     p<span class="token punctuation">.</span>left <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span>root_v<span class="token punctuation">)</span>
-                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>p<span class="token punctuation">)</span>
                 p <span class="token operator">=</span> p<span class="token punctuation">.</span>left
             <span class="token keyword">else</span><span class="token punctuation">:</span>
                 p <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -1842,26 +1859,6 @@ Note: Do not use class member/global/static variables to store states. Your seri
                     p<span class="token punctuation">.</span>right <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span>root_v<span class="token punctuation">)</span>
                 p <span class="token operator">=</span> p<span class="token punctuation">.</span>right
         <span class="token keyword">return</span> root</code></pre>
-<p>dfs递归：</p>
-<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Codec</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">serialize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token string">'#'</span>
-        <span class="token keyword">return</span> <span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>root<span class="token punctuation">.</span>val<span class="token punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>serialize<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>serialize<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span>
-
-    <span class="token keyword">def</span> <span class="token function">deserialize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> data <span class="token operator">==</span> <span class="token string">'#'</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span>
-        dq <span class="token operator">=</span> deque<span class="token punctuation">(</span>data<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> dq<span class="token punctuation">:</span>
-                root_v <span class="token operator">=</span> dq<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token keyword">if</span> root_v <span class="token operator">!=</span> <span class="token string">'#'</span><span class="token punctuation">:</span>
-                    root <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span>root_v<span class="token punctuation">)</span>
-                    root<span class="token punctuation">.</span>left <span class="token operator">=</span> helper<span class="token punctuation">(</span><span class="token punctuation">)</span>
-                    root<span class="token punctuation">.</span>right <span class="token operator">=</span> helper<span class="token punctuation">(</span><span class="token punctuation">)</span>
-                    <span class="token keyword">return</span> root
-        <span class="token keyword">return</span> helper<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 <p>Blind 75</p>
 <h3 id="536.-construct-binary-tree-from-string-(medium)-%E5%B8%A6%E9%94%81" tabindex="-1"><a href="https://leetcode.com/problems/construct-binary-tree-from-string">536. Construct Binary Tree from String (Medium) 带锁</a></h3>
 <p><a href="https://www.lintcode.com/problem/construct-binary-tree-from-string/description">LinC 880. Construct Binary Tree from String (Medium)</a><br>
