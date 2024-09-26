@@ -6866,10 +6866,10 @@ Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefor
         nums <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
         <span class="token keyword">for</span> num <span class="token keyword">in</span> nums<span class="token punctuation">:</span>
             <span class="token keyword">if</span> num <span class="token operator">-</span> <span class="token number">1</span> <span class="token keyword">not</span> <span class="token keyword">in</span> nums<span class="token punctuation">:</span>
-                cur <span class="token operator">=</span> <span class="token number">1</span>
-                <span class="token keyword">while</span> num <span class="token operator">+</span> <span class="token number">1</span> <span class="token keyword">in</span> nums<span class="token punctuation">:</span>
-                    num <span class="token operator">+=</span> <span class="token number">1</span>
+                cur <span class="token operator">=</span> <span class="token number">0</span>
+                <span class="token keyword">while</span> num <span class="token keyword">in</span> nums<span class="token punctuation">:</span>
                     cur <span class="token operator">+=</span> <span class="token number">1</span>
+                    num <span class="token operator">+=</span> <span class="token number">1</span>
                 ans <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> cur<span class="token punctuation">)</span>
         <span class="token keyword">return</span> ans</code></pre>
 <p>Blind 75; 高频：记忆型题。不应作为高频题</p>
