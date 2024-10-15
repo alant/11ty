@@ -195,13 +195,6 @@ return its depth = 3.
         ans <span class="token operator">=</span> <span class="token number">0</span>
         helper<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
         <span class="token keyword">return</span> ans</code></pre>
-<p>递归2：</p>
-<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">maxDepth</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token number">0</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>maxDepth<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>maxDepth<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span></code></pre>
 <p>遍历1：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">maxDepth</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
@@ -217,22 +210,32 @@ return its depth = 3.
             <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
                 stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> cur <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> ans</code></pre>
+<p>递归2：</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">maxDepth</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token number">0</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>maxDepth<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>maxDepth<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span></code></pre>
 <p>遍历2：</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">maxDepth</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
-        q <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>root<span class="token punctuation">]</span><span class="token punctuation">]</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token number">0</span>
+        q <span class="token operator">=</span> <span class="token punctuation">[</span>root<span class="token punctuation">]</span>
         ans <span class="token operator">=</span> <span class="token number">0</span>
         <span class="token keyword">while</span> q<span class="token punctuation">:</span>
-            cur <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-            <span class="token keyword">for</span> root <span class="token keyword">in</span> q<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            nq <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+            <span class="token keyword">for</span> root <span class="token keyword">in</span> q<span class="token punctuation">:</span>
                 <span class="token keyword">if</span> root<span class="token punctuation">:</span>
-                    cur<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
-                    cur<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
-            <span class="token keyword">if</span> cur<span class="token punctuation">:</span>
-                ans <span class="token operator">+=</span> <span class="token number">1</span>
-                q<span class="token punctuation">.</span>append<span class="token punctuation">(</span>cur<span class="token punctuation">)</span>
+                    <span class="token keyword">if</span> root<span class="token punctuation">.</span>left<span class="token punctuation">:</span>
+                        nq<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+                    <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
+                        nq<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+            ans <span class="token operator">+=</span> <span class="token number">1</span>
+            q <span class="token operator">=</span> nq
         <span class="token keyword">return</span> ans</code></pre>
-<p>10刷：高频</p>
+<p>高频</p>
 <h3 id="111.-minimum-depth-of-binary-tree-(easy)" tabindex="-1"><a href="https://leetcode.com/problems/minimum-depth-of-binary-tree/">111. Minimum Depth of Binary Tree (Easy)</a></h3>
 <p>Given a binary tree, find its minimum depth.<br>
 The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.<br>
