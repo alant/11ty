@@ -867,20 +867,21 @@ Return false.
 <p>遍历1:</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">isBalanced</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span>TreeNode<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">bool</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> root<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">True</span>
         stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
         depth <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token boolean">None</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">}</span>
         <span class="token keyword">while</span> stack<span class="token punctuation">:</span>
             root<span class="token punctuation">,</span> visited <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token keyword">if</span> root<span class="token punctuation">:</span>
-                <span class="token keyword">if</span> visited<span class="token punctuation">:</span>
-                    l<span class="token punctuation">,</span> r <span class="token operator">=</span> depth<span class="token punctuation">[</span>root<span class="token punctuation">.</span>left<span class="token punctuation">]</span><span class="token punctuation">,</span> depth<span class="token punctuation">[</span>root<span class="token punctuation">.</span>right<span class="token punctuation">]</span>
-                    <span class="token keyword">if</span> <span class="token builtin">abs</span><span class="token punctuation">(</span>l <span class="token operator">-</span> r<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">:</span>
-                        <span class="token keyword">return</span> <span class="token boolean">False</span>
-                    depth<span class="token punctuation">[</span>root<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> r<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span>
-                <span class="token keyword">else</span><span class="token punctuation">:</span>
-                    stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                    stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                    stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> visited<span class="token punctuation">:</span>
+                l<span class="token punctuation">,</span> r <span class="token operator">=</span> depth<span class="token punctuation">[</span>root<span class="token punctuation">.</span>left<span class="token punctuation">]</span><span class="token punctuation">,</span> depth<span class="token punctuation">[</span>root<span class="token punctuation">.</span>right<span class="token punctuation">]</span>
+                <span class="token keyword">if</span> <span class="token builtin">abs</span><span class="token punctuation">(</span>l <span class="token operator">-</span> r<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">:</span>
+                    <span class="token keyword">return</span> <span class="token boolean">False</span>
+                depth<span class="token punctuation">[</span>root<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> r<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span>
+            <span class="token keyword">elif</span> root<span class="token punctuation">:</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> <span class="token boolean">True</span></code></pre>
 <p>遍历2:</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
@@ -938,7 +939,7 @@ Return false.
             r<span class="token punctuation">,</span> rightBalanced <span class="token operator">=</span> helper<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
             <span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> r<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> leftBalanced <span class="token keyword">and</span> rightBalanced <span class="token keyword">and</span> <span class="token builtin">abs</span><span class="token punctuation">(</span>l <span class="token operator">-</span> r<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">1</span>
         <span class="token keyword">return</span> helper<span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span></code></pre>
-<p>16刷: 高频</p>
+<p>高频</p>
 <h3 id="543.-diameter-of-binary-tree-(easy)" tabindex="-1"><a href="https://leetcode.com/problems/diameter-of-binary-tree/">543. Diameter of Binary Tree (Easy)</a></h3>
 <p>Given a binary tree, you need to compute the length of the diameter of the tree. The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.</p>
 <pre><code>Example:
@@ -1486,7 +1487,7 @@ p and q are different and both values will exist in the binary tree.</p>
         <span class="token keyword">while</span> q <span class="token keyword">not</span> <span class="token keyword">in</span> ancestors<span class="token punctuation">:</span>
             q <span class="token operator">=</span> pd<span class="token punctuation">[</span>q<span class="token punctuation">]</span>
         <span class="token keyword">return</span> q</code></pre>
-<p>13刷：递归：注意最后返回root需要if l and r这个条件。遍历：遍历，建立parent关系，p存入ancestors，遍历p的parent入ancestors，遍历q和q的parent，在ancestors中即返回。TODO 不需要parent关系的算法</p>
+<p>13刷：递归：注意最后返回root需要if l and r这个条件。遍历：遍历，建立parent关系，p存入ancestors，遍历p的parent入ancestors，遍历q和q的parent，在ancestors中即返回</p>
 <h3 id="285.-inorder-successor-in-bst-(medium)-%E5%B8%A6%E9%94%81" tabindex="-1"><a href="https://leetcode.com/problems/inorder-successor-in-bst">285. Inorder Successor in BST (Medium) 带锁</a></h3>
 <p><a href="https://www.lintcode.com/problem/448/">LinC 448. Inorder Successor in BST (Medium)</a><br>
 Given a binary search tree and a node in it, find the in-order successor of that node in the BST.<br>
