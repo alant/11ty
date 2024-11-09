@@ -1479,12 +1479,12 @@ p and q are different and both values will exist in the binary tree.</p>
             <span class="token keyword">if</span> root<span class="token punctuation">.</span>right<span class="token punctuation">:</span>
                 parent<span class="token punctuation">[</span>root<span class="token punctuation">.</span>right<span class="token punctuation">]</span> <span class="token operator">=</span> root
                 stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
-        ancestors <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        ancestors <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
         <span class="token keyword">while</span> p<span class="token punctuation">:</span>
-            ancestors<span class="token punctuation">.</span>append<span class="token punctuation">(</span>p<span class="token punctuation">)</span>
-            p <span class="token operator">=</span> parent<span class="token punctuation">[</span>p<span class="token punctuation">]</span>
+            ancestors<span class="token punctuation">.</span>add<span class="token punctuation">(</span>p<span class="token punctuation">)</span>
+            p <span class="token operator">=</span> pd<span class="token punctuation">[</span>p<span class="token punctuation">]</span>
         <span class="token keyword">while</span> q <span class="token keyword">not</span> <span class="token keyword">in</span> ancestors<span class="token punctuation">:</span>
-            q <span class="token operator">=</span> parent<span class="token punctuation">[</span>q<span class="token punctuation">]</span>
+            q <span class="token operator">=</span> pd<span class="token punctuation">[</span>q<span class="token punctuation">]</span>
         <span class="token keyword">return</span> q</code></pre>
 <p>13刷：递归：注意最后返回root需要if l and r这个条件。遍历：遍历，建立parent关系，p存入ancestors，遍历p的parent入ancestors，遍历q和q的parent，在ancestors中即返回。TODO 不需要parent关系的算法</p>
 <h3 id="285.-inorder-successor-in-bst-(medium)-%E5%B8%A6%E9%94%81" tabindex="-1"><a href="https://leetcode.com/problems/inorder-successor-in-bst">285. Inorder Successor in BST (Medium) 带锁</a></h3>
