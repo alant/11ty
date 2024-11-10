@@ -4387,13 +4387,13 @@ class Node:
         <span class="token keyword">if</span> <span class="token keyword">not</span> node<span class="token punctuation">:</span>
             <span class="token keyword">return</span>
         d <span class="token operator">=</span> <span class="token punctuation">{</span>node<span class="token punctuation">:</span> Node<span class="token punctuation">(</span>node<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">}</span>
-        q <span class="token operator">=</span> deque<span class="token punctuation">(</span><span class="token punctuation">[</span>node<span class="token punctuation">]</span><span class="token punctuation">)</span>
-        <span class="token keyword">while</span> q<span class="token punctuation">:</span>
-            p <span class="token operator">=</span> q<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        stack <span class="token operator">=</span> <span class="token punctuation">[</span>node<span class="token punctuation">]</span>
+        <span class="token keyword">while</span> stack<span class="token punctuation">:</span>
+            p <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
             <span class="token keyword">for</span> neighbor <span class="token keyword">in</span> p<span class="token punctuation">.</span>neighbors<span class="token punctuation">:</span>
                 <span class="token keyword">if</span> neighbor <span class="token keyword">not</span> <span class="token keyword">in</span> d<span class="token punctuation">:</span>
                     d<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span> <span class="token operator">=</span> Node<span class="token punctuation">(</span>neighbor<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
-                    q<span class="token punctuation">.</span>append<span class="token punctuation">(</span>neighbor<span class="token punctuation">)</span>
+                    stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>neighbor<span class="token punctuation">)</span>
                 d<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">.</span>neighbors<span class="token punctuation">.</span>append<span class="token punctuation">(</span>d<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> d<span class="token punctuation">[</span>node<span class="token punctuation">]</span></code></pre>
 <p>Blind 75; 高频</p>
