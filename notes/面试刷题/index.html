@@ -6470,20 +6470,20 @@ Output:<br>
     """</span>
     <span class="token keyword">def</span> <span class="token function">count_components</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> n<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> edges<span class="token punctuation">:</span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
         graph <span class="token operator">=</span> collections<span class="token punctuation">.</span>defaultdict<span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">)</span>
-        <span class="token keyword">for</span> v1<span class="token punctuation">,</span> v2 <span class="token keyword">in</span> edges<span class="token punctuation">:</span>
-            graph<span class="token punctuation">[</span>v1<span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>v2<span class="token punctuation">)</span>
-            graph<span class="token punctuation">[</span>v2<span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>v1<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> u<span class="token punctuation">,</span> v <span class="token keyword">in</span> edges<span class="token punctuation">:</span>
+            graph<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>u<span class="token punctuation">)</span>
+            graph<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>v<span class="token punctuation">)</span>
         seen <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
         <span class="token keyword">def</span> <span class="token function">helper</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> node <span class="token keyword">not</span> <span class="token keyword">in</span> seen<span class="token punctuation">:</span>
-                seen<span class="token punctuation">.</span>add<span class="token punctuation">(</span>node<span class="token punctuation">)</span>
-                <span class="token keyword">for</span> neighbor <span class="token keyword">in</span> graph<span class="token punctuation">[</span>node<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            seen<span class="token punctuation">.</span>add<span class="token punctuation">(</span>node<span class="token punctuation">)</span>
+            <span class="token keyword">for</span> neighbor <span class="token keyword">in</span> graph<span class="token punctuation">[</span>node<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> neighbor <span class="token keyword">not</span> <span class="token keyword">in</span> seen<span class="token punctuation">:</span>
                     helper<span class="token punctuation">(</span>neighbor<span class="token punctuation">)</span>
         ans <span class="token operator">=</span> <span class="token number">0</span>
         <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
             <span class="token keyword">if</span> i <span class="token keyword">not</span> <span class="token keyword">in</span> seen<span class="token punctuation">:</span>
-                ans <span class="token operator">+=</span> <span class="token number">1</span>
                 helper<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+                ans <span class="token operator">+=</span> <span class="token number">1</span>
         <span class="token keyword">return</span> ans</code></pre>
 <p>Blind 75<br>
 todo union find 写法</p>
