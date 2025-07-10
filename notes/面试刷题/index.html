@@ -2739,18 +2739,15 @@ Only need one meeting room</p>
     @return: the minimum number of conference rooms required
     """</span>
     <span class="token keyword">def</span> <span class="token function">min_meeting_rooms</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> intervals<span class="token punctuation">:</span> List<span class="token punctuation">[</span>Interval<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
-        <span class="token comment"># Write your code here</span>
         events <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
         <span class="token keyword">for</span> interval <span class="token keyword">in</span> intervals<span class="token punctuation">:</span>
             events<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>interval<span class="token punctuation">.</span>start<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
             events<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>interval<span class="token punctuation">.</span>end<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
         events<span class="token punctuation">.</span>sort<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        cur_room <span class="token operator">=</span> <span class="token number">0</span>
-        ans <span class="token operator">=</span> <span class="token number">0</span>
+        cur <span class="token operator">=</span> ans <span class="token operator">=</span> <span class="token number">0</span>
         <span class="token keyword">for</span> _<span class="token punctuation">,</span> e_type <span class="token keyword">in</span> events<span class="token punctuation">:</span>
-            cur_room <span class="token operator">+=</span> e_type
-            ans <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> cur_room<span class="token punctuation">)</span>
+            cur <span class="token operator">+=</span> e_type
+            ans <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> cur<span class="token punctuation">)</span>
         <span class="token keyword">return</span> ans</code></pre>
 <p>Blind 75</p>
 <h2 id="binary-search-%26-logn-algorithm" tabindex="-1">Binary Search &amp; LogN Algorithm</h2>
