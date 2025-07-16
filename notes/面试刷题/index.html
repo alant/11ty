@@ -6357,7 +6357,7 @@ Given n = 5 and edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]], return false.
             rootX<span class="token punctuation">,</span> rootY <span class="token operator">=</span> find<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> find<span class="token punctuation">(</span>y<span class="token punctuation">)</span>
             <span class="token keyword">if</span> rootX <span class="token operator">==</span> rootY<span class="token punctuation">:</span>
                 <span class="token keyword">return</span> <span class="token boolean">False</span>
-            parent<span class="token punctuation">[</span>rootY<span class="token punctuation">]</span> <span class="token operator">=</span> rootX
+            parent<span class="token punctuation">[</span>rootX<span class="token punctuation">]</span> <span class="token operator">=</span> rootY
             <span class="token keyword">return</span> <span class="token boolean">True</span>
         <span class="token keyword">for</span> u<span class="token punctuation">,</span> v <span class="token keyword">in</span> edges<span class="token punctuation">:</span>
             <span class="token keyword">if</span> <span class="token keyword">not</span> union<span class="token punctuation">(</span>u<span class="token punctuation">,</span> v<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -6464,6 +6464,7 @@ Input:<br>
 [[0,1], [1,2], [2, 3], [4, 5]]<br>
 Output:<br>
 2</p>
+<p>DFS</p>
 <pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token triple-quoted-string string">"""
     @param n: the number of vertices
@@ -6487,8 +6488,22 @@ Output:<br>
                 helper<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
                 ans <span class="token operator">+=</span> <span class="token number">1</span>
         <span class="token keyword">return</span> ans</code></pre>
-<p>Blind 75<br>
-todo union find 写法</p>
+<p>Union Find</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">count_components</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> n<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> edges<span class="token punctuation">:</span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">find</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> x <span class="token operator">!=</span> parent<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                parent<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">=</span> find<span class="token punctuation">(</span>parent<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> parent<span class="token punctuation">[</span>x<span class="token punctuation">]</span>
+        <span class="token keyword">def</span> <span class="token function">union</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            rootX<span class="token punctuation">,</span> rootY <span class="token operator">=</span> find<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> find<span class="token punctuation">(</span>y<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> rootX <span class="token operator">!=</span> rootY<span class="token punctuation">:</span>
+                parent<span class="token punctuation">[</span>rootX<span class="token punctuation">]</span> <span class="token operator">=</span> rootY
+        parent <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> u<span class="token punctuation">,</span> v <span class="token keyword">in</span> edges<span class="token punctuation">:</span>
+            union<span class="token punctuation">(</span>u<span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token builtin">len</span><span class="token punctuation">(</span><span class="token punctuation">{</span>find<span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>Blind 75</p>
 <h1 id="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84" tabindex="-1">数据结构</h1>
 <h2 id="array-%E6%95%B0%E7%BB%84" tabindex="-1">Array 数组</h2>
 <h3 id="lintcode-6.-merge-two-sorted-arrays-(easy)" tabindex="-1"><a href="https://www.lintcode.com/problem/merge-two-sorted-arrays/description">LintCode 6. Merge Two Sorted Arrays (Easy)</a></h3>
