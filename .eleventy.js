@@ -1,26 +1,37 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const markdownIt = require('markdown-it')
-const markdownItAttrs = require('markdown-it-attrs');
-const markdownItAnchor = require('markdown-it-anchor');
-const pluginTOC = require('eleventy-plugin-toc')
-const markdownItMath = require('markdown-it-math');
+const markdownIt = require("markdown-it");
+const markdownItAttrs = require("markdown-it-attrs");
+const markdownItAnchor = require("markdown-it-anchor");
+const pluginTOC = require("eleventy-plugin-toc");
+const markdownItMath = require("markdown-it-math");
+const markdownItRuby = require("markdown-it-ruby");
 
 module.exports = function (eleventyConfig) {
-  let markdownLibrary = markdownIt({
-      html: true,
-      breaks: true,
-      linkify: true})
-    .use(markdownItMath)
+  // Configure Markdown-It
+  const markdownLibrary = markdownIt({
+    html: true,
+    breaks: true,
+    linkify: true,
+  })
     .use(markdownItAttrs)
-    .use(markdownItAnchor);
+    .use(markdownItAnchor)
+    .use(markdownItMath)
+    .use(markdownItRuby)
+    .enable(["table", "inline"]);
 
-  eleventyConfig.setLibrary('md', markdownLibrary);
+  eleventyConfig.setLibrary("md", markdownLibrary);
+
+  // Plugins
+  eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addPlugin(pluginTOC, {
-    tags: ['h1', 'h2', 'h3'], // Customize to include h1, h2, and h3
-    wrapper: 'div',           // Optional: specify a wrapper element, e.g., 'div'
-    wrapperClass: 'toc'       // Optional: add a class for styling
+    tags: ["h1", "h2", "h3"],
+    wrapper: "div",
+    wrapperClass: "toc",
   });
-  eleventyConfig.addPassthroughCopy("assets"); 
-	eleventyConfig.addPlugin(syntaxHighlight);
-  eleventyConfig.addGlobalData('currentYear', new Date().getFullYear());
+
+  // Passthrough files
+  eleventyConfig.addPassthroughCopy("assets");
+
+  // Global data
+  eleventyConfig.addGlobalData("currentYear", new Date().getFullYear());
 };
