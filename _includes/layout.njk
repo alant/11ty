@@ -72,7 +72,7 @@
         </section>
         <footer class="footer">
           <div class="footer-container">
-            <p>© {{ currentYear }} 汤浩</p>
+            <p>© <span id="current-year"></span> 汤浩</p>
           </div>
         </footer>
       </main>
@@ -105,6 +105,8 @@
     </div>
 
     <script>
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+
       const sidebar = document.getElementById('sidebar');
       const overlay = document.getElementById('overlay');
       const hamburger = document.getElementById('hamburger');

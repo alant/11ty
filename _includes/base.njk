@@ -69,10 +69,15 @@
         <section>
           <!-- Your main content goes here -->
           {{ content | safe }}
+          {% if showLastEdited %}
+          <p style="color: #666; font-size: 0.9em; margin-top: 2em;">
+            > 最后一次编辑于 {{ page.inputPath | gitLastModified | formatDate }}
+          </p>
+          {% endif %}
         </section>
         <footer class="footer">
           <div class="footer-container">
-            <p>© {{ currentYear }} 汤浩</p>
+            <p>© <span id="current-year"></span> 汤浩</p>
           </div>
         </footer>
       </main>
@@ -82,6 +87,8 @@
     <button class="back-to-top" id="back-to-top" aria-label="Back to top">▲</button>
 
     <script>
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+
       const sidebar = document.getElementById('sidebar');
       const overlay = document.getElementById('overlay');
       const hamburger = document.getElementById('hamburger');
