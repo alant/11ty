@@ -1,7 +1,6 @@
 ---
 layout: base.njk
 title: 汤浩主页
-showLastEdited: true
 ---
 
 从大学甚至高中的时候我就有自己的个人主页。但是由于很多原因都没有坚持写。其中一个原因是，以前写的东西都零散的散落在互联网的各个角落。从 Blogger 到 msn space 再到简书。写的东西因为平台的出现和消失换来换去。在互联网行业，没有任何平台是永生的。潜意识里可能就有这样的抵触心理：为什么要为了这些每几年就会消失的平台去耗费时间精力去写些可能过几年就消失不见的东西呢？
@@ -21,3 +20,5 @@ showLastEdited: true
 <img src="/assets/images/jekyll-octopress.jpg" alt="用Jekyll时候的截屏" class="responsive-image">
 
 Octopress 是基于 Jekyll 开发的，Jekyll 是用 Ruby On Rails 写的，由于我不熟悉 Ruby，配置实在是搞不定。几年前 Octopress 项目页停止维护了。在网上寻找替代方案的时候发现 Github 上 greyshade 的例子，基本上都是用的 Hexo 和 Next。就用了几年 Hexo 和 Next。
+
+> 最后一次编辑于 2026-01-12

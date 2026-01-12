@@ -69,11 +69,6 @@
         <section>
           <!-- Your main content goes here -->
           {{ content | safe }}
-          {% if showLastEdited %}
-          <p style="color: #666; font-size: 0.9em; margin-top: 2em;">
-            > 最后一次编辑于 {{ page.inputPath | gitLastModified | formatDate }}
-          </p>
-          {% endif %}
         </section>
         <footer class="footer">
           <div class="footer-container">
