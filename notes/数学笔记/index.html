@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-2C6GZ60BVJ"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-2C6GZ60BVJ');
+      </script>
+
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>数学笔记</title>
+
+      <!-- Include Prism.js theme CSS -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-coy.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="/assets/css/styles.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+          }
+        };
+      </script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <img src="/assets/images/avatar.jpg" alt="Profile Photo" class="profile-picture">
+          <h3 class="sidebar-title"></h3> 
+        </div>
+        <nav class="sidebar-nav">
+          <ul>
+            <li><a href="/">首页</a></li>
+            <li><a href="/aboutme">关于我</a></li>
+            <li class="has-submenu">
+              <a href="#" class="submenu-toggle" id="notes-toggle">笔记 <span class="toggle-icon">▶</span></a>
+              <ul class="submenu" id="notes-submenu"><li><a href="/notes/solidity-smart-contract/">一个简单的以太坊智能合约开发练习</a></li><li><a href="/notes/201805-osaka-kyoto/">2018年五一假期日本大阪京都奈良6日游</a></li><li><a href="/notes/面试刷题/">面试刷题</a></li><li><a href="/notes/数学笔记/">数学笔记</a></li><li><a href="/notes/日语学习/">日语学习</a></li><li><a href="/notes/正则表达式/">regex 正则表达式</a></li></ul>
+            </li>
+          </ul>
+        </nav>
+        <div class="sidebar-footer">
+          <a href="https://github.com/alant" class="icon github"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/in/alantang" class="icon linkedin"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </aside>
+      <div class="overlay" id="overlay"></div>
+      <!-- Content Area -->
+      <main class="content">
+        <header>
+          <button class="hamburger" id="hamburger">&#9776;</button>
+          <h1>数学笔记</h1>
+        </header>
+        <section>
+          <!-- Your main content goes here -->
+          <p>希腊字母：</p>
+<table>
+<thead>
+<tr>
+<th>小写</th>
+<th>名称</th>
+<th>发音</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\lambda$</td>
+<td>lambda</td>
+<td>兰姆达 /ˈlæmdə/</td>
+</tr>
+<tr>
+<td>$\psi$</td>
+<td>psi</td>
+<td>赛 /saɪ/，普西，普赛</td>
+</tr>
+<tr>
+<td>$\Phi$</td>
+<td>Phi</td>
+<td>费 /faɪ/</td>
+</tr>
+</tbody>
+</table>
+
+        </section>
+        <footer class="footer">
+          <div class="footer-container">
+            <p>© <span id="current-year"></span> 汤浩</p>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <!-- Mobile Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">▲</button>
+
+    <script>
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      const hamburger = document.getElementById('hamburger');
+
+      hamburger.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('show');
+      });
+
+      overlay.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('show');
+      });
+
+      // Submenu toggle
+      const notesToggle = document.getElementById('notes-toggle');
+      const notesSubmenu = document.getElementById('notes-submenu');
+
+      notesToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        notesSubmenu.classList.toggle('open');
+        notesToggle.classList.toggle('open');
+      });
+
+      // Back to top button
+      const backToTop = document.getElementById('back-to-top');
+      const contentArea = document.querySelector('.content');
+
+      backToTop.addEventListener('click', () => {
+        contentArea.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Show/hide based on scroll
+      const checkScroll = () => {
+        const scrollTop = window.scrollY || contentArea.scrollTop;
+        if (scrollTop > 300) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      };
+      contentArea.addEventListener('scroll', checkScroll);
+      window.addEventListener('scroll', checkScroll);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-2C6GZ60BVJ"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-2C6GZ60BVJ');
+      </script>
+
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>汤浩主页</title>
+
+      <!-- Include Prism.js theme CSS -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-coy.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="/assets/css/styles.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+          }
+        };
+      </script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <img src="/assets/images/avatar.jpg" alt="Profile Photo" class="profile-picture">
+          <h3 class="sidebar-title"></h3> 
+        </div>
+        <nav class="sidebar-nav">
+          <ul>
+            <li><a href="/">首页</a></li>
+            <li><a href="/aboutme">关于我</a></li>
+            <li class="has-submenu">
+              <a href="#" class="submenu-toggle" id="notes-toggle">笔记 <span class="toggle-icon">▶</span></a>
+              <ul class="submenu" id="notes-submenu"><li><a href="/notes/solidity-smart-contract/">一个简单的以太坊智能合约开发练习</a></li><li><a href="/notes/201805-osaka-kyoto/">2018年五一假期日本大阪京都奈良6日游</a></li><li><a href="/notes/面试刷题/">面试刷题</a></li><li><a href="/notes/数学笔记/">数学笔记</a></li><li><a href="/notes/日语学习/">日语学习</a></li><li><a href="/notes/正则表达式/">regex 正则表达式</a></li></ul>
+            </li>
+          </ul>
+        </nav>
+        <div class="sidebar-footer">
+          <a href="https://github.com/alant" class="icon github"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/in/alantang" class="icon linkedin"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </aside>
+      <div class="overlay" id="overlay"></div>
+      <!-- Content Area -->
+      <main class="content">
+        <header>
+          <button class="hamburger" id="hamburger">&#9776;</button>
+          <h1>汤浩主页</h1>
+        </header>
+        <section>
+          <!-- Your main content goes here -->
+          <p>从大学甚至高中的时候我就有自己的个人主页。但是由于很多原因都没有坚持写。其中一个原因是，以前写的东西都零散的散落在互联网的各个角落。从 Blogger 到 msn space 再到简书。写的东西因为平台的出现和消失换来换去。在互联网行业，没有任何平台是永生的。潜意识里可能就有这样的抵触心理：为什么要为了这些每几年就会消失的平台去耗费时间精力去写些可能过几年就消失不见的东西呢？</p>
+<p>大学毕业的时候有一个小遗憾。当时从比利时搬家去上海，为了轻车简从，把大学期间打印的讲义和笔记都扔掉了，堆砌起来可能有将近一立方米。后来有些知识想捡起来继续看一下，也找不着了。十分可惜。</p>
+<p>长久以来我都想把写的东西弄到版本管理里去。直到现在才有时间去梳理这件一直想做却因为时间和借口没有做的事情。</p>
+<p>这页是用 markdown 写的（其实 markdown 的语法基本都没用上）。它最大的意义在于，这页存在 Github 上。如果 Github 要关闭了，我还可以转到下一个版本管理平台上。如果用其他发布文章的平台，文字和渲染通常是混在一起的。如果搞迁移，排版会乱，相当于之前写的都白费了。但是因为这页是用 markdown 写的，可以一直用 github 这类版本管理工具保存。markdown 文件可以用很多不同的工具比如 11ty，Hexo 或者 Jekyll 等渲染。</p>
+<p>这个站目前用静态页面的解决方案 11ty 来渲染。最近托朋友的福，用上了 vibe coding 大杀器 Claude Code。终于把桌面和手机端的样式都调好了。现在严重依赖 Claude 没有 Claude 都写不出什么有用的东西了。</p>
+<p>之前用 Hexo 渲染的主页由于刷题笔记页在移动端浏览器渲染会崩溃，被迫升级了一下 Hexo 和 Next，然后样式就调不回去了。因为想要较深度的订制，我一直都想用静态页面解决方案而不是内容管理（CMS）类的工具如 WordPress 来建个人站。最近机遇巧合发现 11ty，再加上 Hexo 和 Next 已经调不好渲染的样式了，就迁移到 11ty 了。</p>
+<p>再之前用过 Octopress，主题 greyshade 最令我满意。截图如下：</p>
+<img src="/assets/images/jekyll-octopress.jpg" alt="用Jekyll时候的截屏" class="responsive-image">
+<p>Octopress 是基于 Jekyll 开发的，Jekyll 是用 Ruby On Rails 写的，由于我不熟悉 Ruby，配置实在是搞不定。几年前 Octopress 项目页停止维护了。在网上寻找替代方案的时候发现 Github 上 greyshade 的例子，基本上都是用的 Hexo 和 Next。就用了几年 Hexo 和 Next。</p>
+<blockquote>
+<p>最后一次编辑于 2026-01-12</p>
+</blockquote>
+
+        </section>
+        <footer class="footer">
+          <div class="footer-container">
+            <p>© <span id="current-year"></span> 汤浩</p>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <!-- Mobile Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">▲</button>
+
+    <script>
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      const hamburger = document.getElementById('hamburger');
+
+      hamburger.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('show');
+      });
+
+      overlay.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('show');
+      });
+
+      // Submenu toggle
+      const notesToggle = document.getElementById('notes-toggle');
+      const notesSubmenu = document.getElementById('notes-submenu');
+
+      notesToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        notesSubmenu.classList.toggle('open');
+        notesToggle.classList.toggle('open');
+      });
+
+      // Back to top button
+      const backToTop = document.getElementById('back-to-top');
+      const contentArea = document.querySelector('.content');
+
+      backToTop.addEventListener('click', () => {
+        contentArea.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Show/hide based on scroll
+      const checkScroll = () => {
+        const scrollTop = window.scrollY || contentArea.scrollTop;
+        if (scrollTop > 300) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      };
+      contentArea.addEventListener('scroll', checkScroll);
+      window.addEventListener('scroll', checkScroll);
+    </script>
+  </body>
+</html>
