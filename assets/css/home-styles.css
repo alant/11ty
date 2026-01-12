@@ -183,6 +183,10 @@ body {
   .overlay.show {
     display: block;
   }
+
+  .footer {
+    padding-bottom: 20px;
+  }
 }
 
 .footer {
