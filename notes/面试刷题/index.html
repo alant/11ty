@@ -34,7 +34,7 @@
   </head>
   <body>
     <div class="container">
-      <!-- Main Sidebar -->
+      <!-- Sidebar -->
       <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
           <img src="/assets/images/avatar.jpg" alt="Profile Photo" class="profile-picture">
@@ -13407,6 +13407,7 @@ class Connection:
         </footer>
       </main>
 
+      
       <!-- TOC Sidebar (Right) -->
       <aside class="toc-sidebar open" id="toc-sidebar">
         <button class="toc-toggle" id="toc-toggle">
@@ -13419,12 +13420,14 @@ class Connection:
       </div>
         </div>
       </aside>
+      
 
     </div>
 
     <!-- Mobile Back to Top Button -->
     <button class="back-to-top" id="back-to-top" aria-label="Back to top">▲</button>
 
+    
     <!-- Mobile TOC (Fixed Bottom) -->
     <div class="toc-mobile" id="toc-mobile">
       <div class="toc-mobile-content" id="toc-mobile-content">
@@ -13437,6 +13440,7 @@ class Connection:
         <span class="toc-mobile-icon">▲</span>
       </button>
     </div>
+    
 
     <script>
       document.getElementById('current-year').textContent = new Date().getFullYear();
@@ -13465,32 +13469,9 @@ class Connection:
         notesToggle.classList.toggle('open');
       });
 
-      // TOC toggle (desktop)
-      const tocToggle = document.getElementById('toc-toggle');
-      const tocSidebar = document.getElementById('toc-sidebar');
-      const tocToggleIcon = tocToggle.querySelector('.toc-toggle-icon');
-
-      tocToggle.addEventListener('click', () => {
-        tocSidebar.classList.toggle('open');
-        tocToggleIcon.textContent = tocSidebar.classList.contains('open') ? '✕' : '☰';
-      });
-
-      // TOC toggle (mobile)
-      const tocMobileToggle = document.getElementById('toc-mobile-toggle');
-      const tocMobile = document.getElementById('toc-mobile');
-      const contentArea = document.querySelector('.content');
-
-      tocMobileToggle.addEventListener('click', () => {
-        tocMobile.classList.toggle('open');
-      });
-
-      // Close mobile TOC when clicking on content
-      contentArea.addEventListener('click', () => {
-        tocMobile.classList.remove('open');
-      });
-
       // Back to top button
       const backToTop = document.getElementById('back-to-top');
+      const contentArea = document.querySelector('.content');
 
       backToTop.addEventListener('click', () => {
         contentArea.scrollTo({ top: 0, behavior: 'smooth' });
@@ -13504,6 +13485,31 @@ class Connection:
           backToTop.classList.remove('visible');
         }
       });
+
+      
+      // TOC toggle (desktop)
+      const tocToggle = document.getElementById('toc-toggle');
+      const tocSidebar = document.getElementById('toc-sidebar');
+      const tocToggleIcon = tocToggle.querySelector('.toc-toggle-icon');
+
+      tocToggle.addEventListener('click', () => {
+        tocSidebar.classList.toggle('open');
+        tocToggleIcon.textContent = tocSidebar.classList.contains('open') ? '✕' : '☰';
+      });
+
+      // TOC toggle (mobile)
+      const tocMobileToggle = document.getElementById('toc-mobile-toggle');
+      const tocMobile = document.getElementById('toc-mobile');
+
+      tocMobileToggle.addEventListener('click', () => {
+        tocMobile.classList.toggle('open');
+      });
+
+      // Close mobile TOC when clicking on content
+      contentArea.addEventListener('click', () => {
+        tocMobile.classList.remove('open');
+      });
+      
     </script>
   </body>
 </html>
