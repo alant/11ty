@@ -38,7 +38,7 @@
       <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
           <img src="/assets/images/avatar.jpg" alt="Profile Photo" class="profile-picture">
-          <h3 class="sidebar-title"></h3> 
+          <h3 class="sidebar-title"></h3>
         </div>
         <nav class="sidebar-nav">
           <ul>
@@ -60,6 +60,7 @@
         </div>
       </aside>
       <div class="overlay" id="overlay"></div>
+
       <!-- Content Area -->
       <main class="content">
         <header>
@@ -67,7 +68,6 @@
           <h1>{{ title }}</h1>
         </header>
         <section>
-          <!-- Your main content goes here -->
           {{ content | safe }}
         </section>
         <footer class="footer">
@@ -76,10 +76,37 @@
           </div>
         </footer>
       </main>
+
+      {% if tableOfContents %}
+      <!-- TOC Sidebar (Right) -->
+      <aside class="toc-sidebar open" id="toc-sidebar">
+        <button class="toc-toggle" id="toc-toggle">
+          <span class="toc-toggle-icon">✕</span>
+          <span class="toc-toggle-text">目录</span>
+        </button>
+        <div class="toc-content" id="toc-content">
+          {{ content | toc | safe }}
+        </div>
+      </aside>
+      {% endif %}
+
     </div>
 
     <!-- Mobile Back to Top Button -->
     <button class="back-to-top" id="back-to-top" aria-label="Back to top">▲</button>
+
+    {% if tableOfContents %}
+    <!-- Mobile TOC (Fixed Bottom) -->
+    <div class="toc-mobile" id="toc-mobile">
+      <div class="toc-mobile-content" id="toc-mobile-content">
+        {{ content | toc | safe }}
+      </div>
+      <button class="toc-mobile-toggle" id="toc-mobile-toggle">
+        <span>目录</span>
+        <span class="toc-mobile-icon">▲</span>
+      </button>
+    </div>
+    {% endif %}
 
     <script>
       document.getElementById('current-year').textContent = new Date().getFullYear();
@@ -124,6 +151,31 @@
           backToTop.classList.remove('visible');
         }
       });
+
+      {% if tableOfContents %}
+      // TOC toggle (desktop)
+      const tocToggle = document.getElementById('toc-toggle');
+      const tocSidebar = document.getElementById('toc-sidebar');
+      const tocToggleIcon = tocToggle.querySelector('.toc-toggle-icon');
+
+      tocToggle.addEventListener('click', () => {
+        tocSidebar.classList.toggle('open');
+        tocToggleIcon.textContent = tocSidebar.classList.contains('open') ? '✕' : '☰';
+      });
+
+      // TOC toggle (mobile)
+      const tocMobileToggle = document.getElementById('toc-mobile-toggle');
+      const tocMobile = document.getElementById('toc-mobile');
+
+      tocMobileToggle.addEventListener('click', () => {
+        tocMobile.classList.toggle('open');
+      });
+
+      // Close mobile TOC when clicking on content
+      contentArea.addEventListener('click', () => {
+        tocMobile.classList.remove('open');
+      });
+      {% endif %}
     </script>
   </body>
 </html>
