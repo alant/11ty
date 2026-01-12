@@ -16,6 +16,7 @@
 
       <!-- Include Prism.js theme CSS -->
       <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-coy.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="/assets/css/home-styles.css">
       <link rel="stylesheet" href="/assets/css/styles.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -33,7 +34,7 @@
   </head>
   <body>
     <div class="container">
-      <!-- Sidebar -->
+      <!-- Main Sidebar -->
       <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
           <img src="/assets/images/avatar.jpg" alt="Profile Photo" class="profile-picture">
@@ -13406,7 +13407,6 @@ class Connection:
         </footer>
       </main>
 
-      
       <!-- TOC Sidebar (Right) -->
       <aside class="toc-sidebar open" id="toc-sidebar">
         <button class="toc-toggle" id="toc-toggle">
@@ -13419,14 +13419,12 @@ class Connection:
       </div>
         </div>
       </aside>
-      
 
     </div>
 
     <!-- Mobile Back to Top Button -->
     <button class="back-to-top" id="back-to-top" aria-label="Back to top">▲</button>
 
-    
     <!-- Mobile TOC (Fixed Bottom) -->
     <div class="toc-mobile" id="toc-mobile">
       <div class="toc-mobile-content" id="toc-mobile-content">
@@ -13439,7 +13437,6 @@ class Connection:
         <span class="toc-mobile-icon">▲</span>
       </button>
     </div>
-    
 
     <script>
       document.getElementById('current-year').textContent = new Date().getFullYear();
@@ -13468,24 +13465,6 @@ class Connection:
         notesToggle.classList.toggle('open');
       });
 
-      // Back to top button
-      const backToTop = document.getElementById('back-to-top');
-      const contentArea = document.querySelector('.content');
-
-      backToTop.addEventListener('click', () => {
-        contentArea.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-
-      // Show/hide back to top button based on scroll position
-      contentArea.addEventListener('scroll', () => {
-        if (contentArea.scrollTop > 300) {
-          backToTop.classList.add('visible');
-        } else {
-          backToTop.classList.remove('visible');
-        }
-      });
-
-      
       // TOC toggle (desktop)
       const tocToggle = document.getElementById('toc-toggle');
       const tocSidebar = document.getElementById('toc-sidebar');
@@ -13499,6 +13478,7 @@ class Connection:
       // TOC toggle (mobile)
       const tocMobileToggle = document.getElementById('toc-mobile-toggle');
       const tocMobile = document.getElementById('toc-mobile');
+      const contentArea = document.querySelector('.content');
 
       tocMobileToggle.addEventListener('click', () => {
         tocMobile.classList.toggle('open');
@@ -13508,7 +13488,22 @@ class Connection:
       contentArea.addEventListener('click', () => {
         tocMobile.classList.remove('open');
       });
-      
+
+      // Back to top button
+      const backToTop = document.getElementById('back-to-top');
+
+      backToTop.addEventListener('click', () => {
+        contentArea.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Show/hide back to top button based on scroll position
+      contentArea.addEventListener('scroll', () => {
+        if (contentArea.scrollTop > 300) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
     </script>
   </body>
 </html>
