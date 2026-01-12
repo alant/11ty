@@ -174,6 +174,7 @@ body {
 
   .content {
     margin-left: 0;
+    padding-bottom: 40px;
   }
 
   .hamburger {
@@ -182,10 +183,6 @@ body {
 
   .overlay.show {
     display: block;
-  }
-
-  .footer {
-    margin-bottom: 30px;
   }
 }
 
