@@ -34,4 +34,9 @@ module.exports = function (eleventyConfig) {
 
   // Global data
   eleventyConfig.addGlobalData("currentYear", new Date().getFullYear());
+
+  // Notes collection
+  eleventyConfig.addCollection("notes", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("notes/*.md");
+  });
 };

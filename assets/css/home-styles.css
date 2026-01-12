@@ -79,6 +79,49 @@ body {
   margin-bottom: 10px;
 }
 
+/* Submenu styles */
+.sidebar-nav .submenu {
+  list-style-type: none;
+  padding-left: 15px;
+  margin-top: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.sidebar-nav .submenu.open {
+  max-height: 500px;
+}
+
+.sidebar-nav .submenu li {
+  margin-bottom: 5px;
+}
+
+.sidebar-nav .submenu a {
+  font-size: 0.9em;
+  padding: 5px 15px;
+  color: #444;
+}
+
+.sidebar-nav .submenu a:hover {
+  background-color: rgb(200, 200, 200);
+}
+
+/* Toggle icon */
+.submenu-toggle {
+  cursor: pointer;
+}
+
+.submenu-toggle .toggle-icon {
+  font-size: 0.7em;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.submenu-toggle.open .toggle-icon {
+  transform: rotate(90deg);
+}
+
 .icon {
   color: black;
   font-size: 1.5rem;
