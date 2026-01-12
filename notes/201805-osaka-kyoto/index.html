@@ -16,6 +16,7 @@
 
       <!-- Include Prism.js theme CSS -->
       <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-coy.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="/assets/css/home-styles.css">
       <link rel="stylesheet" href="/assets/css/styles.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -141,20 +142,16 @@
 
       backToTop.addEventListener('click', () => {
         contentArea.scrollTo({ top: 0, behavior: 'smooth' });
-        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
 
-      // Show/hide based on scroll
-      const checkScroll = () => {
-        const scrollTop = window.scrollY || contentArea.scrollTop;
-        if (scrollTop > 300) {
+      // Show/hide back to top button based on scroll position
+      contentArea.addEventListener('scroll', () => {
+        if (contentArea.scrollTop > 300) {
           backToTop.classList.add('visible');
         } else {
           backToTop.classList.remove('visible');
         }
-      };
-      contentArea.addEventListener('scroll', checkScroll);
-      window.addEventListener('scroll', checkScroll);
+      });
     </script>
   </body>
 </html>

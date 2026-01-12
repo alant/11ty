@@ -1,138 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap');
-
-/* ===================
-   Base Styles
-   =================== */
-body {
-  font-family: 'Noto Sans SC', Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  height: 100vh;
-  overflow: hidden;
+/* Prism.js specific styles */
+pre[class*="language-"] {
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace !important;
+    font-size: 0.9em;
 }
 
-.container {
-  display: flex;
-  width: 100%;
-  height: 100%;
-}
-
-/* ===================
-   Left Sidebar (Navigation)
-   =================== */
-.sidebar {
-  width: 200px;
-  height: 100%;
-  background-color: rgb(229, 231, 235);
-  overflow-y: auto;
-  position: fixed;
-  top: 0;
-  left: 0;
-  transition: transform 0.3s ease;
-  z-index: 1000;
-}
-
-.sidebar.closed {
-  transform: translateX(-100%);
-}
-
-.sidebar-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
-
-.profile-picture {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-}
-
-.sidebar-title {
-  margin: 0;
-  font-size: 1.2rem;
-}
-
-.sidebar-nav ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.sidebar-nav li {
-  margin-bottom: 10px;
-}
-
-.sidebar-nav a {
-  color: black;
-  text-decoration: none;
+.responsive-image {
+  max-width: 100%;
+  height: auto;
   display: block;
-  padding: 8px 20px;
-  transition: background-color 0.3s ease;
+  margin: 0 auto;
 }
 
-.sidebar-nav a:hover {
-  background-color: rgb(200, 200, 200);
-}
-
-.sidebar-footer {
-  margin-top: auto;
-  padding: 20px;
-}
-
-.icon {
-  color: black;
-  font-size: 1.5rem;
-  margin-right: 10px;
-}
-
-/* Submenu styles */
-.sidebar-nav .submenu {
-  list-style-type: none;
-  padding-left: 15px;
-  margin-top: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.sidebar-nav .submenu.open {
-  max-height: 500px;
-}
-
-.sidebar-nav .submenu li {
-  margin-bottom: 5px;
-}
-
-.sidebar-nav .submenu a {
-  font-size: 0.9em;
-  padding: 5px 15px;
-  color: #444;
-}
-
-.sidebar-nav .submenu a:hover {
-  background-color: rgb(200, 200, 200);
-}
-
-.submenu-toggle {
-  cursor: pointer;
-}
-
-.submenu-toggle .toggle-icon {
-  font-size: 0.7em;
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
-
-.submenu-toggle.open .toggle-icon {
-  transform: rotate(90deg);
-}
-
-/* ===================
-   Right Sidebar (TOC - Desktop)
-   =================== */
+/* Right TOC Sidebar (Desktop) */
 .toc-sidebar {
   position: fixed;
   top: 0;
@@ -191,7 +70,7 @@ body {
   display: block;
 }
 
-/* TOC link styles */
+/* Style for headings and links in TOC */
 .toc {
   margin-top: 0;
 }
@@ -222,7 +101,7 @@ body {
   color: #007bff;
 }
 
-/* Adjust content for TOC sidebar */
+/* Adjust main content to account for right sidebar */
 .container:has(.toc-sidebar) .content {
   margin-right: 50px;
   transition: margin-right 0.3s ease;
@@ -232,167 +111,18 @@ body {
   margin-right: 290px;
 }
 
-/* ===================
-   Content Area
-   =================== */
-.content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  margin: 20px;
-  margin-left: 220px;
-  transition: margin-left 0.3s ease;
-  overflow-y: auto;
-}
-
-.hamburger {
+/* Back to top button - Hidden by default on desktop */
+.back-to-top {
   display: none;
-  background: none;
-  border: none;
-  font-size: 30px;
-  cursor: pointer;
 }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: none;
-  z-index: 999;
-}
-
-.overlay.show {
-  display: block;
-}
-
-/* ===================
-   Footer
-   =================== */
-.footer {
-  text-align: center;
-  padding: 10px 0 0 0;
-  margin-top: auto;
-}
-
-.footer .footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* ===================
-   Typography
-   =================== */
-h1 {
-  font-size: 2em;
-}
-
-h2 {
-  font-size: 1.5em;
-}
-
-h3 {
-  font-size: 1.2em;
-}
-
-/* ===================
-   Tables
-   =================== */
-table {
-  table-layout: fixed;
-  border-collapse: collapse;
-  overflow-x: auto;
-}
-
-th, td {
-  padding: 8px;
-  text-align: left;
-  vertical-align: middle;
-  writing-mode: horizontal-tb;
-  white-space: nowrap;
-  transform: none;
-  -webkit-transform: none;
-}
-
-th {
-  font-weight: normal;
-  background-color: #f2f2f2;
-}
-
-tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-/* ===================
-   Utilities
-   =================== */
-.responsive-image {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-.underline {
-  text-decoration: underline;
-}
-
-/* Prism.js code blocks */
-pre[class*="language-"] {
-  font-family: 'Menlo', 'Monaco', 'Courier New', monospace !important;
-  font-size: 0.9em;
-}
-
-/* ===================
-   Mobile TOC (Hidden on desktop)
-   =================== */
+/* Mobile TOC (Bottom) - Hidden by default on desktop */
 .toc-mobile {
   display: none;
 }
 
-/* ===================
-   Mobile Responsive
-   =================== */
-@media (max-width: 768px) {
-  body {
-    height: auto;
-    overflow: auto;
-  }
-
-  .container {
-    height: auto;
-    flex-direction: column;
-  }
-
-  /* Left sidebar - hidden by default on mobile */
-  .sidebar {
-    transform: translateX(-100%);
-  }
-
-  .sidebar.open {
-    transform: translateX(0);
-  }
-
-  /* Content adjustments */
-  .content {
-    margin-left: 0;
-    overflow-y: visible;
-    height: auto;
-    padding-bottom: 60px;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  .overlay.show {
-    display: block;
-  }
-
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
   /* Hide desktop TOC sidebar */
   .toc-sidebar {
     display: none;
@@ -403,18 +133,16 @@ pre[class*="language-"] {
     margin-right: 0 !important;
   }
 
-  /* Mobile TOC at bottom */
+  /* Show mobile TOC at bottom */
   .toc-mobile {
     display: block;
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100vw;
-    max-width: 100%;
+    right: 0;
     background-color: rgb(229, 231, 235);
     border-top: 1px solid #ccc;
     z-index: 1001;
-    box-sizing: border-box;
   }
 
   .toc-mobile-toggle {
@@ -457,14 +185,19 @@ pre[class*="language-"] {
     border-top: 1px solid #ccc;
   }
 
+  /* Add bottom padding to content so it's not hidden behind the fixed TOC bar */
+  .content {
+    padding-bottom: 60px;
+  }
+
   /* Back to top button */
   .back-to-top {
     display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;
-    bottom: 20px;
-    right: 15px;
+    bottom: 55px;
+    right: 10px;
     width: 32px;
     height: 32px;
     background-color: rgba(150, 150, 150, 0.3);
@@ -473,7 +206,7 @@ pre[class*="language-"] {
     font-size: 0.75rem;
     color: #666;
     cursor: pointer;
-    z-index: 1002;
+    z-index: 1000;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -486,10 +219,5 @@ pre[class*="language-"] {
 
   .back-to-top:active {
     background-color: rgba(150, 150, 150, 0.5);
-  }
-
-  /* Footer spacing */
-  .footer {
-    padding-bottom: 15px;
   }
 }
