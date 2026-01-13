@@ -3,7 +3,9 @@
     "allow": [
       "Bash(grep:*)",
       "Bash(cat:*)",
-      "WebFetch(domain:ahtang.com)"
+      "WebFetch(domain:ahtang.com)",
+      "Bash(npx eleventy)",
+      "Bash(npx eleventy --quiet)"
     ]
   }
 }
