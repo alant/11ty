@@ -37,6 +37,6 @@ module.exports = function (eleventyConfig) {
 
   // Notes collection
   eleventyConfig.addCollection("notes", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("notes/*.md");
+    return collectionApi.getFilteredByGlob("notes/*.md").sort((a, b) => b.date - a.date);
   });
 };
