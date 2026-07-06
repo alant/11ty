@@ -1,4 +1,5 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const { execSync } = require("child_process");
 const markdownIt = require("markdown-it");
 const markdownItAttrs = require("markdown-it-attrs");
 const markdownItAnchor = require("markdown-it-anchor");
@@ -35,8 +36,17 @@ module.exports = function (eleventyConfig) {
   // Global data
   eleventyConfig.addGlobalData("currentYear", new Date().getFullYear());
 
-  // Notes collection
+  // Notes collection — sorted by git last-commit date so order is consistent in CI/deployment
+  const gitLastModified = (inputPath) => {
+    try {
+      const out = execSync(`git log -1 --format=%ct -- ${JSON.stringify(inputPath)}`).toString().trim();
+      return out ? parseInt(out, 10) : 0;
+    } catch { return 0; }
+  };
+
   eleventyConfig.addCollection("notes", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("notes/*.md").sort((a, b) => b.date - a.date);
+    return collectionApi.getFilteredByGlob("notes/*.md").sort((a, b) =>
+      gitLastModified(b.inputPath) - gitLastModified(a.inputPath)
+    );
   });
 };
