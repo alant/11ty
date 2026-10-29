@@ -2,7 +2,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^3.1.7",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
-    "eleventy-plugin-toc": "^1.1.5"
+    "@uncenter/eleventy-plugin-toc": "^2.1.2"
   },
   "dependencies": {
     "markdown-it": "^14.1.0",

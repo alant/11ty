@@ -3,7 +3,7 @@ const { execSync } = require("child_process");
 const markdownIt = require("markdown-it");
 const markdownItAttrs = require("markdown-it-attrs");
 const markdownItAnchor = require("markdown-it-anchor");
-const pluginTOC = require("eleventy-plugin-toc");
+const pluginTOC = require("@uncenter/eleventy-plugin-toc").default;
 const markdownItMath = require("markdown-it-math");
 const markdownItRuby = require("markdown-it-ruby");
 
@@ -26,8 +26,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addPlugin(pluginTOC, {
     tags: ["h1", "h2", "h3"],
-    wrapper: "div",
-    wrapperClass: "toc",
+    wrapper: (toc) => `<div class="toc">${toc}</div>`,
   });
 
   // Passthrough files
