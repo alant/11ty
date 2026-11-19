@@ -32,6 +32,9 @@ module.exports = function (eleventyConfig) {
   // Passthrough files
   eleventyConfig.addPassthroughCopy("assets");
 
+  // Agent instructions, not a page
+  eleventyConfig.ignores.add("AGENTS.md");
+
   // Global data
   eleventyConfig.addGlobalData("currentYear", new Date().getFullYear());
 
